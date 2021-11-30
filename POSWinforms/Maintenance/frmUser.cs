@@ -137,17 +137,23 @@ namespace POSWinforms
                 // Activate inactive users.
                 if(selectedUser != null)
                 {
-                    if(selectedUser.isActive == 0)
+                    if (MessageBox.Show("Do you want to activate this user?", "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) 
+                        == DialogResult.Yes)
                     {
-                        selectedUser.isActive = 1;
-                        DatabaseHelper.db.SubmitChanges();
 
-                        MessageBox.Show("User activated successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (selectedUser.isActive == 0)
+                        {
+                            selectedUser.isActive = 1;
+                            DatabaseHelper.db.SubmitChanges();
+
+                            MessageBox.Show("User activated successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("User failed to activate!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("User failed to activate!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    
                 }
                 else
                 {
@@ -176,6 +182,8 @@ namespace POSWinforms
                     MessageBox.Show("User cannot be empty.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            LoadAllUsers(null);
         }
     }
 }

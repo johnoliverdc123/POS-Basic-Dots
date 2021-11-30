@@ -36,9 +36,9 @@ namespace POSWinforms
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +50,7 @@ namespace POSWinforms
             this.metroSetControlBox1.CloseHoverForeColor = System.Drawing.Color.White;
             this.metroSetControlBox1.CloseNormalForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.metroSetControlBox1.ForeColor = System.Drawing.Color.Gray;
+            this.metroSetControlBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.metroSetControlBox1.IsDerivedStyle = true;
             this.metroSetControlBox1.Location = new System.Drawing.Point(352, 3);
             this.metroSetControlBox1.MaximizeBox = false;
@@ -120,8 +120,9 @@ namespace POSWinforms
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(9, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 21);
@@ -131,7 +132,7 @@ namespace POSWinforms
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.metroSetControlBox1);
             this.panel2.Controls.Add(this.label1);
@@ -142,6 +143,7 @@ namespace POSWinforms
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnLogin);
@@ -151,6 +153,26 @@ namespace POSWinforms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(459, 145);
             this.panel1.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(58, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 21);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Password";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(47, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 21);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "User Name";
             // 
             // linkLabel1
             // 
@@ -163,31 +185,11 @@ namespace POSWinforms
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Forgot Password?";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(47, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 21);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "User Name";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(58, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 21);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Password";
-            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(455, 212);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.panel2);

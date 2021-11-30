@@ -63,9 +63,9 @@ namespace POSWinforms
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.p1 = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.Button();
             this.p9 = new System.Windows.Forms.PictureBox();
-            this.p1 = new System.Windows.Forms.PictureBox();
             this.p8 = new System.Windows.Forms.PictureBox();
             this.p7 = new System.Windows.Forms.PictureBox();
             this.p6 = new System.Windows.Forms.PictureBox();
@@ -89,8 +89,8 @@ namespace POSWinforms
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFastTrackItems)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.p9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p6)).BeginInit();
@@ -149,8 +149,8 @@ namespace POSWinforms
             this.btnPosition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPosition.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnPosition.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnPosition.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnPosition.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnPosition.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnPosition.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnPosition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPosition.ForeColor = System.Drawing.Color.White;
@@ -168,8 +168,8 @@ namespace POSWinforms
             this.btnItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnItem.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnItem.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnItem.ForeColor = System.Drawing.Color.White;
@@ -187,8 +187,8 @@ namespace POSWinforms
             this.btnTransaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnTransaction.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnTransaction.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnTransaction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnTransaction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnTransaction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnTransaction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTransaction.ForeColor = System.Drawing.Color.White;
@@ -206,8 +206,8 @@ namespace POSWinforms
             this.btnCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCategory.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCategory.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnCategory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCategory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategory.ForeColor = System.Drawing.Color.White;
@@ -225,8 +225,8 @@ namespace POSWinforms
             this.btnOrders.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnOrders.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnOrders.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnOrders.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnOrders.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnOrders.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnOrders.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrders.ForeColor = System.Drawing.Color.White;
@@ -256,8 +256,8 @@ namespace POSWinforms
             this.btnExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnExpenses.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnExpenses.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnExpenses.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnExpenses.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnExpenses.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnExpenses.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnExpenses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExpenses.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExpenses.ForeColor = System.Drawing.Color.White;
@@ -275,8 +275,8 @@ namespace POSWinforms
             this.btnHistoryLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnHistoryLog.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnHistoryLog.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnHistoryLog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnHistoryLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnHistoryLog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnHistoryLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnHistoryLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHistoryLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistoryLog.ForeColor = System.Drawing.Color.White;
@@ -430,8 +430,8 @@ namespace POSWinforms
             this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnReports.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnReports.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnReports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnReports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReports.ForeColor = System.Drawing.Color.White;
@@ -514,9 +514,9 @@ namespace POSWinforms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.p1);
             this.panel1.Controls.Add(this.btnLogout);
             this.panel1.Controls.Add(this.p9);
-            this.panel1.Controls.Add(this.p1);
             this.panel1.Controls.Add(this.p8);
             this.panel1.Controls.Add(this.btnReports);
             this.panel1.Controls.Add(this.p7);
@@ -539,13 +539,26 @@ namespace POSWinforms
             this.panel1.Size = new System.Drawing.Size(186, 406);
             this.panel1.TabIndex = 42;
             // 
+            // p1
+            // 
+            this.p1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.p1.Image = global::POSWinforms.Properties.Resources.user_removebg_preview;
+            this.p1.Location = new System.Drawing.Point(5, 3);
+            this.p1.Margin = new System.Windows.Forms.Padding(2);
+            this.p1.Name = "p1";
+            this.p1.Size = new System.Drawing.Size(28, 26);
+            this.p1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.p1.TabIndex = 11;
+            this.p1.TabStop = false;
+            this.p1.Click += new System.EventHandler(this.userToolStripMenuItem1_Click);
+            // 
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
@@ -570,19 +583,6 @@ namespace POSWinforms
             this.p9.TabIndex = 38;
             this.p9.TabStop = false;
             this.p9.Click += new System.EventHandler(this.btnReports_Click);
-            // 
-            // p1
-            // 
-            this.p1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p1.Image = global::POSWinforms.Properties.Resources.user_removebg_preview;
-            this.p1.Location = new System.Drawing.Point(5, 3);
-            this.p1.Margin = new System.Windows.Forms.Padding(2);
-            this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(28, 26);
-            this.p1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p1.TabIndex = 11;
-            this.p1.TabStop = false;
-            this.p1.Click += new System.EventHandler(this.userToolStripMenuItem1_Click);
             // 
             // p8
             // 
@@ -680,8 +680,8 @@ namespace POSWinforms
             this.btnUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUser.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnUser.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUser.ForeColor = System.Drawing.Color.White;
@@ -851,12 +851,11 @@ namespace POSWinforms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
-            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFastTrackItems)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.p9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p6)).EndInit();

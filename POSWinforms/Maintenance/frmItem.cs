@@ -26,15 +26,14 @@ namespace POSWinforms.Maintenance
         public frmItem(bool normalMode)
         {
             InitializeComponent();
-
-            cmbSearchFilter.SelectedIndex = 0;
-            loadAllItems(null);
+            
             btnAdd.Visible = normalMode;
             btnUpdate.Visible = normalMode;
             btnStockIn.Visible = normalMode;
             dgvItems.CellDoubleClick += new DataGridViewCellEventHandler(dgvItems_CellDoubleClick);
 
             cmbSearchFilter.SelectedIndex = 0;
+            loadAllItems(null);
         }
 
         private void loadAllItems(string searchItem)
@@ -86,19 +85,21 @@ namespace POSWinforms.Maintenance
             foreach (DataGridViewRow row in dgvItems.Rows)
             {
                 row.DefaultCellStyle.ForeColor = Color.White;
-                if(int.Parse(row.Cells["colStocks"].Value.ToString()) <= int.Parse(row.Cells["colRestockLvl"].Value.ToString())) {
-                    row.DefaultCellStyle.BackColor = Color.DarkViolet;
+                if (int.Parse(row.Cells["colStocks"].Value.ToString()) <= int.Parse(row.Cells["colRestockLvl"].Value.ToString()))
+                {
+                    row.DefaultCellStyle.BackColor = Color.OrangeRed;
                 }
                 else
                 {
-                    row.DefaultCellStyle.BackColor = Color.Salmon;
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
                 }
-                //More code here
             }
 
-            dgvItems.ClearSelection();
+
             btnUpdate.Enabled = false;
             btnStockIn.Enabled = false;
+
+            dgvItems.ClearSelection();
         }
 
         private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -176,10 +177,11 @@ namespace POSWinforms.Maintenance
         private void cmbSearchFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbSearchFilter.SelectedIndex == 1)
-                btnActivateDeactivate.Text = "Deactivate";
-            else
                 btnActivateDeactivate.Text = "Activate";
+            else
+                btnActivateDeactivate.Text = "Deactivate";
 
+            itemCode = "";
             loadAllItems(null);
         }
 
@@ -231,6 +233,9 @@ namespace POSWinforms.Maintenance
                     MessageBox.Show("Item cannot be empty.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            itemCode = "";
+            loadAllItems(null);
         }
     }
 }

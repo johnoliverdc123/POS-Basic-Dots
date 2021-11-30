@@ -1,14 +1,10 @@
-﻿using MetroSet_UI.Forms;
-using POSWinforms.Models;
+﻿using POSWinforms.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POSWinforms.Maintenance
@@ -17,22 +13,24 @@ namespace POSWinforms.Maintenance
     {
 
         private long ID;
-        private List<tblPosition> allPositions = new List<tblPosition>();
+        private List<tblPosition> positionList = new List<tblPosition>();
 
         public frmPosition()
         {
             InitializeComponent();
+
             LoadAllPositions();
             btnClose.Focus();
         }
 
         private void LoadAllPositions()
         {
-            allPositions.Clear();
-            allPositions = (from s in DatabaseHelper.db.tblPositions
+            positionList.Clear();
+            positionList = (from s in DatabaseHelper.db.tblPositions
                                select s).ToList();
+
             dgvPositions.Rows.Clear();
-            foreach(var pos in allPositions)
+            foreach(var pos in positionList)
             {
                 dgvPositions.Rows.Add(
                         pos.ID,
@@ -54,12 +52,16 @@ namespace POSWinforms.Maintenance
                     btnUpdate.Text = "Update";
                     txtDescription.Text = "";
                 }
+
                 txtDescription.Enabled = true;
                 btnClose.Text = "Cancel";
+
                 dgvPositions.ClearSelection();
+
                 dgvPositions.Enabled = false;
                 dgvPositions.CellClick -= new DataGridViewCellEventHandler(dgvPositions_CellClick);
                 dgvPositions.ClearSelection();
+
                 txtID.Enabled = false;
                 var nextID = (from s in DatabaseHelper.db.tblPositions
                              orderby s.ID descending
@@ -127,7 +129,7 @@ namespace POSWinforms.Maintenance
         private void updatePosition()
         {
             btnUpdate.Text = "Update";
-            var updatePosition = allPositions.Where(x=> x.ID == ID).FirstOrDefault();
+            var updatePosition = positionList.Where(x=> x.ID == ID).FirstOrDefault();
 
             if(updatePosition != null)
             {

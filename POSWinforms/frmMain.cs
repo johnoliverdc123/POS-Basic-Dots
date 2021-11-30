@@ -22,6 +22,7 @@ namespace POSWinforms
         public frmMain()
         {
             InitializeComponent();
+
             timer1.Start();
             string date = DateTime.Now.ToString("dddd MMMM dd, yyyy  hh:mm:ss tt");
             lbTime.Text = date;
@@ -145,10 +146,10 @@ namespace POSWinforms
 
         private void loadTotalSalesAndTransactionCountToday()
         {
-            var totalSalesAndTransactionsList = (from s in DatabaseHelper.db.tblOrders
-                              where ((new DateTime(1970, 1, 1)).AddMilliseconds(s.Date).Day ==
-                                    DateTime.Now.Day)
-                              select s).ToList();
+            var today = DateTime.Now.Date;
+            var totalSalesAndTransactionsList = (from order in DatabaseHelper.db.tblOrders
+                                                 where ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(order.Date).Date == today)
+                                                 select order).ToList();
 
             var totalSales = totalSalesAndTransactionsList.Sum(x => x.Total + x.ServiceFee);
             var totalTransactionCount = totalSalesAndTransactionsList.Count();
@@ -160,8 +161,8 @@ namespace POSWinforms
         private void loadTotalExpensesToday()
         {
             var totalExpenses = (from s in DatabaseHelper.db.tblExpenses
-                              where ((new DateTime(1970, 1, 1)).AddMilliseconds(s.Date).Day ==
-                                    DateTime.Now.Day)
+                              where ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date ==
+                                    DateTime.Now.Date)
                               select s).ToList().Sum(x => x.Cost);
             lbTotalExpense.Text = totalExpenses.ToString("C2");
         }
@@ -275,11 +276,6 @@ namespace POSWinforms
                     loadEverything();
                 }
             }
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnReports_Click(object sender, EventArgs e)

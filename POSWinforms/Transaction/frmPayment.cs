@@ -15,6 +15,7 @@ namespace POSWinforms.Maintenance
 
         private decimal total = 0;
         private decimal change = 1;
+        private decimal serviceFee = 0;
         private decimal cash = 0;
 
         private DateTime dateNow;
@@ -241,14 +242,25 @@ namespace POSWinforms.Maintenance
 
         private void txtServiceFee_TextChanged(object sender, EventArgs e)
         {
-            Decimal serviceFee = 0;
+            serviceFee = 0;
 
             if (!string.IsNullOrWhiteSpace(txtServiceFee.Text))
             {
-                serviceFee = Convert.ToDecimal(txtServiceFee.Text);
+                try
+                {
+                    serviceFee = Convert.ToDecimal(txtServiceFee.Text);
+                } catch(Exception ex)
+                {
+                    txtServiceFee.Text = "";
+                }
             }
 
-            change = (total + serviceFee) - cash;
+            var grandTotal = (total + serviceFee);
+
+            cash = grandTotal;
+            txtCash.Text = cash.ToString("0.00");
+
+            change = grandTotal - cash;
             txtChange.Text = change.ToString("0.00");
         }
     }

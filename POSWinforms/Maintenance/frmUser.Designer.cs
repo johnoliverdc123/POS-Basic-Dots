@@ -29,12 +29,18 @@ namespace POSWinforms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.txtSearch = new MetroSet_UI.Controls.MetroSetTextBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,13 +49,9 @@ namespace POSWinforms
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.cmbSearchFilter = new System.Windows.Forms.ComboBox();
             this.btnActiveDeactivate = new System.Windows.Forms.Button();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroSetControlBox1
@@ -60,7 +62,7 @@ namespace POSWinforms
             this.metroSetControlBox1.CloseNormalForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
             this.metroSetControlBox1.IsDerivedStyle = true;
-            this.metroSetControlBox1.Location = new System.Drawing.Point(978, 11);
+            this.metroSetControlBox1.Location = new System.Drawing.Point(982, 2);
             this.metroSetControlBox1.Margin = new System.Windows.Forms.Padding(2);
             this.metroSetControlBox1.MaximizeBox = false;
             this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
@@ -84,22 +86,22 @@ namespace POSWinforms
             this.txtSearch.AutoCompleteCustomSource = null;
             this.txtSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.txtSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtSearch.BorderColor = System.Drawing.Color.Sienna;
+            this.txtSearch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtSearch.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.txtSearch.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
             this.txtSearch.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.txtSearch.Image = null;
             this.txtSearch.IsDerivedStyle = false;
             this.txtSearch.Lines = null;
-            this.txtSearch.Location = new System.Drawing.Point(79, 98);
+            this.txtSearch.Location = new System.Drawing.Point(77, 40);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.MaxLength = 100;
             this.txtSearch.Multiline = false;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.ReadOnly = false;
-            this.txtSearch.Size = new System.Drawing.Size(353, 30);
+            this.txtSearch.Size = new System.Drawing.Size(353, 33);
             this.txtSearch.Style = MetroSet_UI.Enums.Style.Light;
             this.txtSearch.StyleManager = null;
             this.txtSearch.TabIndex = 2;
@@ -114,15 +116,15 @@ namespace POSWinforms
             // 
             this.dgvUsers.AllowUserToAddRows = false;
             this.dgvUsers.AllowUserToDeleteRows = false;
-            this.dgvUsers.BackgroundColor = System.Drawing.Color.PeachPuff;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -131,133 +133,33 @@ namespace POSWinforms
             this.colUsername,
             this.colAddress,
             this.colContactNo});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvUsers.Location = new System.Drawing.Point(11, 139);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvUsers.Location = new System.Drawing.Point(11, 80);
             this.dgvUsers.Margin = new System.Windows.Forms.Padding(2);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvUsers.RowHeadersVisible = false;
             this.dgvUsers.RowTemplate.Height = 30;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(1066, 282);
+            this.dgvUsers.Size = new System.Drawing.Size(1059, 282);
             this.dgvUsers.TabIndex = 4;
             this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellClick);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.MistyRose;
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.Maroon;
-            this.btnAdd.Location = new System.Drawing.Point(437, 94);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(115, 34);
-            this.btnAdd.TabIndex = 109;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.MistyRose;
-            this.btnUpdate.Enabled = false;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.Maroon;
-            this.btnUpdate.Location = new System.Drawing.Point(556, 94);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(115, 34);
-            this.btnUpdate.TabIndex = 110;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 21);
-            this.label1.TabIndex = 111;
-            this.label1.Text = "Search:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 25);
-            this.label2.TabIndex = 112;
-            this.label2.Text = "Users";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(850, 107);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 21);
-            this.label3.TabIndex = 113;
-            this.label3.Text = "Search By:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(-15, -15);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 114;
-            // 
-            // cmbSearchFilter
-            // 
-            this.cmbSearchFilter.FormattingEnabled = true;
-            this.cmbSearchFilter.Items.AddRange(new object[] {
-            "Active",
-            "Not Active"});
-            this.cmbSearchFilter.Location = new System.Drawing.Point(937, 110);
-            this.cmbSearchFilter.Name = "cmbSearchFilter";
-            this.cmbSearchFilter.Size = new System.Drawing.Size(121, 21);
-            this.cmbSearchFilter.TabIndex = 115;
-            this.cmbSearchFilter.SelectedIndexChanged += new System.EventHandler(this.cmbSearchFilter_SelectedIndexChanged);
-            // 
-            // btnActiveDeactivate
-            // 
-            this.btnActiveDeactivate.BackColor = System.Drawing.Color.MistyRose;
-            this.btnActiveDeactivate.Enabled = false;
-            this.btnActiveDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
-            this.btnActiveDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActiveDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActiveDeactivate.ForeColor = System.Drawing.Color.Maroon;
-            this.btnActiveDeactivate.Location = new System.Drawing.Point(680, 438);
-            this.btnActiveDeactivate.Margin = new System.Windows.Forms.Padding(2);
-            this.btnActiveDeactivate.Name = "btnActiveDeactivate";
-            this.btnActiveDeactivate.Size = new System.Drawing.Size(115, 34);
-            this.btnActiveDeactivate.TabIndex = 116;
-            this.btnActiveDeactivate.Text = "Deactivate";
-            this.btnActiveDeactivate.UseVisualStyleBackColor = false;
-            this.btnActiveDeactivate.Click += new System.EventHandler(this.btnActiveDeactivate_Click);
             // 
             // colID
             // 
@@ -300,30 +202,152 @@ namespace POSWinforms
             this.colContactNo.ReadOnly = true;
             this.colContactNo.Width = 200;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(438, 42);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(89, 26);
+            this.btnAdd.TabIndex = 109;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnUpdate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(533, 42);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(89, 26);
+            this.btnUpdate.TabIndex = 110;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(12, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 21);
+            this.label1.TabIndex = 111;
+            this.label1.Text = "Search";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(5, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 21);
+            this.label2.TabIndex = 112;
+            this.label2.Text = "Users";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(839, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 21);
+            this.label3.TabIndex = 113;
+            this.label3.Text = "Search by";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(-15, -15);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 114;
+            // 
+            // cmbSearchFilter
+            // 
+            this.cmbSearchFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbSearchFilter.FormattingEnabled = true;
+            this.cmbSearchFilter.Items.AddRange(new object[] {
+            "Active",
+            "Not Active"});
+            this.cmbSearchFilter.Location = new System.Drawing.Point(923, 49);
+            this.cmbSearchFilter.Name = "cmbSearchFilter";
+            this.cmbSearchFilter.Size = new System.Drawing.Size(147, 21);
+            this.cmbSearchFilter.TabIndex = 115;
+            this.cmbSearchFilter.SelectedIndexChanged += new System.EventHandler(this.cmbSearchFilter_SelectedIndexChanged);
+            // 
+            // btnActiveDeactivate
+            // 
+            this.btnActiveDeactivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnActiveDeactivate.Enabled = false;
+            this.btnActiveDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnActiveDeactivate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActiveDeactivate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActiveDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActiveDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActiveDeactivate.ForeColor = System.Drawing.Color.White;
+            this.btnActiveDeactivate.Location = new System.Drawing.Point(981, 366);
+            this.btnActiveDeactivate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActiveDeactivate.Name = "btnActiveDeactivate";
+            this.btnActiveDeactivate.Size = new System.Drawing.Size(89, 26);
+            this.btnActiveDeactivate.TabIndex = 116;
+            this.btnActiveDeactivate.Text = "Deactivate";
+            this.btnActiveDeactivate.UseVisualStyleBackColor = false;
+            this.btnActiveDeactivate.Click += new System.EventHandler(this.btnActiveDeactivate_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.metroSetControlBox1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1084, 32);
+            this.panel1.TabIndex = 117;
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1089, 494);
+            this.ClientSize = new System.Drawing.Size(1084, 404);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnActiveDeactivate);
             this.Controls.Add(this.cmbSearchFilter);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvUsers);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.metroSetControlBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(1089, 432);
             this.Name = "frmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Users";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,5 +371,6 @@ namespace POSWinforms
         private System.Windows.Forms.DataGridViewTextBoxColumn colUsername;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn colContactNo;
+        private System.Windows.Forms.Panel panel1;
     }
 }
