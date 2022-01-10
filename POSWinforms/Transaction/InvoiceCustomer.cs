@@ -13,22 +13,24 @@ namespace POSWinforms.Transaction
 
         public void initData(
             long invoiceNo,
-            string fullName,
+            string customerId,
             DateTime date,
             decimal subTotal,
             decimal serviceFee,
+            string serviceType,
             decimal cash,
             decimal change,
             List<OrderDetail> cartList
             )
         {
             pInvoiceNo.Value = invoiceNo;
-            pCustomerName.Value = fullName;
-            pDate.Value = date;
-            pTotalAmt.Value = subTotal;
-            pServiceFee.Value = serviceFee;
-            pCash.Value = cash;
-            pChange.Value = change;
+            pCustomerID.Value = customerId;
+            pDate.Value = date.ToString("MM/dd/yyyy hh:mm:ss tt");
+            pTotalAmt.Value = subTotal.ToString("0.00");
+            pServiceFee.Value = serviceFee.ToString("0.00");
+            pServiceType.Value = serviceType;
+            pCash.Value = cash.ToString("0.00");
+            pChange.Value = change.ToString("0.00");
 
             foreach (var item in cartList)
             {

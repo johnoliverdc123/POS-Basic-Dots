@@ -15,18 +15,21 @@ namespace POSWinforms.Maintenance
         private long ID;
         private List<tblPosition> positionList = new List<tblPosition>();
 
+        private tblPosition selectedPosition = null;
+
         public frmPosition()
         {
             InitializeComponent();
 
-            LoadAllPositions();
+            LoadActivePositions();
             btnClose.Focus();
         }
 
-        private void LoadAllPositions()
+        private void LoadActivePositions()
         {
             positionList.Clear();
             positionList = (from s in DatabaseHelper.db.tblPositions
+                            where s.isActive == 1
                                select s).ToList();
 
             dgvPositions.Rows.Clear();
@@ -34,87 +37,68 @@ namespace POSWinforms.Maintenance
             {
                 dgvPositions.Rows.Add(
                         pos.ID,
-                        pos.PosDescription
+                        pos.PosDescription,
+                        pos.isActive
                     );
             }
             dgvPositions.ClearSelection();
-            dgvPositions.Enabled = false;
+        }
+
+        private void LoadDeactivatedPositions()
+        {
+            positionList.Clear();
+            positionList = (from s in DatabaseHelper.db.tblPositions
+                            where s.isActive == 0
+                            select s).ToList();
+
+            dgvPositions.Rows.Clear();
+            foreach (var pos in positionList)
+            {
+                dgvPositions.Rows.Add(
+                        pos.ID,
+                        pos.PosDescription,
+                        pos.isActive
+                    );
+            }
+            dgvPositions.ClearSelection();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(btnAdd.Text.Equals("Add"))
+            // Save new position here.
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                btnAdd.Text = "Save";
-                
-                if(btnUpdate.Text.Equals("Save"))
+                if (!string.IsNullOrWhiteSpace(txtDescription.Text))
                 {
-                    btnUpdate.Text = "Update";
-                    txtDescription.Text = "";
-                }
+                    var newPos = new tblPosition
+                    {
+                        PosDescription = txtDescription.Text,
+                        isActive = 1
+                    };
 
-                txtDescription.Enabled = true;
-                btnClose.Text = "Cancel";
+                    var newLog = new tblHistoryLog
+                    {
+                        Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                    $"added position({newPos.PosDescription})",
+                        Type = LogType.POSITION.ToString(),
+                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                    };
 
-                dgvPositions.ClearSelection();
+                    DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                    DatabaseHelper.db.tblPositions.InsertOnSubmit(newPos);
+                    DatabaseHelper.db.SubmitChanges();
 
-                dgvPositions.Enabled = false;
-                dgvPositions.CellClick -= new DataGridViewCellEventHandler(dgvPositions_CellClick);
-                dgvPositions.ClearSelection();
-
-                txtID.Enabled = false;
-                var nextID = (from s in DatabaseHelper.db.tblPositions
-                             orderby s.ID descending
-                             select s.ID).FirstOrDefault();
-                if(nextID > 0)
-                {
-                    long newID = nextID + 1;
-                    txtID.Text = newID.ToString();
+                    MessageBox.Show(this, "Position added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnAdd.Text = "Add";
+                    clearFields();
+                    LoadActivePositions();
                 }
                 else
                 {
-                    txtID.Text = "1";
+                    MessageBox.Show(this, "Position description should not be empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else if(btnAdd.Text.Equals("Save"))
-            {
-
-                // Save new position here.
-                if (ValidateChildren(ValidationConstraints.Enabled))
-                {
-                    if (!string.IsNullOrWhiteSpace(txtDescription.Text))
-                    {
-                        var newPos = new tblPosition
-                        {
-                            ID = long.Parse(txtID.Text),
-                            PosDescription = txtDescription.Text
-                        };
-
-                        var newLog = new tblHistoryLog
-                        {
-                            Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
-                        $"added position({newPos.PosDescription})",
-                            Type = LogType.POSITION.ToString(),
-                            Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                            EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
-                        };
-
-                        DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
-                        DatabaseHelper.db.tblPositions.InsertOnSubmit(newPos);
-                        DatabaseHelper.db.SubmitChanges();
-
-                        MessageBox.Show(this, "Position added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnAdd.Text = "Add";
-                        clearFields();
-                        LoadAllPositions();
-                    }
-                    else
-                    {
-                        MessageBox.Show(this, "Position description should not be empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-            }
-                 
         }
 
         public void clearFields()
@@ -122,8 +106,11 @@ namespace POSWinforms.Maintenance
             txtID.Text = "";
             txtDescription.Text = "";
             btnClose.Text = "Close";
-            txtDescription.Enabled = false;
             btnClose.Focus();
+
+            selectedPosition = null;
+            btnActivateDeactivate.Text = "Deactivate";
+            cbShowDeactivatedItems.Checked = false;
         }
 
         private void updatePosition()
@@ -156,7 +143,7 @@ namespace POSWinforms.Maintenance
             }
 
             clearFields();
-            LoadAllPositions();
+            LoadActivePositions();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -165,18 +152,6 @@ namespace POSWinforms.Maintenance
             if(btnUpdate.Text.Equals("Update"))
             {
                 btnUpdate.Text = "Save";
-                
-                if (btnAdd.Text.Equals("Save"))
-                {
-                    btnAdd.Text = "Add";
-                }
-                txtDescription.Enabled = true;
-                btnClose.Text = "Cancel";
-                dgvPositions.Enabled = true;
-                dgvPositions.CellClick += new DataGridViewCellEventHandler(dgvPositions_CellClick);
-                dgvPositions.Rows[0].Selected = true;
-                DataGridViewCellEventArgs f = new DataGridViewCellEventArgs(0, 0);
-                dgvPositions_CellClick(sender, f);
             }
             else if(btnUpdate.Text.Equals("Save"))
             {
@@ -204,6 +179,9 @@ namespace POSWinforms.Maintenance
 
                 txtID.Text = ID.ToString();
                 txtDescription.Text = dgvPositions.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                selectedPosition = DatabaseHelper.db.tblPositions.FirstOrDefault(x => x.ID == ID);
+
             }
         }
 
@@ -269,6 +247,57 @@ namespace POSWinforms.Maintenance
         private void dgvPositions_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             setPosition(e);
+        }
+
+        private void cbShowDeactivatedItems_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbShowDeactivatedItems.Checked)
+            {
+                btnActivateDeactivate.Text = "Activate";
+                LoadDeactivatedPositions();
+            } 
+            else
+            {
+                btnActivateDeactivate.Text = "Deactivate";
+                LoadActivePositions();
+            }
+        }
+
+        private void btnActivateDeactivate_Click(object sender, EventArgs e)
+        {
+            if(selectedPosition != null)
+            { 
+                var activeStr = selectedPosition.isActive == 1 ? "Deactivate" : "Activate";
+
+                var dialogResult = MessageBox.Show(this, $"Would you like to {activeStr} this position?",
+                             "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (selectedPosition.isActive == 1)
+                    {
+                        selectedPosition.isActive = 0;
+                    }
+                    else
+                    {
+                        selectedPosition.isActive = 1;
+                    }
+
+                    var newLog = new tblHistoryLog
+                    {
+                        Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                        $"${activeStr}d position({selectedPosition.PosDescription})",
+                        Type = LogType.POSITION.ToString(),
+                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                    };
+
+                    DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                    DatabaseHelper.db.SubmitChanges();
+                    MessageBox.Show(this, $"Position {activeStr}d successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    clearFields();
+                    LoadActivePositions();
+                }
+            }
         }
     }
 }

@@ -37,6 +37,7 @@ namespace POSWinforms.Maintenance
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -45,6 +46,8 @@ namespace POSWinforms.Maintenance
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnActivateDeactivate = new System.Windows.Forms.Button();
+            this.cbShowDeactivatedItems = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -60,7 +63,6 @@ namespace POSWinforms.Maintenance
             this.txtDescription.DisabledBackColor = System.Drawing.Color.White;
             this.txtDescription.DisabledBorderColor = System.Drawing.Color.Black;
             this.txtDescription.DisabledForeColor = System.Drawing.Color.Black;
-            this.txtDescription.Enabled = false;
             this.txtDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.txtDescription.Image = null;
@@ -90,7 +92,6 @@ namespace POSWinforms.Maintenance
             this.txtItemCode.DisabledBackColor = System.Drawing.Color.White;
             this.txtItemCode.DisabledBorderColor = System.Drawing.Color.Black;
             this.txtItemCode.DisabledForeColor = System.Drawing.Color.Black;
-            this.txtItemCode.Enabled = false;
             this.txtItemCode.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItemCode.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.txtItemCode.Image = null;
@@ -151,7 +152,8 @@ namespace POSWinforms.Maintenance
             this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategories.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2});
+            this.Column2,
+            this.Column3});
             this.dgvCategories.GridColor = System.Drawing.SystemColors.ButtonShadow;
             this.dgvCategories.Location = new System.Drawing.Point(15, 47);
             this.dgvCategories.MultiSelect = false;
@@ -162,6 +164,7 @@ namespace POSWinforms.Maintenance
             this.dgvCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategories.Size = new System.Drawing.Size(511, 156);
             this.dgvCategories.TabIndex = 0;
+            this.dgvCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategories_CellClick);
             // 
             // Column1
             // 
@@ -174,6 +177,12 @@ namespace POSWinforms.Maintenance
             this.Column2.HeaderText = "Item Description";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Is Active";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // errorProvider1
             // 
@@ -270,12 +279,42 @@ namespace POSWinforms.Maintenance
             this.panel3.Size = new System.Drawing.Size(549, 89);
             this.panel3.TabIndex = 111;
             // 
+            // btnActivateDeactivate
+            // 
+            this.btnActivateDeactivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnActivateDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnActivateDeactivate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActivateDeactivate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActivateDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActivateDeactivate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivateDeactivate.ForeColor = System.Drawing.Color.White;
+            this.btnActivateDeactivate.Location = new System.Drawing.Point(98, 346);
+            this.btnActivateDeactivate.Name = "btnActivateDeactivate";
+            this.btnActivateDeactivate.Size = new System.Drawing.Size(82, 26);
+            this.btnActivateDeactivate.TabIndex = 112;
+            this.btnActivateDeactivate.Text = "Deactivate";
+            this.btnActivateDeactivate.UseVisualStyleBackColor = false;
+            this.btnActivateDeactivate.Click += new System.EventHandler(this.btnActivateDeactivate_Click);
+            // 
+            // cbShowDeactivatedItems
+            // 
+            this.cbShowDeactivatedItems.AutoSize = true;
+            this.cbShowDeactivatedItems.Location = new System.Drawing.Point(98, 378);
+            this.cbShowDeactivatedItems.Name = "cbShowDeactivatedItems";
+            this.cbShowDeactivatedItems.Size = new System.Drawing.Size(249, 24);
+            this.cbShowDeactivatedItems.TabIndex = 113;
+            this.cbShowDeactivatedItems.Text = "Show Deactivated Categories";
+            this.cbShowDeactivatedItems.UseVisualStyleBackColor = true;
+            this.cbShowDeactivatedItems.CheckedChanged += new System.EventHandler(this.cbShowDeactivatedItems_CheckedChanged);
+            // 
             // frmCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(541, 351);
+            this.ClientSize = new System.Drawing.Size(541, 410);
+            this.Controls.Add(this.cbShowDeactivatedItems);
+            this.Controls.Add(this.btnActivateDeactivate);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
@@ -295,6 +334,7 @@ namespace POSWinforms.Maintenance
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -304,8 +344,6 @@ namespace POSWinforms.Maintenance
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel2;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel1;
         private System.Windows.Forms.DataGridView dgvCategories;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnUpdate;
@@ -314,5 +352,10 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox cbShowDeactivatedItems;
+        private System.Windows.Forms.Button btnActivateDeactivate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

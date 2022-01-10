@@ -50,6 +50,8 @@ namespace POSWinforms.Maintenance
             this.lbTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.metroSetLabel8 = new MetroSet_UI.Controls.MetroSetLabel();
+            this.txtSupplierInformation = new MetroSet_UI.Controls.MetroSetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,7 +89,7 @@ namespace POSWinforms.Maintenance
             this.metroSetLabel1.AutoSize = true;
             this.metroSetLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel1.IsDerivedStyle = false;
-            this.metroSetLabel1.Location = new System.Drawing.Point(21, 16);
+            this.metroSetLabel1.Location = new System.Drawing.Point(80, 23);
             this.metroSetLabel1.Name = "metroSetLabel1";
             this.metroSetLabel1.Size = new System.Drawing.Size(67, 17);
             this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Custom;
@@ -103,7 +105,7 @@ namespace POSWinforms.Maintenance
             this.metroSetLabel2.AutoSize = true;
             this.metroSetLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel2.IsDerivedStyle = false;
-            this.metroSetLabel2.Location = new System.Drawing.Point(45, 50);
+            this.metroSetLabel2.Location = new System.Drawing.Point(105, 58);
             this.metroSetLabel2.Name = "metroSetLabel2";
             this.metroSetLabel2.Size = new System.Drawing.Size(42, 17);
             this.metroSetLabel2.Style = MetroSet_UI.Enums.Style.Custom;
@@ -119,7 +121,7 @@ namespace POSWinforms.Maintenance
             this.metroSetLabel3.AutoSize = true;
             this.metroSetLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel3.IsDerivedStyle = false;
-            this.metroSetLabel3.Location = new System.Drawing.Point(8, 86);
+            this.metroSetLabel3.Location = new System.Drawing.Point(68, 93);
             this.metroSetLabel3.Name = "metroSetLabel3";
             this.metroSetLabel3.Size = new System.Drawing.Size(79, 17);
             this.metroSetLabel3.Style = MetroSet_UI.Enums.Style.Custom;
@@ -135,7 +137,7 @@ namespace POSWinforms.Maintenance
             this.metroSetLabel4.AutoSize = true;
             this.metroSetLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel4.IsDerivedStyle = false;
-            this.metroSetLabel4.Location = new System.Drawing.Point(53, 123);
+            this.metroSetLabel4.Location = new System.Drawing.Point(113, 128);
             this.metroSetLabel4.Name = "metroSetLabel4";
             this.metroSetLabel4.Size = new System.Drawing.Size(34, 17);
             this.metroSetLabel4.Style = MetroSet_UI.Enums.Style.Custom;
@@ -151,7 +153,7 @@ namespace POSWinforms.Maintenance
             this.metroSetLabel5.AutoSize = true;
             this.metroSetLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel5.IsDerivedStyle = false;
-            this.metroSetLabel5.Location = new System.Drawing.Point(37, 159);
+            this.metroSetLabel5.Location = new System.Drawing.Point(97, 163);
             this.metroSetLabel5.Name = "metroSetLabel5";
             this.metroSetLabel5.Size = new System.Drawing.Size(50, 17);
             this.metroSetLabel5.Style = MetroSet_UI.Enums.Style.Custom;
@@ -179,7 +181,7 @@ namespace POSWinforms.Maintenance
             this.cmbCategory.FormattingEnabled = true;
             this.cmbCategory.IsDerivedStyle = false;
             this.cmbCategory.ItemHeight = 20;
-            this.cmbCategory.Location = new System.Drawing.Point(97, 12);
+            this.cmbCategory.Location = new System.Drawing.Point(153, 14);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.SelectedItemBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             this.cmbCategory.SelectedItemForeColor = System.Drawing.Color.White;
@@ -207,7 +209,7 @@ namespace POSWinforms.Maintenance
             this.txtCode.Image = null;
             this.txtCode.IsDerivedStyle = false;
             this.txtCode.Lines = null;
-            this.txtCode.Location = new System.Drawing.Point(97, 45);
+            this.txtCode.Location = new System.Drawing.Point(153, 46);
             this.txtCode.MaxLength = 32767;
             this.txtCode.Multiline = false;
             this.txtCode.Name = "txtCode";
@@ -236,12 +238,12 @@ namespace POSWinforms.Maintenance
             this.txtDescription.Image = null;
             this.txtDescription.IsDerivedStyle = false;
             this.txtDescription.Lines = null;
-            this.txtDescription.Location = new System.Drawing.Point(97, 81);
+            this.txtDescription.Location = new System.Drawing.Point(153, 81);
             this.txtDescription.MaxLength = 255;
             this.txtDescription.Multiline = false;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = false;
-            this.txtDescription.Size = new System.Drawing.Size(523, 29);
+            this.txtDescription.Size = new System.Drawing.Size(467, 29);
             this.txtDescription.Style = MetroSet_UI.Enums.Style.Light;
             this.txtDescription.StyleManager = null;
             this.txtDescription.TabIndex = 2;
@@ -266,7 +268,7 @@ namespace POSWinforms.Maintenance
             this.txtSize.Image = null;
             this.txtSize.IsDerivedStyle = false;
             this.txtSize.Lines = null;
-            this.txtSize.Location = new System.Drawing.Point(97, 117);
+            this.txtSize.Location = new System.Drawing.Point(153, 116);
             this.txtSize.MaxLength = 100;
             this.txtSize.Multiline = false;
             this.txtSize.Name = "txtSize";
@@ -296,7 +298,7 @@ namespace POSWinforms.Maintenance
             this.txtQuantity.Image = null;
             this.txtQuantity.IsDerivedStyle = false;
             this.txtQuantity.Lines = null;
-            this.txtQuantity.Location = new System.Drawing.Point(97, 153);
+            this.txtQuantity.Location = new System.Drawing.Point(153, 152);
             this.txtQuantity.MaxLength = 10;
             this.txtQuantity.Multiline = false;
             this.txtQuantity.Name = "txtQuantity";
@@ -421,7 +423,7 @@ namespace POSWinforms.Maintenance
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(536, 238);
+            this.btnSave.Location = new System.Drawing.Point(536, 282);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 26);
             this.btnSave.TabIndex = 14;
@@ -453,6 +455,8 @@ namespace POSWinforms.Maintenance
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.metroSetLabel8);
+            this.panel2.Controls.Add(this.txtSupplierInformation);
             this.panel2.Controls.Add(this.cmbCategory);
             this.panel2.Controls.Add(this.txtReProduceLevel);
             this.panel2.Controls.Add(this.metroSetLabel1);
@@ -469,15 +473,60 @@ namespace POSWinforms.Maintenance
             this.panel2.Controls.Add(this.txtDescription);
             this.panel2.Location = new System.Drawing.Point(-1, 40);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(634, 192);
+            this.panel2.Size = new System.Drawing.Size(634, 236);
             this.panel2.TabIndex = 20;
+            // 
+            // metroSetLabel8
+            // 
+            this.metroSetLabel8.AutoSize = true;
+            this.metroSetLabel8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroSetLabel8.IsDerivedStyle = false;
+            this.metroSetLabel8.Location = new System.Drawing.Point(14, 200);
+            this.metroSetLabel8.Name = "metroSetLabel8";
+            this.metroSetLabel8.Size = new System.Drawing.Size(133, 17);
+            this.metroSetLabel8.Style = MetroSet_UI.Enums.Style.Custom;
+            this.metroSetLabel8.StyleManager = null;
+            this.metroSetLabel8.TabIndex = 15;
+            this.metroSetLabel8.Text = "Supplier Information";
+            this.metroSetLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.metroSetLabel8.ThemeAuthor = null;
+            this.metroSetLabel8.ThemeName = null;
+            // 
+            // txtSupplierInformation
+            // 
+            this.txtSupplierInformation.AutoCompleteCustomSource = null;
+            this.txtSupplierInformation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtSupplierInformation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtSupplierInformation.BorderColor = System.Drawing.Color.Black;
+            this.txtSupplierInformation.DisabledBackColor = System.Drawing.Color.White;
+            this.txtSupplierInformation.DisabledBorderColor = System.Drawing.Color.White;
+            this.txtSupplierInformation.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSupplierInformation.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierInformation.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.txtSupplierInformation.Image = null;
+            this.txtSupplierInformation.IsDerivedStyle = false;
+            this.txtSupplierInformation.Lines = null;
+            this.txtSupplierInformation.Location = new System.Drawing.Point(153, 188);
+            this.txtSupplierInformation.MaxLength = 1000;
+            this.txtSupplierInformation.Multiline = false;
+            this.txtSupplierInformation.Name = "txtSupplierInformation";
+            this.txtSupplierInformation.ReadOnly = false;
+            this.txtSupplierInformation.Size = new System.Drawing.Size(171, 29);
+            this.txtSupplierInformation.Style = MetroSet_UI.Enums.Style.Light;
+            this.txtSupplierInformation.StyleManager = null;
+            this.txtSupplierInformation.TabIndex = 14;
+            this.txtSupplierInformation.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSupplierInformation.ThemeAuthor = null;
+            this.txtSupplierInformation.ThemeName = null;
+            this.txtSupplierInformation.UseSystemPasswordChar = false;
+            this.txtSupplierInformation.WatermarkText = "";
             // 
             // frmAddEditItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(630, 270);
+            this.ClientSize = new System.Drawing.Size(630, 323);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -487,7 +536,6 @@ namespace POSWinforms.Maintenance
             this.Padding = new System.Windows.Forms.Padding(10, 70, 10, 12);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item Modal";
-            this.Load += new System.EventHandler(this.frmAddEditItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -518,5 +566,7 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private MetroSet_UI.Controls.MetroSetLabel metroSetLabel8;
+        private MetroSet_UI.Controls.MetroSetTextBox txtSupplierInformation;
     }
 }

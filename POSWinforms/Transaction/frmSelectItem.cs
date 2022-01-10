@@ -101,7 +101,7 @@ namespace POSWinforms.Transaction
                         ID = nextID,
                         ItemCode = item.ItemCode,
                         ItemDescription = item.ItemDescription,
-                        ItemNumber = item.ItemNumber,
+                        Size = item.Size,
                         Discount = discount,
                         Quantity = quantity,
                         Price = item.Price,

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Linq.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,6 +12,8 @@ namespace POSWinforms
     public partial class frmOrders : Form
     {
         private List<tblOrder> orderList = new List<tblOrder>();
+
+        private List<DateTime> datesToEvaluate = new List<DateTime>();
 
         private DateTime startDate = DateTime.Now;
 
@@ -29,14 +32,15 @@ namespace POSWinforms
             if (searchedOrder == null)
             {
                 orderList = (from order in DatabaseHelper.db.tblOrders
+                             where datesToEvaluate.Contains(order.Date.Date)
                              select order).ToList();
 
             }
             else
             {
                 orderList = (from order in DatabaseHelper.db.tblOrders
-                             where SqlMethods.Like(order.ID.ToString(), "%" + searchedOrder + "%") ||
-                             SqlMethods.Like(order.CustomerID.ToString(), "%" + searchedOrder + "%")
+                             where datesToEvaluate.Contains(order.Date.Date) &&
+                             SqlMethods.Like(order.ID.ToString(), "%" + searchedOrder + "%") || SqlMethods.Like(order.CustomerID.ToString(), "%" + searchedOrder + "%")
                              select order).ToList();
 
             }
@@ -45,7 +49,6 @@ namespace POSWinforms
 
             foreach (var order in orderList)
             {
-                var dateFromStamp = (new DateTime(1970, 1, 1)).AddMilliseconds(order.Date).ToLocalTime();
 
                 var hasService = "No";
                 if (order.HasService == 1)
@@ -57,75 +60,15 @@ namespace POSWinforms
                         order.ID,
                         order.CustomerID,
                         order.Status,
-                        dateFromStamp,
+                        order.Date,
                         order.Total.ToString("C2"),
                         hasService,
-                        order.ServiceFee.ToString("C2"),
+                        order.ServiceFee?.ToString("C2"),
                         order.Cash.ToString("C2"),
                         order.Change.ToString("C2")
                     );
             }
             dgvOrders.ClearSelection();
-        }
-
-        private void loadAllOrdersWithDateRange()
-        {
-            orderList.Clear();
-            dgvOrders.Rows.Clear();
-
-            var startDateLong = new DateTimeOffset(dtpFromDate.Value).ToUnixTimeMilliseconds();
-            var toDateLong = new DateTimeOffset(dtpToDate.Value).ToUnixTimeMilliseconds();
-
-            orderList = (from order in DatabaseHelper.db.tblOrders
-                         where ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(order.Date).Date >=
-                                    dtpFromDate.Value.Date &&
-                                    (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(order.Date).Date <=
-                                    dtpToDate.Value.Date)
-                         select order).ToList();
-
-            orderList = orderList.OrderByDescending(o => o.Date).ToList();
-
-            foreach (var order in orderList)
-            {
-                var dateFromStamp = (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(order.Date).ToLocalTime();
-
-                var hasService = "No";
-                if (order.HasService == 1)
-                {
-                    hasService = "Yes";
-                }
-
-                dgvOrders.Rows.Add(
-                        order.ID,
-                        order.CustomerID,
-                        order.Status,
-                        dateFromStamp,
-                        order.Total.ToString("C2"),
-                        hasService,
-                        order.ServiceFee.ToString("C2"),
-                        order.Cash.ToString("C2"),
-                        order.Change.ToString("C2")
-                    );
-            }
-            dgvOrders.ClearSelection();
-        }
-
-        private void frmUser_Load(object sender, EventArgs e)
-        {
-            loadAllOrders(null);
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (txtSearch.Text.Length == 0)
-            {
-                loadAllOrders(null);
-            }
-            else if (txtSearch.Text.Length > 0)
-            {
-                loadAllOrders(txtSearch.Text);
-            }
-
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -145,13 +88,41 @@ namespace POSWinforms
 
         private void btnWithDateRange_Click(object sender, EventArgs e)
         {
-            loadAllOrdersWithDateRange();
+            datesToEvaluate.Clear();
+            for (var dt = dtpFromDate.Value.Date; dt <= dtpToDate.Value.Date; dt = dt.AddDays(1))
+            {
+                datesToEvaluate.Add(dt.Date);
+            }
+
+            if(txtSearch.Text.Length > 3)
+            {
+                loadAllOrders(txtSearch.Text);
+            } else
+            {
+                loadAllOrders(null);
+            }
         }
 
         private void dtpFromDate_ValueChanged(object sender, EventArgs e)
         {
             startDate = dtpFromDate.Value;
             dtpToDate.MinDate = startDate.AddDays(1);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if(dgvOrders.Rows.Count > 0)
+            {
+                DGVPrinter printer = new DGVPrinter();
+                printer.Title = "Orders Report";
+                printer.SubTitle = string.Format("Date: {0}", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"));
+                printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                printer.PageNumbers = true;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.PrintDataGridView(dgvOrders);
+            }
         }
     }
 }

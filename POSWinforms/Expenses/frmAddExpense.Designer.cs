@@ -39,6 +39,7 @@
             this.epPurposeDesc = new System.Windows.Forms.ErrorProvider(this.components);
             this.epType = new System.Windows.Forms.ErrorProvider(this.components);
             this.epCost = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnAddExpenseType = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epPurposeDesc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCost)).BeginInit();
@@ -75,15 +76,6 @@
             // cmbExpenseType
             // 
             this.cmbExpenseType.FormattingEnabled = true;
-            this.cmbExpenseType.Items.AddRange(new object[] {
-            "Electricity",
-            "Water",
-            "Service",
-            "Product",
-            "Machine",
-            "Return-Replace",
-            "Refund",
-            "Others"});
             this.cmbExpenseType.Location = new System.Drawing.Point(123, 148);
             this.cmbExpenseType.Name = "cmbExpenseType";
             this.cmbExpenseType.Size = new System.Drawing.Size(121, 21);
@@ -129,11 +121,22 @@
             // 
             this.epCost.ContainerControl = this;
             // 
+            // btnAddExpenseType
+            // 
+            this.btnAddExpenseType.Location = new System.Drawing.Point(250, 148);
+            this.btnAddExpenseType.Name = "btnAddExpenseType";
+            this.btnAddExpenseType.Size = new System.Drawing.Size(140, 23);
+            this.btnAddExpenseType.TabIndex = 7;
+            this.btnAddExpenseType.Text = "Add Expense Type";
+            this.btnAddExpenseType.UseVisualStyleBackColor = true;
+            this.btnAddExpenseType.Click += new System.EventHandler(this.btnAddExpenseType_Click);
+            // 
             // frmAddExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 273);
+            this.Controls.Add(this.btnAddExpenseType);
             this.Controls.Add(this.btnAddExpense);
             this.Controls.Add(this.txtCost);
             this.Controls.Add(this.label3);
@@ -163,5 +166,6 @@
         private System.Windows.Forms.ErrorProvider epPurposeDesc;
         private System.Windows.Forms.ErrorProvider epType;
         private System.Windows.Forms.ErrorProvider epCost;
+        private System.Windows.Forms.Button btnAddExpenseType;
     }
 }

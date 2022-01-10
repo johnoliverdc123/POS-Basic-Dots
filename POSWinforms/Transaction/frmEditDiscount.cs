@@ -1,14 +1,7 @@
-﻿using MetroSet_UI.Forms;
-using POSWinforms.Models;
+﻿using POSWinforms.Models;
 using POSWinforms.Transaction;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POSWinforms.Maintenance
@@ -20,8 +13,11 @@ namespace POSWinforms.Maintenance
 
         public frmEditDiscount(OrderDetail selectedItem)
         {
-            editDiscount = selectedItem;
+            
             InitializeComponent();
+
+            editDiscount = DatabaseHelper.cartList.FirstOrDefault(x => x.ID == selectedItem.ID);
+
             numericUpDown1.Value = editDiscount.Discount;
             discount = editDiscount.Discount;
         }
@@ -33,6 +29,7 @@ namespace POSWinforms.Maintenance
                 if (discount != editDiscount.Discount) {
                     editDiscount.Discount = discount;
                     editDiscount.Total = frmSelectItem.getGrandTotal(editDiscount.Price, editDiscount.Quantity, editDiscount.Discount);
+                    
                     Close();
                 } else
                 {

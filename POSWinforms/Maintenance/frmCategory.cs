@@ -18,10 +18,12 @@ namespace POSWinforms.Maintenance
         private List<tblCategory> allCategories = new List<tblCategory>();
         private string itemCode = "";
 
+        private tblCategory selectedCategory = null;
+
         public frmCategory()
         {
             InitializeComponent();
-            LoadAllCategories();
+            LoadActiveCategories();
         }
 
         private void txtItemCode_Validating(object sender, CancelEventArgs e)
@@ -42,92 +44,58 @@ namespace POSWinforms.Maintenance
         {
             txtItemCode.Text = "";
             txtDescription.Text = "";
-            txtItemCode.Enabled = false;
-            txtDescription.Enabled = false;
             btnClose.Text = "Close";
             btnClose.Focus();
+
+            selectedCategory = null;
+            btnActivateDeactivate.Text = "Deactivate";
+            cbShowDeactivatedItems.Checked = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (btnAdd.Text.Equals("Add"))
+            // Save new category here.
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                btnAdd.Text = "Save";
-                if (btnUpdate.Text.Equals("Save"))
+                if (!string.IsNullOrWhiteSpace(txtDescription.Text))
                 {
-                    btnUpdate.Text = "Update";
-                    
+                    var newCategory = new tblCategory
+                    {
+                        ItemCode = txtItemCode.Text,
+                        ItemDescription = txtDescription.Text,
+                        isActive = 1
+                    };
+
+                    var newLog = new tblHistoryLog
+                    {
+                        Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                    $"added category '{newCategory.ItemDescription}'({newCategory.ItemCode})",
+                        Type = LogType.CATEGORY.ToString(),
+                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                    };
+
+                    DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                    DatabaseHelper.db.tblCategories.InsertOnSubmit(newCategory);
+                    DatabaseHelper.db.SubmitChanges();
+
+                    MessageBox.Show(this, "Category added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnAdd.Text = "Add";
+                    clearFields();
+                    LoadActiveCategories();
                 }
-                txtItemCode.Text = "";
-                txtDescription.Text = "";
-                txtItemCode.Enabled = true;
-                txtDescription.Enabled = true;
-                btnClose.Text = "Cancel";
-                dgvCategories.ClearSelection();
-                dgvCategories.Enabled = false;
-                dgvCategories.CellClick -= new DataGridViewCellEventHandler(dgvCategories_CellClick);
-                dgvCategories.ClearSelection();
-            }
-            else if (btnAdd.Text.Equals("Save"))
-            {
-
-                // Save new category here.
-                if (ValidateChildren(ValidationConstraints.Enabled))
+                else
                 {
-                    if (!string.IsNullOrWhiteSpace(txtDescription.Text))
-                    {
-                        var newCategory = new tblCategory
-                        {
-                            ItemCode = txtItemCode.Text,
-                            ItemDescription = txtDescription.Text
-                        };
-
-                        var newLog = new tblHistoryLog
-                        {
-                            Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
-                        $"added category '{newCategory.ItemDescription}'({newCategory.ItemCode})",
-                            Type = LogType.CATEGORY.ToString(),
-                            Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                            EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
-                        };
-
-                        DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
-                        DatabaseHelper.db.tblCategories.InsertOnSubmit(newCategory);
-                        DatabaseHelper.db.SubmitChanges();
-
-                        MessageBox.Show(this, "Category added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnAdd.Text = "Add";
-                        clearFields();
-                        LoadAllCategories();
-                    }
-                    else
-                    {
-                        MessageBox.Show(this, "Category description should not be empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MessageBox.Show(this, "Category description should not be empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(btnUpdate.Text.Equals("Update"))
+            if (btnUpdate.Text.Equals("Update"))
             {
                 btnUpdate.Text = "Save";
-                if (btnAdd.Text.Equals("Save"))
-                {
-                    btnAdd.Text = "Add";
-                }
-                txtItemCode.Enabled = false;
-                txtDescription.Enabled = true;
-                txtItemCode.Text = "";
-                txtDescription.Text = "";
-
-                btnClose.Text = "Cancel";
-                dgvCategories.Enabled = true;
-                dgvCategories.CellClick += new DataGridViewCellEventHandler(dgvCategories_CellClick);
-                dgvCategories.Rows[0].Selected = true;
-                DataGridViewCellEventArgs f = new DataGridViewCellEventArgs(0, 0);
-                dgvCategories_CellClick(sender, f);
             }
             else if (btnUpdate.Text.Equals("Save"))
             {
@@ -136,72 +104,88 @@ namespace POSWinforms.Maintenance
                     MessageBox.Show(this, "Please enter new description and do not leave that field empty.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                var updateCategory = allCategories.Where(x => x.ItemCode.Equals(itemCode)).FirstOrDefault();
-                if (updateCategory != null)
+
+                DialogResult dialogResult = MessageBox.Show(this, "Would you like to update this category?",
+                    "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    DialogResult dialogResult = MessageBox.Show(this, "Would you like to update this category?",
-                        "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (ValidateChildren(ValidationConstraints.Enabled))
                     {
-                        if (ValidateChildren(ValidationConstraints.Enabled))
+                        if (!string.IsNullOrWhiteSpace(txtDescription.Text))
                         {
-                            if (!string.IsNullOrWhiteSpace(txtDescription.Text))
-                            {
-                                updateCategory.ItemDescription = txtDescription.Text;
+                            selectedCategory.ItemDescription = txtDescription.Text;
 
-                                var newLog = new tblHistoryLog
-                                {
-                                    Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
-                        $"updated category({updateCategory.ItemCode})",
-                                    Type = LogType.CATEGORY.ToString(),
-                                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                                    EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
-                                };
-
-                                DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
-                                DatabaseHelper.db.SubmitChanges();
-                                MessageBox.Show(this, "Item '" + updateCategory.ItemCode + "' successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                btnUpdate.Text = "Update";
-                                clearFields();
-                                LoadAllCategories();
-                            }
-                            else
+                            var newLog = new tblHistoryLog
                             {
-                                MessageBox.Show(this, "Category description should not be empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
+                                Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                    $"updated category({selectedCategory.ItemCode})",
+                                Type = LogType.CATEGORY.ToString(),
+                                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                                EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                            };
+
+                            DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                            DatabaseHelper.db.SubmitChanges();
+                            MessageBox.Show(this, $"Item {selectedCategory.ItemCode} updated successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            btnUpdate.Text = "Update";
+                            clearFields();
+                            LoadActiveCategories();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "Category description should not be empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
-                    
                 }
-                
-                
             }
         }
 
-        private void LoadAllCategories()
+        private void LoadActiveCategories()
         {
             allCategories.Clear();
             allCategories = (from s in DatabaseHelper.db.tblCategories
-                                select s).ToList();
+                             where s.isActive == 1
+                             select s).ToList();
             dgvCategories.Rows.Clear();
-            foreach(var category in allCategories)
+            foreach (var category in allCategories)
             {
                 dgvCategories.Rows.Add(
                         category.ItemCode,
-                        category.ItemDescription
+                        category.ItemDescription,
+                        category.isActive
                     );
             }
             dgvCategories.ClearSelection();
-            dgvCategories.Enabled = false;
+        }
+
+        private void LoadDeactivatedCategories()
+        {
+            allCategories.Clear();
+            allCategories = (from s in DatabaseHelper.db.tblCategories
+                             where s.isActive == 0
+                             select s).ToList();
+            dgvCategories.Rows.Clear();
+            foreach (var category in allCategories)
+            {
+                dgvCategories.Rows.Add(
+                        category.ItemCode,
+                        category.ItemDescription,
+                        category.isActive
+                    );
+            }
+            dgvCategories.ClearSelection();
         }
 
         private void dgvCategories_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
+
                 itemCode = dgvCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
                 txtItemCode.Text = itemCode;
                 txtDescription.Text = dgvCategories.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                selectedCategory = DatabaseHelper.db.tblCategories.FirstOrDefault(x => x.ItemCode.Equals(itemCode));
             }
         }
 
@@ -241,9 +225,60 @@ namespace POSWinforms.Maintenance
                         Close();
                     }
                 }
-                else 
+                else
                 {
                     Close();
+                }
+            }
+        }
+
+        private void cbShowDeactivatedItems_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbShowDeactivatedItems.Checked)
+            {
+                btnActivateDeactivate.Text = "Activate";
+                LoadDeactivatedCategories();
+            }
+            else
+            {
+                btnActivateDeactivate.Text = "Deactivate";
+                LoadActiveCategories();
+            }
+        }
+
+        private void btnActivateDeactivate_Click(object sender, EventArgs e)
+        {
+            if (selectedCategory != null)
+            {
+                var activeStr = selectedCategory.isActive == 1 ? "Deactivate" : "Activate";
+
+                var dialogResult = MessageBox.Show(this, $"Would you like to {activeStr} this category?",
+                             "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (selectedCategory.isActive == 1)
+                    {
+                        selectedCategory.isActive = 0;
+                    }
+                    else
+                    {
+                        selectedCategory.isActive = 1;
+                    }
+
+                    var newLog = new tblHistoryLog
+                    {
+                        Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                        $"{activeStr}d category({selectedCategory.ItemCode})",
+                        Type = LogType.CATEGORY.ToString(),
+                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                    };
+
+                    DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                    DatabaseHelper.db.SubmitChanges();
+                    MessageBox.Show(this, $"Category {activeStr}d successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    clearFields();
+                    LoadActiveCategories();
                 }
             }
         }

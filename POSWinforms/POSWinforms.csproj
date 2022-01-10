@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expenses\frmAddEditExpenseType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\frmAddEditExpenseType.Designer.cs">
+      <DependentUpon>frmAddEditExpenseType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\frmAddExpense.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Maintenance\DataGridViewCellEventHandler.cs" />
     <Compile Include="Maintenance\frmAddEditItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +132,7 @@
     <Compile Include="Maintenance\frmItem.Designer.cs">
       <DependentUpon>frmItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DGVPrinter.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\ProductionAndTransaction.cs" />
     <Compile Include="Orders\frmOrderDetail.cs">
@@ -219,6 +227,9 @@
     <Compile Include="Transaction\InvoiceCustomer.Designer.cs">
       <DependentUpon>InvoiceCustomer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Expenses\frmAddEditExpenseType.resx">
+      <DependentUpon>frmAddEditExpenseType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\frmAddExpense.resx">
       <DependentUpon>frmAddExpense.cs</DependentUpon>
     </EmbeddedResource>

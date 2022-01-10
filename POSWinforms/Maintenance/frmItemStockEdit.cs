@@ -31,17 +31,19 @@ namespace POSWinforms.Maintenance
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(int.TryParse(txtQuantity.Text, out int stockNum))
+            if(int.TryParse(txtQuantity.Text, out int stockNum) && txtSupplierInformation.Text.Length >= 3)
             {
                 editItemStock.Stocks += stockNum;
+                editItemStock.supplierInformation = txtSupplierInformation.Text;
 
                 var newLog = new tblHistoryLog
                 {
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
-                        $"added {stockNum} stocks to item({editItemStock.ItemCode})",
+                        $"added {stockNum} stocks to item({editItemStock.ItemCode}) {editItemStock.ItemDescription}",
                     Type = LogType.PRODUCT.ToString(),
                     Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                    EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                    EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}",
+                    SupplierInformation = txtSupplierInformation.Text
                 };
 
                 DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
@@ -51,7 +53,7 @@ namespace POSWinforms.Maintenance
             }
             else
             {
-                MessageBox.Show(this, "Stock should be number!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, "Stock should be number and please enter the supplier information with at least 3 characters long.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtQuantity.Text = "";
             }
             

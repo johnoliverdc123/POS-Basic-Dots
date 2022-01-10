@@ -43,19 +43,19 @@ namespace POSWinforms
                             where s.isActive == searchFilter
                             select s).ToList();
             }
-            else 
+            else
             {
                 userList = (from s in DatabaseHelper.db.tblUsers
-                                    where s.isActive == searchFilter &&
-                                    SqlMethods.Like(s.FirstName, "%" + searchedUser + "%") ||
-                                    SqlMethods.Like(s.LastName, "%" + searchedUser + "%") ||
-                                    SqlMethods.Like(s.MiddleName, "%" + searchedUser + "%") ||
-                                    SqlMethods.Like(s.Position, "%" + searchedUser + "%") ||
-                                    SqlMethods.Like(s.Username, "%" + searchedUser + "%")
-                                    select s).ToList();
+                            where s.isActive == searchFilter &&
+                            SqlMethods.Like(s.FirstName, "%" + searchedUser + "%") ||
+                            SqlMethods.Like(s.LastName, "%" + searchedUser + "%") ||
+                            SqlMethods.Like(s.MiddleName, "%" + searchedUser + "%") ||
+                            SqlMethods.Like(s.Position, "%" + searchedUser + "%") ||
+                            SqlMethods.Like(s.Username, "%" + searchedUser + "%")
+                            select s).ToList();
             }
             dgvUsers.Rows.Clear();
-            foreach(var user in userList)
+            foreach (var user in userList)
             {
                 string fullName = $"{user.LastName}, {user.FirstName} {user.MiddleName}".Trim();
                 dgvUsers.Rows.Add(
@@ -64,7 +64,8 @@ namespace POSWinforms
                         user.Position,
                         user.Username,
                         user.Address,
-                        user.ContactNo
+                        user.ContactNo,
+                        user.isActive
                     );
             }
             dgvUsers.ClearSelection();
@@ -94,11 +95,11 @@ namespace POSWinforms
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if(txtSearch.Text.Length == 0)
+            if (txtSearch.Text.Length == 0)
             {
                 LoadAllUsers(null);
             }
-            else if(txtSearch.Text.Length > 0)
+            else if (txtSearch.Text.Length > 0)
             {
                 LoadAllUsers(txtSearch.Text);
             }
@@ -112,9 +113,14 @@ namespace POSWinforms
                 string userId = dgvUsers.Rows[e.RowIndex].Cells["colID"].Value.ToString();
                 selectedUser = userList.Find(u => u.ID == Convert.ToInt64(userId));
 
+                var position = dgvUsers.Rows[e.RowIndex].Cells["colPosition"].Value.ToString().ToLower();
+                Console.WriteLine(position);
+                var isManager = !position.Equals("manager") && !position.Equals("admin");
+
                 btnUpdate.Enabled = true;
-                btnActiveDeactivate.Enabled = true;
-            } else
+                btnActiveDeactivate.Enabled = isManager;
+            }
+            else
             {
                 selectedUser = null;
             }
@@ -132,49 +138,77 @@ namespace POSWinforms
 
         private void btnActiveDeactivate_Click(object sender, EventArgs e)
         {
-            if(btnActiveDeactivate.Text.Equals("Activate"))
+            if (btnActiveDeactivate.Text.Equals("Activate"))
             {
                 // Activate inactive users.
-                if(selectedUser != null)
+                if (selectedUser != null)
                 {
-                    if (MessageBox.Show("Do you want to activate this user?", "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) 
+                    if (MessageBox.Show("Do you want to activate this user?", "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                         == DialogResult.Yes)
                     {
 
                         if (selectedUser.isActive == 0)
                         {
                             selectedUser.isActive = 1;
+
+                            var newLog = new tblHistoryLog
+                            {
+                                Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                                $"activated user({selectedUser.ID}) {selectedUser.FirstName} {selectedUser.LastName}",
+                                Type = LogType.USER.ToString(),
+                                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                                EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                            };
+
+                            DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
                             DatabaseHelper.db.SubmitChanges();
 
                             MessageBox.Show("User activated successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("User failed to activate!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("User failed to deactivate. Please try again.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("User cannot be empty.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if(btnActiveDeactivate.Text.Equals("Deactivate"))
+            else if (btnActiveDeactivate.Text.Equals("Deactivate"))
             {
                 // Deactivate resigned users.
                 if (selectedUser != null)
                 {
+                    if (selectedUser.ID == DatabaseHelper.user.ID)
+                    {
+                        MessageBox.Show("You cannot deactivate yourself.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     if (selectedUser.isActive == 1)
                     {
                         selectedUser.isActive = 0;
+
+                        var newLog = new tblHistoryLog
+                        {
+                            Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                                $"deactivated user({selectedUser.ID}) {selectedUser.FirstName} {selectedUser.LastName}",
+                            Type = LogType.USER.ToString(),
+                            Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                            EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                        };
+
+                        DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
                         DatabaseHelper.db.SubmitChanges();
 
                         MessageBox.Show("User deactivated successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("User failed to deactivate!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("User failed to deactivate. Please try again.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else

@@ -33,27 +33,30 @@ namespace POSWinforms
     partial void InserttblCategory(tblCategory instance);
     partial void UpdatetblCategory(tblCategory instance);
     partial void DeletetblCategory(tblCategory instance);
-    partial void InserttblPosition(tblPosition instance);
-    partial void UpdatetblPosition(tblPosition instance);
-    partial void DeletetblPosition(tblPosition instance);
     partial void InserttblUser(tblUser instance);
     partial void UpdatetblUser(tblUser instance);
     partial void DeletetblUser(tblUser instance);
-    partial void InserttblItem(tblItem instance);
-    partial void UpdatetblItem(tblItem instance);
-    partial void DeletetblItem(tblItem instance);
-    partial void InserttblHistoryLog(tblHistoryLog instance);
-    partial void UpdatetblHistoryLog(tblHistoryLog instance);
-    partial void DeletetblHistoryLog(tblHistoryLog instance);
     partial void InserttblExpense(tblExpense instance);
     partial void UpdatetblExpense(tblExpense instance);
     partial void DeletetblExpense(tblExpense instance);
-    partial void InserttblOrderDetail(tblOrderDetail instance);
-    partial void UpdatetblOrderDetail(tblOrderDetail instance);
-    partial void DeletetblOrderDetail(tblOrderDetail instance);
+    partial void InserttblExpenseType(tblExpenseType instance);
+    partial void UpdatetblExpenseType(tblExpenseType instance);
+    partial void DeletetblExpenseType(tblExpenseType instance);
+    partial void InserttblHistoryLog(tblHistoryLog instance);
+    partial void UpdatetblHistoryLog(tblHistoryLog instance);
+    partial void DeletetblHistoryLog(tblHistoryLog instance);
+    partial void InserttblItem(tblItem instance);
+    partial void UpdatetblItem(tblItem instance);
+    partial void DeletetblItem(tblItem instance);
+    partial void InserttblPosition(tblPosition instance);
+    partial void UpdatetblPosition(tblPosition instance);
+    partial void DeletetblPosition(tblPosition instance);
     partial void InserttblOrder(tblOrder instance);
     partial void UpdatetblOrder(tblOrder instance);
     partial void DeletetblOrder(tblOrder instance);
+    partial void InserttblOrderDetail(tblOrderDetail instance);
+    partial void UpdatetblOrderDetail(tblOrderDetail instance);
+    partial void DeletetblOrderDetail(tblOrderDetail instance);
     #endregion
 		
 		public POSDBDataContext() : 
@@ -94,35 +97,11 @@ namespace POSWinforms
 			}
 		}
 		
-		public System.Data.Linq.Table<tblPosition> tblPositions
-		{
-			get
-			{
-				return this.GetTable<tblPosition>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblUser> tblUsers
 		{
 			get
 			{
 				return this.GetTable<tblUser>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblItem> tblItems
-		{
-			get
-			{
-				return this.GetTable<tblItem>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblHistoryLog> tblHistoryLogs
-		{
-			get
-			{
-				return this.GetTable<tblHistoryLog>();
 			}
 		}
 		
@@ -134,11 +113,35 @@ namespace POSWinforms
 			}
 		}
 		
-		public System.Data.Linq.Table<tblOrderDetail> tblOrderDetails
+		public System.Data.Linq.Table<tblExpenseType> tblExpenseTypes
 		{
 			get
 			{
-				return this.GetTable<tblOrderDetail>();
+				return this.GetTable<tblExpenseType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblHistoryLog> tblHistoryLogs
+		{
+			get
+			{
+				return this.GetTable<tblHistoryLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblItem> tblItems
+		{
+			get
+			{
+				return this.GetTable<tblItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblPosition> tblPositions
+		{
+			get
+			{
+				return this.GetTable<tblPosition>();
 			}
 		}
 		
@@ -149,6 +152,14 @@ namespace POSWinforms
 				return this.GetTable<tblOrder>();
 			}
 		}
+		
+		public System.Data.Linq.Table<tblOrderDetail> tblOrderDetails
+		{
+			get
+			{
+				return this.GetTable<tblOrderDetail>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCategories")]
@@ -157,18 +168,26 @@ namespace POSWinforms
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private long _ID;
+		
 		private string _ItemCode;
 		
 		private string _ItemDescription;
+		
+		private int _isActive;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
     partial void OnItemCodeChanging(string value);
     partial void OnItemCodeChanged();
     partial void OnItemDescriptionChanging(string value);
     partial void OnItemDescriptionChanged();
+    partial void OnisActiveChanging(int value);
+    partial void OnisActiveChanged();
     #endregion
 		
 		public tblCategory()
@@ -176,7 +195,27 @@ namespace POSWinforms
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string ItemCode
 		{
 			get
@@ -216,88 +255,22 @@ namespace POSWinforms
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblPositions")]
-	public partial class tblPosition : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private string _PosDescription;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnPosDescriptionChanging(string value);
-    partial void OnPosDescriptionChanged();
-    #endregion
-		
-		public tblPosition()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
+		public int isActive
 		{
 			get
 			{
-				return this._ID;
+				return this._isActive;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._isActive != value))
 				{
-					this.OnIDChanging(value);
+					this.OnisActiveChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PosDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string PosDescription
-		{
-			get
-			{
-				return this._PosDescription;
-			}
-			set
-			{
-				if ((this._PosDescription != value))
-				{
-					this.OnPosDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._PosDescription = value;
-					this.SendPropertyChanged("PosDescription");
-					this.OnPosDescriptionChanged();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
 				}
 			}
 		}
@@ -601,35 +574,23 @@ namespace POSWinforms
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblItems")]
-	public partial class tblItem : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblExpenses")]
+	public partial class tblExpense : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _ID;
 		
-		private long _ItemNumber;
+		private string _Purpose;
 		
-		private string _ItemCode;
+		private string _Type;
 		
-		private string _ItemDescription;
+		private decimal _Cost;
 		
-		private string _Size;
+		private System.DateTime _Date;
 		
-		private decimal _Price;
-		
-		private int _Stocks;
-		
-		private int _CommittedItem;
-		
-		private int _Sold;
-		
-		private int _Returned;
-		
-		private int _ReStockLevel;
-		
-		private int _isActive;
+		private string _PaidBy;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -637,31 +598,19 @@ namespace POSWinforms
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnItemNumberChanging(long value);
-    partial void OnItemNumberChanged();
-    partial void OnItemCodeChanging(string value);
-    partial void OnItemCodeChanged();
-    partial void OnItemDescriptionChanging(string value);
-    partial void OnItemDescriptionChanged();
-    partial void OnSizeChanging(string value);
-    partial void OnSizeChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnStocksChanging(int value);
-    partial void OnStocksChanged();
-    partial void OnCommittedItemChanging(int value);
-    partial void OnCommittedItemChanged();
-    partial void OnSoldChanging(int value);
-    partial void OnSoldChanged();
-    partial void OnReturnedChanging(int value);
-    partial void OnReturnedChanged();
-    partial void OnReStockLevelChanging(int value);
-    partial void OnReStockLevelChanged();
-    partial void OnisActiveChanging(int value);
-    partial void OnisActiveChanged();
+    partial void OnPurposeChanging(string value);
+    partial void OnPurposeChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnCostChanging(decimal value);
+    partial void OnCostChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnPaidByChanging(string value);
+    partial void OnPaidByChanged();
     #endregion
 		
-		public tblItem()
+		public tblExpense()
 		{
 			OnCreated();
 		}
@@ -686,222 +635,188 @@ namespace POSWinforms
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNumber", DbType="BigInt NOT NULL")]
-		public long ItemNumber
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Purpose", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string Purpose
 		{
 			get
 			{
-				return this._ItemNumber;
+				return this._Purpose;
 			}
 			set
 			{
-				if ((this._ItemNumber != value))
+				if ((this._Purpose != value))
 				{
-					this.OnItemNumberChanging(value);
+					this.OnPurposeChanging(value);
 					this.SendPropertyChanging();
-					this._ItemNumber = value;
-					this.SendPropertyChanged("ItemNumber");
-					this.OnItemNumberChanged();
+					this._Purpose = value;
+					this.SendPropertyChanged("Purpose");
+					this.OnPurposeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ItemCode
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Type
 		{
 			get
 			{
-				return this._ItemCode;
+				return this._Type;
 			}
 			set
 			{
-				if ((this._ItemCode != value))
+				if ((this._Type != value))
 				{
-					this.OnItemCodeChanging(value);
+					this.OnTypeChanging(value);
 					this.SendPropertyChanging();
-					this._ItemCode = value;
-					this.SendPropertyChanged("ItemCode");
-					this.OnItemCodeChanged();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ItemDescription
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Money NOT NULL")]
+		public decimal Cost
 		{
 			get
 			{
-				return this._ItemDescription;
+				return this._Cost;
 			}
 			set
 			{
-				if ((this._ItemDescription != value))
+				if ((this._Cost != value))
 				{
-					this.OnItemDescriptionChanging(value);
+					this.OnCostChanging(value);
 					this.SendPropertyChanging();
-					this._ItemDescription = value;
-					this.SendPropertyChanged("ItemDescription");
-					this.OnItemDescriptionChanged();
+					this._Cost = value;
+					this.SendPropertyChanged("Cost");
+					this.OnCostChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Size
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
 		{
 			get
 			{
-				return this._Size;
+				return this._Date;
 			}
 			set
 			{
-				if ((this._Size != value))
+				if ((this._Date != value))
 				{
-					this.OnSizeChanging(value);
+					this.OnDateChanging(value);
 					this.SendPropertyChanging();
-					this._Size = value;
-					this.SendPropertyChanged("Size");
-					this.OnSizeChanged();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
-		public decimal Price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidBy", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string PaidBy
 		{
 			get
 			{
-				return this._Price;
+				return this._PaidBy;
 			}
 			set
 			{
-				if ((this._Price != value))
+				if ((this._PaidBy != value))
 				{
-					this.OnPriceChanging(value);
+					this.OnPaidByChanging(value);
 					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
+					this._PaidBy = value;
+					this.SendPropertyChanged("PaidBy");
+					this.OnPaidByChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stocks", DbType="Int NOT NULL")]
-		public int Stocks
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblExpenseTypes")]
+	public partial class tblExpenseType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _Type;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    #endregion
+		
+		public tblExpenseType()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
-				return this._Stocks;
+				return this._ID;
 			}
 			set
 			{
-				if ((this._Stocks != value))
+				if ((this._ID != value))
 				{
-					this.OnStocksChanging(value);
+					this.OnIDChanging(value);
 					this.SendPropertyChanging();
-					this._Stocks = value;
-					this.SendPropertyChanged("Stocks");
-					this.OnStocksChanged();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CommittedItem", DbType="Int NOT NULL")]
-		public int CommittedItem
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Type
 		{
 			get
 			{
-				return this._CommittedItem;
+				return this._Type;
 			}
 			set
 			{
-				if ((this._CommittedItem != value))
+				if ((this._Type != value))
 				{
-					this.OnCommittedItemChanging(value);
+					this.OnTypeChanging(value);
 					this.SendPropertyChanging();
-					this._CommittedItem = value;
-					this.SendPropertyChanged("CommittedItem");
-					this.OnCommittedItemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sold", DbType="Int NOT NULL")]
-		public int Sold
-		{
-			get
-			{
-				return this._Sold;
-			}
-			set
-			{
-				if ((this._Sold != value))
-				{
-					this.OnSoldChanging(value);
-					this.SendPropertyChanging();
-					this._Sold = value;
-					this.SendPropertyChanged("Sold");
-					this.OnSoldChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Returned", DbType="Int NOT NULL")]
-		public int Returned
-		{
-			get
-			{
-				return this._Returned;
-			}
-			set
-			{
-				if ((this._Returned != value))
-				{
-					this.OnReturnedChanging(value);
-					this.SendPropertyChanging();
-					this._Returned = value;
-					this.SendPropertyChanged("Returned");
-					this.OnReturnedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReStockLevel", DbType="Int NOT NULL")]
-		public int ReStockLevel
-		{
-			get
-			{
-				return this._ReStockLevel;
-			}
-			set
-			{
-				if ((this._ReStockLevel != value))
-				{
-					this.OnReStockLevelChanging(value);
-					this.SendPropertyChanging();
-					this._ReStockLevel = value;
-					this.SendPropertyChanged("ReStockLevel");
-					this.OnReStockLevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
-		public int isActive
-		{
-			get
-			{
-				return this._isActive;
-			}
-			set
-			{
-				if ((this._isActive != value))
-				{
-					this.OnisActiveChanging(value);
-					this.SendPropertyChanging();
-					this._isActive = value;
-					this.SendPropertyChanged("isActive");
-					this.OnisActiveChanged();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
 				}
 			}
 		}
@@ -943,6 +858,8 @@ namespace POSWinforms
 		
 		private string _EditBy;
 		
+		private string _SupplierInformation;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -957,6 +874,8 @@ namespace POSWinforms
     partial void OnDateChanged();
     partial void OnEditByChanging(string value);
     partial void OnEditByChanged();
+    partial void OnSupplierInformationChanging(string value);
+    partial void OnSupplierInformationChanged();
     #endregion
 		
 		public tblHistoryLog()
@@ -1064,6 +983,26 @@ namespace POSWinforms
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SupplierInformation", DbType="VarChar(143)")]
+		public string SupplierInformation
+		{
+			get
+			{
+				return this._SupplierInformation;
+			}
+			set
+			{
+				if ((this._SupplierInformation != value))
+				{
+					this.OnSupplierInformationChanging(value);
+					this.SendPropertyChanging();
+					this._SupplierInformation = value;
+					this.SendPropertyChanged("SupplierInformation");
+					this.OnSupplierInformationChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1085,23 +1024,33 @@ namespace POSWinforms
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblExpenses")]
-	public partial class tblExpense : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblItems")]
+	public partial class tblItem : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _ID;
 		
-		private string _Purpose;
+		private long _ItemNumber;
 		
-		private string _Type;
+		private string _ItemCode;
 		
-		private decimal _Cost;
+		private string _ItemDescription;
 		
-		private long _Date;
+		private string _Size;
 		
-		private string _PaidBy;
+		private decimal _Price;
+		
+		private int _Stocks;
+		
+		private int _Sold;
+		
+		private int _ReStockLevel;
+		
+		private int _isActive;
+		
+		private string _supplierInformation;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1109,19 +1058,29 @@ namespace POSWinforms
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnPurposeChanging(string value);
-    partial void OnPurposeChanged();
-    partial void OnTypeChanging(string value);
-    partial void OnTypeChanged();
-    partial void OnCostChanging(decimal value);
-    partial void OnCostChanged();
-    partial void OnDateChanging(long value);
-    partial void OnDateChanged();
-    partial void OnPaidByChanging(string value);
-    partial void OnPaidByChanged();
+    partial void OnItemNumberChanging(long value);
+    partial void OnItemNumberChanged();
+    partial void OnItemCodeChanging(string value);
+    partial void OnItemCodeChanged();
+    partial void OnItemDescriptionChanging(string value);
+    partial void OnItemDescriptionChanged();
+    partial void OnSizeChanging(string value);
+    partial void OnSizeChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnStocksChanging(int value);
+    partial void OnStocksChanged();
+    partial void OnSoldChanging(int value);
+    partial void OnSoldChanged();
+    partial void OnReStockLevelChanging(int value);
+    partial void OnReStockLevelChanged();
+    partial void OnisActiveChanging(int value);
+    partial void OnisActiveChanged();
+    partial void OnsupplierInformationChanging(string value);
+    partial void OnsupplierInformationChanged();
     #endregion
 		
-		public tblExpense()
+		public tblItem()
 		{
 			OnCreated();
 		}
@@ -1146,102 +1105,202 @@ namespace POSWinforms
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Purpose", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string Purpose
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNumber", DbType="BigInt NOT NULL")]
+		public long ItemNumber
 		{
 			get
 			{
-				return this._Purpose;
+				return this._ItemNumber;
 			}
 			set
 			{
-				if ((this._Purpose != value))
+				if ((this._ItemNumber != value))
 				{
-					this.OnPurposeChanging(value);
+					this.OnItemNumberChanging(value);
 					this.SendPropertyChanging();
-					this._Purpose = value;
-					this.SendPropertyChanged("Purpose");
-					this.OnPurposeChanged();
+					this._ItemNumber = value;
+					this.SendPropertyChanged("ItemNumber");
+					this.OnItemNumberChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Type
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ItemCode
 		{
 			get
 			{
-				return this._Type;
+				return this._ItemCode;
 			}
 			set
 			{
-				if ((this._Type != value))
+				if ((this._ItemCode != value))
 				{
-					this.OnTypeChanging(value);
+					this.OnItemCodeChanging(value);
 					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
+					this._ItemCode = value;
+					this.SendPropertyChanged("ItemCode");
+					this.OnItemCodeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Money NOT NULL")]
-		public decimal Cost
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ItemDescription
 		{
 			get
 			{
-				return this._Cost;
+				return this._ItemDescription;
 			}
 			set
 			{
-				if ((this._Cost != value))
+				if ((this._ItemDescription != value))
 				{
-					this.OnCostChanging(value);
+					this.OnItemDescriptionChanging(value);
 					this.SendPropertyChanging();
-					this._Cost = value;
-					this.SendPropertyChanged("Cost");
-					this.OnCostChanged();
+					this._ItemDescription = value;
+					this.SendPropertyChanged("ItemDescription");
+					this.OnItemDescriptionChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="BigInt NOT NULL")]
-		public long Date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Size
 		{
 			get
 			{
-				return this._Date;
+				return this._Size;
 			}
 			set
 			{
-				if ((this._Date != value))
+				if ((this._Size != value))
 				{
-					this.OnDateChanging(value);
+					this.OnSizeChanging(value);
 					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidBy", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string PaidBy
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
 		{
 			get
 			{
-				return this._PaidBy;
+				return this._Price;
 			}
 			set
 			{
-				if ((this._PaidBy != value))
+				if ((this._Price != value))
 				{
-					this.OnPaidByChanging(value);
+					this.OnPriceChanging(value);
 					this.SendPropertyChanging();
-					this._PaidBy = value;
-					this.SendPropertyChanged("PaidBy");
-					this.OnPaidByChanged();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stocks", DbType="Int NOT NULL")]
+		public int Stocks
+		{
+			get
+			{
+				return this._Stocks;
+			}
+			set
+			{
+				if ((this._Stocks != value))
+				{
+					this.OnStocksChanging(value);
+					this.SendPropertyChanging();
+					this._Stocks = value;
+					this.SendPropertyChanged("Stocks");
+					this.OnStocksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sold", DbType="Int NOT NULL")]
+		public int Sold
+		{
+			get
+			{
+				return this._Sold;
+			}
+			set
+			{
+				if ((this._Sold != value))
+				{
+					this.OnSoldChanging(value);
+					this.SendPropertyChanging();
+					this._Sold = value;
+					this.SendPropertyChanged("Sold");
+					this.OnSoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReStockLevel", DbType="Int NOT NULL")]
+		public int ReStockLevel
+		{
+			get
+			{
+				return this._ReStockLevel;
+			}
+			set
+			{
+				if ((this._ReStockLevel != value))
+				{
+					this.OnReStockLevelChanging(value);
+					this.SendPropertyChanging();
+					this._ReStockLevel = value;
+					this.SendPropertyChanged("ReStockLevel");
+					this.OnReStockLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
+		public int isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_supplierInformation", DbType="VarChar(134)")]
+		public string supplierInformation
+		{
+			get
+			{
+				return this._supplierInformation;
+			}
+			set
+			{
+				if ((this._supplierInformation != value))
+				{
+					this.OnsupplierInformationChanging(value);
+					this.SendPropertyChanging();
+					this._supplierInformation = value;
+					this.SendPropertyChanged("supplierInformation");
+					this.OnsupplierInformationChanged();
 				}
 			}
 		}
@@ -1267,6 +1326,422 @@ namespace POSWinforms
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblPositions")]
+	public partial class tblPosition : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _PosDescription;
+		
+		private int _isActive;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnPosDescriptionChanging(string value);
+    partial void OnPosDescriptionChanged();
+    partial void OnisActiveChanging(int value);
+    partial void OnisActiveChanged();
+    #endregion
+		
+		public tblPosition()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PosDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string PosDescription
+		{
+			get
+			{
+				return this._PosDescription;
+			}
+			set
+			{
+				if ((this._PosDescription != value))
+				{
+					this.OnPosDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._PosDescription = value;
+					this.SendPropertyChanged("PosDescription");
+					this.OnPosDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
+		public int isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblOrders")]
+	public partial class tblOrder : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _CustomerID;
+		
+		private string _Status;
+		
+		private System.DateTime _Date;
+		
+		private decimal _Total;
+		
+		private int _HasService;
+		
+		private System.Nullable<decimal> _ServiceFee;
+		
+		private string _ServiceType;
+		
+		private decimal _Cash;
+		
+		private decimal _Change;
+		
+		private EntitySet<tblOrderDetail> _tblOrderDetails;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnCustomerIDChanging(string value);
+    partial void OnCustomerIDChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnTotalChanging(decimal value);
+    partial void OnTotalChanged();
+    partial void OnHasServiceChanging(int value);
+    partial void OnHasServiceChanged();
+    partial void OnServiceFeeChanging(System.Nullable<decimal> value);
+    partial void OnServiceFeeChanged();
+    partial void OnServiceTypeChanging(string value);
+    partial void OnServiceTypeChanged();
+    partial void OnCashChanging(decimal value);
+    partial void OnCashChanged();
+    partial void OnChangeChanging(decimal value);
+    partial void OnChangeChanged();
+    #endregion
+		
+		public tblOrder()
+		{
+			this._tblOrderDetails = new EntitySet<tblOrderDetail>(new Action<tblOrderDetail>(this.attach_tblOrderDetails), new Action<tblOrderDetail>(this.detach_tblOrderDetails));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CustomerID
+		{
+			get
+			{
+				return this._CustomerID;
+			}
+			set
+			{
+				if ((this._CustomerID != value))
+				{
+					this.OnCustomerIDChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerID = value;
+					this.SendPropertyChanged("CustomerID");
+					this.OnCustomerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money NOT NULL")]
+		public decimal Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasService", DbType="Int NOT NULL")]
+		public int HasService
+		{
+			get
+			{
+				return this._HasService;
+			}
+			set
+			{
+				if ((this._HasService != value))
+				{
+					this.OnHasServiceChanging(value);
+					this.SendPropertyChanging();
+					this._HasService = value;
+					this.SendPropertyChanged("HasService");
+					this.OnHasServiceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceFee", DbType="Money")]
+		public System.Nullable<decimal> ServiceFee
+		{
+			get
+			{
+				return this._ServiceFee;
+			}
+			set
+			{
+				if ((this._ServiceFee != value))
+				{
+					this.OnServiceFeeChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceFee = value;
+					this.SendPropertyChanged("ServiceFee");
+					this.OnServiceFeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceType", DbType="VarChar(143)")]
+		public string ServiceType
+		{
+			get
+			{
+				return this._ServiceType;
+			}
+			set
+			{
+				if ((this._ServiceType != value))
+				{
+					this.OnServiceTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceType = value;
+					this.SendPropertyChanged("ServiceType");
+					this.OnServiceTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cash", DbType="Money NOT NULL")]
+		public decimal Cash
+		{
+			get
+			{
+				return this._Cash;
+			}
+			set
+			{
+				if ((this._Cash != value))
+				{
+					this.OnCashChanging(value);
+					this.SendPropertyChanging();
+					this._Cash = value;
+					this.SendPropertyChanged("Cash");
+					this.OnCashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Change", DbType="Money NOT NULL")]
+		public decimal Change
+		{
+			get
+			{
+				return this._Change;
+			}
+			set
+			{
+				if ((this._Change != value))
+				{
+					this.OnChangeChanging(value);
+					this.SendPropertyChanging();
+					this._Change = value;
+					this.SendPropertyChanged("Change");
+					this.OnChangeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrder_tblOrderDetail", Storage="_tblOrderDetails", ThisKey="ID", OtherKey="OrderID")]
+		public EntitySet<tblOrderDetail> tblOrderDetails
+		{
+			get
+			{
+				return this._tblOrderDetails;
+			}
+			set
+			{
+				this._tblOrderDetails.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblOrderDetails(tblOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblOrder = this;
+		}
+		
+		private void detach_tblOrderDetails(tblOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblOrder = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblOrderDetails")]
 	public partial class tblOrderDetail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1277,9 +1752,9 @@ namespace POSWinforms
 		
 		private string _ItemCode;
 		
-		private long _ItemNumber;
-		
 		private string _ItemDescription;
+		
+		private string _Size;
 		
 		private int _Quantity;
 		
@@ -1291,6 +1766,8 @@ namespace POSWinforms
 		
 		private long _OrderID;
 		
+		private System.DateTime _DateSold;
+		
 		private EntityRef<tblOrder> _tblOrder;
 		
     #region Extensibility Method Definitions
@@ -1301,10 +1778,10 @@ namespace POSWinforms
     partial void OnIDChanged();
     partial void OnItemCodeChanging(string value);
     partial void OnItemCodeChanged();
-    partial void OnItemNumberChanging(long value);
-    partial void OnItemNumberChanged();
     partial void OnItemDescriptionChanging(string value);
     partial void OnItemDescriptionChanged();
+    partial void OnSizeChanging(string value);
+    partial void OnSizeChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
     partial void OnPriceChanging(decimal value);
@@ -1315,6 +1792,8 @@ namespace POSWinforms
     partial void OnTotalChanged();
     partial void OnOrderIDChanging(long value);
     partial void OnOrderIDChanged();
+    partial void OnDateSoldChanging(System.DateTime value);
+    partial void OnDateSoldChanged();
     #endregion
 		
 		public tblOrderDetail()
@@ -1363,26 +1842,6 @@ namespace POSWinforms
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNumber", DbType="BigInt NOT NULL")]
-		public long ItemNumber
-		{
-			get
-			{
-				return this._ItemNumber;
-			}
-			set
-			{
-				if ((this._ItemNumber != value))
-				{
-					this.OnItemNumberChanging(value);
-					this.SendPropertyChanging();
-					this._ItemNumber = value;
-					this.SendPropertyChanged("ItemNumber");
-					this.OnItemNumberChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string ItemDescription
 		{
@@ -1399,6 +1858,26 @@ namespace POSWinforms
 					this._ItemDescription = value;
 					this.SendPropertyChanged("ItemDescription");
 					this.OnItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
 				}
 			}
 		}
@@ -1507,6 +1986,26 @@ namespace POSWinforms
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateSold", DbType="DateTime NOT NULL")]
+		public System.DateTime DateSold
+		{
+			get
+			{
+				return this._DateSold;
+			}
+			set
+			{
+				if ((this._DateSold != value))
+				{
+					this.OnDateSoldChanging(value);
+					this.SendPropertyChanging();
+					this._DateSold = value;
+					this.SendPropertyChanged("DateSold");
+					this.OnDateSoldChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrder_tblOrderDetail", Storage="_tblOrder", ThisKey="OrderID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public tblOrder tblOrder
 		{
@@ -1559,288 +2058,6 @@ namespace POSWinforms
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblOrders")]
-	public partial class tblOrder : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private long _CustomerID;
-		
-		private string _Status;
-		
-		private long _Date;
-		
-		private decimal _Total;
-		
-		private int _HasService;
-		
-		private decimal _ServiceFee;
-		
-		private decimal _Cash;
-		
-		private decimal _Change;
-		
-		private EntitySet<tblOrderDetail> _tblOrderDetails;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnCustomerIDChanging(long value);
-    partial void OnCustomerIDChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnDateChanging(long value);
-    partial void OnDateChanged();
-    partial void OnTotalChanging(decimal value);
-    partial void OnTotalChanged();
-    partial void OnHasServiceChanging(int value);
-    partial void OnHasServiceChanged();
-    partial void OnServiceFeeChanging(decimal value);
-    partial void OnServiceFeeChanged();
-    partial void OnCashChanging(decimal value);
-    partial void OnCashChanged();
-    partial void OnChangeChanging(decimal value);
-    partial void OnChangeChanged();
-    #endregion
-		
-		public tblOrder()
-		{
-			this._tblOrderDetails = new EntitySet<tblOrderDetail>(new Action<tblOrderDetail>(this.attach_tblOrderDetails), new Action<tblOrderDetail>(this.detach_tblOrderDetails));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="BigInt NOT NULL")]
-		public long CustomerID
-		{
-			get
-			{
-				return this._CustomerID;
-			}
-			set
-			{
-				if ((this._CustomerID != value))
-				{
-					this.OnCustomerIDChanging(value);
-					this.SendPropertyChanging();
-					this._CustomerID = value;
-					this.SendPropertyChanged("CustomerID");
-					this.OnCustomerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="BigInt NOT NULL")]
-		public long Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money NOT NULL")]
-		public decimal Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this.OnTotalChanging(value);
-					this.SendPropertyChanging();
-					this._Total = value;
-					this.SendPropertyChanged("Total");
-					this.OnTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasService", DbType="Int NOT NULL")]
-		public int HasService
-		{
-			get
-			{
-				return this._HasService;
-			}
-			set
-			{
-				if ((this._HasService != value))
-				{
-					this.OnHasServiceChanging(value);
-					this.SendPropertyChanging();
-					this._HasService = value;
-					this.SendPropertyChanged("HasService");
-					this.OnHasServiceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceFee", DbType="Money NOT NULL")]
-		public decimal ServiceFee
-		{
-			get
-			{
-				return this._ServiceFee;
-			}
-			set
-			{
-				if ((this._ServiceFee != value))
-				{
-					this.OnServiceFeeChanging(value);
-					this.SendPropertyChanging();
-					this._ServiceFee = value;
-					this.SendPropertyChanged("ServiceFee");
-					this.OnServiceFeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cash", DbType="Money NOT NULL")]
-		public decimal Cash
-		{
-			get
-			{
-				return this._Cash;
-			}
-			set
-			{
-				if ((this._Cash != value))
-				{
-					this.OnCashChanging(value);
-					this.SendPropertyChanging();
-					this._Cash = value;
-					this.SendPropertyChanged("Cash");
-					this.OnCashChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Change", DbType="Money NOT NULL")]
-		public decimal Change
-		{
-			get
-			{
-				return this._Change;
-			}
-			set
-			{
-				if ((this._Change != value))
-				{
-					this.OnChangeChanging(value);
-					this.SendPropertyChanging();
-					this._Change = value;
-					this.SendPropertyChanged("Change");
-					this.OnChangeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblOrder_tblOrderDetail", Storage="_tblOrderDetails", ThisKey="ID", OtherKey="OrderID")]
-		public EntitySet<tblOrderDetail> tblOrderDetails
-		{
-			get
-			{
-				return this._tblOrderDetails;
-			}
-			set
-			{
-				this._tblOrderDetails.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblOrderDetails(tblOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblOrder = this;
-		}
-		
-		private void detach_tblOrderDetails(tblOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblOrder = null;
 		}
 	}
 }

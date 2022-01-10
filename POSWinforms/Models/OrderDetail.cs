@@ -10,8 +10,8 @@ namespace POSWinforms.Models
     {
         public long ID { get; set; }
         public string ItemCode { get; set; }
-        public long ItemNumber { get; set; }
         public string ItemDescription { get; set; }
+        public string Size { get; set; }
         public int Quantity { get; set; }
 
         public decimal Price { get; set; }

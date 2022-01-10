@@ -15,7 +15,7 @@ namespace POSWinforms.Transaction
 {
     public partial class frmTransaction : Form
     {
-        public static long customerNo = 1;
+        public static string customerId = "";
         public static decimal total = 0;
         public static string fullName = "";
 
@@ -79,23 +79,8 @@ namespace POSWinforms.Transaction
         
         private void newTransaction()
         {
-            var orderNumber = (from s in DatabaseHelper.db.tblOrders
-                               orderby s.ID descending
-                               select s.ID).FirstOrDefault();
-            var customerNumber = (from s in DatabaseHelper.db.tblOrders
-                                  orderby s.CustomerID descending
-                                  select s.CustomerID).FirstOrDefault();
-
-            if (customerNumber > 0)
-            {
-                customerNumber += 1;
-                customerNo = customerNumber;
-                lbCustomerNo.Text = customerNo.ToString();
-            }
-            else
-            {
-                lbCustomerNo.Text = customerNo.ToString();
-            }
+            lbCustomerNo.Text = Guid.NewGuid().ToString();
+            customerId = lbCustomerNo.Text;
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)

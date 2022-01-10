@@ -26,6 +26,7 @@ namespace POSWinforms.Maintenance
             InitializeComponent();
 
             var positions = from s in DatabaseHelper.db.tblPositions
+                            where s.isActive == 1
                             select s;
             foreach(var pos in positions)
             {
@@ -80,6 +81,7 @@ namespace POSWinforms.Maintenance
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
+
                 if (btnSave.Text.Equals("Save"))
                 {
                     var newUser = new tblUser
@@ -149,6 +151,11 @@ namespace POSWinforms.Maintenance
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtUsername, "Please enter your username!");
+            }
+            else if(txtUsername.Text.Length < 4)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtUsername, "Username should be at least 4 characters long!");
             }
             else if (btnSave.Text.Equals("Update"))
             {
@@ -258,6 +265,11 @@ namespace POSWinforms.Maintenance
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtContactNo, "Please input numbers only!");
+            }
+            else if(txtContactNo.Text.Length != 11)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtContactNo, "Contact number should be 11 characters only!");
             }
             else
             {

@@ -44,18 +44,18 @@ namespace POSWinforms.Maintenance
             this.label5 = new System.Windows.Forms.Label();
             this.cmbSearchFilter = new System.Windows.Forms.ComboBox();
             this.btnActivateDeactivate = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.columnItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSold = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRestockLvl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -146,14 +146,15 @@ namespace POSWinforms.Maintenance
             this.Column5,
             this.Column6,
             this.colStocks,
-            this.Column1,
+            this.colIsActive,
+            this.Column4,
             this.colSold,
-            this.Column8,
             this.colRestockLvl});
             this.dgvItems.GridColor = System.Drawing.Color.White;
             this.dgvItems.Location = new System.Drawing.Point(15, 151);
             this.dgvItems.MultiSelect = false;
             this.dgvItems.Name = "dgvItems";
+            this.dgvItems.ReadOnly = true;
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowTemplate.Height = 30;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -307,63 +308,6 @@ namespace POSWinforms.Maintenance
             this.btnActivateDeactivate.UseVisualStyleBackColor = false;
             this.btnActivateDeactivate.Click += new System.EventHandler(this.btnActivateDeactivate_Click);
             // 
-            // columnItemNo
-            // 
-            this.columnItemNo.HeaderText = "Item Number";
-            this.columnItemNo.Name = "columnItemNo";
-            this.columnItemNo.Width = 169;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Item Code";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 168;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Item Description";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 350;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Size";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 168;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Price";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 169;
-            // 
-            // colStocks
-            // 
-            this.colStocks.HeaderText = "Stocks";
-            this.colStocks.Name = "colStocks";
-            this.colStocks.Width = 168;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Committed";
-            this.Column1.Name = "Column1";
-            // 
-            // colSold
-            // 
-            this.colSold.HeaderText = "Sold";
-            this.colSold.Name = "colSold";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Returned";
-            this.Column8.Name = "Column8";
-            // 
-            // colRestockLvl
-            // 
-            this.colRestockLvl.HeaderText = "Restock Level";
-            this.colRestockLvl.Name = "colRestockLvl";
-            this.colRestockLvl.Width = 169;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -386,6 +330,73 @@ namespace POSWinforms.Maintenance
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1223, 409);
             this.panel4.TabIndex = 115;
+            // 
+            // columnItemNo
+            // 
+            this.columnItemNo.HeaderText = "Item Number";
+            this.columnItemNo.Name = "columnItemNo";
+            this.columnItemNo.ReadOnly = true;
+            this.columnItemNo.Width = 169;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Item Code";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 168;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Item Description";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 350;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Size";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 168;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Price";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 169;
+            // 
+            // colStocks
+            // 
+            this.colStocks.HeaderText = "Stocks";
+            this.colStocks.Name = "colStocks";
+            this.colStocks.ReadOnly = true;
+            this.colStocks.Width = 168;
+            // 
+            // colIsActive
+            // 
+            this.colIsActive.HeaderText = "Is Active";
+            this.colIsActive.Name = "colIsActive";
+            this.colIsActive.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Supplier Information";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // colSold
+            // 
+            this.colSold.HeaderText = "Sold";
+            this.colSold.Name = "colSold";
+            this.colSold.ReadOnly = true;
+            // 
+            // colRestockLvl
+            // 
+            this.colRestockLvl.HeaderText = "Restock Level";
+            this.colRestockLvl.Name = "colRestockLvl";
+            this.colRestockLvl.ReadOnly = true;
+            this.colRestockLvl.Width = 169;
             // 
             // frmItem
             // 
@@ -432,17 +443,17 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbSearchFilter;
         private System.Windows.Forms.Button btnActivateDeactivate;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnItemNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStocks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIsActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSold;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRestockLvl;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
     }
 }

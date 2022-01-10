@@ -33,6 +33,8 @@ namespace POSWinforms.Maintenance
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSupplierInformation = new MetroSet_UI.Controls.MetroSetTextBox();
             this.SuspendLayout();
             // 
             // txtQuantity
@@ -72,7 +74,7 @@ namespace POSWinforms.Maintenance
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.Maroon;
-            this.btnConfirm.Location = new System.Drawing.Point(147, 127);
+            this.btnConfirm.Location = new System.Drawing.Point(147, 262);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(74, 33);
@@ -88,7 +90,7 @@ namespace POSWinforms.Maintenance
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCancel.Location = new System.Drawing.Point(226, 127);
+            this.btnCancel.Location = new System.Drawing.Point(226, 262);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(81, 33);
@@ -107,20 +109,60 @@ namespace POSWinforms.Maintenance
             this.label1.TabIndex = 109;
             this.label1.Text = "How many stocks would you like to add?";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 135);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(243, 21);
+            this.label2.TabIndex = 110;
+            this.label2.Text = "Enter Supplier Information below:";
+            // 
+            // txtSupplierInformation
+            // 
+            this.txtSupplierInformation.AutoCompleteCustomSource = null;
+            this.txtSupplierInformation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtSupplierInformation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtSupplierInformation.BorderColor = System.Drawing.Color.Sienna;
+            this.txtSupplierInformation.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.txtSupplierInformation.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.txtSupplierInformation.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.txtSupplierInformation.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierInformation.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.txtSupplierInformation.Image = null;
+            this.txtSupplierInformation.IsDerivedStyle = false;
+            this.txtSupplierInformation.Lines = null;
+            this.txtSupplierInformation.Location = new System.Drawing.Point(19, 169);
+            this.txtSupplierInformation.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSupplierInformation.MaxLength = 32767;
+            this.txtSupplierInformation.Multiline = false;
+            this.txtSupplierInformation.Name = "txtSupplierInformation";
+            this.txtSupplierInformation.ReadOnly = false;
+            this.txtSupplierInformation.Size = new System.Drawing.Size(289, 30);
+            this.txtSupplierInformation.Style = MetroSet_UI.Enums.Style.Light;
+            this.txtSupplierInformation.StyleManager = null;
+            this.txtSupplierInformation.TabIndex = 111;
+            this.txtSupplierInformation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSupplierInformation.ThemeAuthor = "Narwin";
+            this.txtSupplierInformation.ThemeName = "MetroLite";
+            this.txtSupplierInformation.UseSystemPasswordChar = false;
+            this.txtSupplierInformation.WatermarkText = "";
+            // 
             // frmItemStockEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(326, 177);
+            this.ClientSize = new System.Drawing.Size(326, 306);
+            this.Controls.Add(this.txtSupplierInformation);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtQuantity);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(326, 177);
-            this.MinimumSize = new System.Drawing.Size(326, 177);
             this.Name = "frmItemStockEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock In";
@@ -134,5 +176,7 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private MetroSet_UI.Controls.MetroSetTextBox txtSupplierInformation;
     }
 }

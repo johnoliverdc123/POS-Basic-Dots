@@ -16,8 +16,7 @@ namespace POSWinforms
 
         private List<tblItem> itemList = new List<tblItem>();
 
-        private tblItem fastTrackItem = null;
-        private tblItem slowTrackItem = null;
+        private List<tblOrderDetail> soldItems = new List<tblOrderDetail>();
 
         public frmMain()
         {
@@ -27,51 +26,51 @@ namespace POSWinforms
             string date = DateTime.Now.ToString("dddd MMMM dd, yyyy  hh:mm:ss tt");
             lbTime.Text = date;
 
-            if (DatabaseHelper.user.Position.Equals("Cashier"))
+            if(DatabaseHelper.user.Position.ToLower().Contains("admin") || DatabaseHelper.user.Position.ToLower().Equals("manager"))
             {
-                p1.Visible = false;
-                btnUser.Visible = false;
-
-                p2.Visible = false;
-                btnItem.Visible = false;
-
-                p3.Visible = false;
-                btnCategory.Visible = false;
-
-                p5.Visible = false;
-                btnPosition.Visible = false;
-
-                p7.Visible = false;
-                btnOrders.Visible = false;
-
-                p9.Visible = false;
-                btnReports.Visible = false;
+                // Nothing.
             }
-            else if (DatabaseHelper.user.Position.Equals("Inventory"))
+            else if (DatabaseHelper.user.Position.ToLower().Contains("inventory"))
             {
-                p1.Visible = false;
                 btnUser.Visible = false;
 
-                p3.Visible = false;
-                btnCategory.Visible = false;
-
-                p4.Visible = false;
-                btnExpenses.Visible = false;
-
-                p5.Visible = false;
                 btnPosition.Visible = false;
 
-                p6.Visible = false;
                 btnTransaction.Visible = false;
 
-                p7.Visible = false;
                 btnOrders.Visible = false;
 
-                p8.Visible = false;
                 btnHistoryLog.Visible = false;
 
-                p9.Visible = false;
                 btnReports.Visible = false;
+            }
+            else if (DatabaseHelper.user.Position.Equals("Cashier"))
+            {
+                btnUser.Visible = false;
+
+                btnItem.Visible = false;
+
+                btnCategory.Visible = false;
+
+                btnPosition.Visible = false;
+
+                btnReports.Visible = false;
+
+                dgvItems.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(dgvItems_CellDoubleClick);
+            } 
+            else
+            {
+                btnUser.Visible = false;
+
+                btnItem.Visible = false;
+
+                btnCategory.Visible = false;
+
+                btnPosition.Visible = false;
+
+                btnReports.Visible = false;
+
+                dgvItems.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(dgvItems_CellDoubleClick);
             }
 
             loadEverything();
@@ -80,7 +79,8 @@ namespace POSWinforms
         private void loadEverything()
         {
             loadAllItems();
-            loadOneFastAndSlowTrackItem();
+            loadFastTrackItems();
+            loadSlowTrackItems();
             loadTotalSalesAndTransactionCountToday();
             loadTotalExpensesToday();
         }
@@ -109,61 +109,85 @@ namespace POSWinforms
             dgvItems.ClearSelection();
         }
 
-        private void loadOneFastAndSlowTrackItem()
+        private void loadFastTrackItems()
         {
-            fastTrackItem = null;
-            slowTrackItem = null;
             dgvFastTrackItems.Rows.Clear();
 
-            itemList = (from s in DatabaseHelper.db.tblItems
-                        select s).ToList();
+            
+            soldItems = (from s in DatabaseHelper.db.tblOrderDetails
+                            where s.DateSold.Date == DateTime.Now.Date
+                            select s).ToList();
 
-            fastTrackItem = (from s in itemList where s.Sold == itemList.Max(x => x.Sold) select s).First();
-            slowTrackItem = (from s in itemList where s.Sold == itemList.Min(x => x.Sold) select s).First();
-
-            dgvFastTrackItems.Rows.Add(
-                fastTrackItem.ID,
-                fastTrackItem.ItemCode,
-                fastTrackItem.ItemDescription,
-                fastTrackItem.Size,
-                fastTrackItem.Sold
-                );
-
-            if (slowTrackItem.ID != fastTrackItem.ID)
+            foreach (var item in soldItems)
             {
+                var soldQuantities = (from s in DatabaseHelper.db.tblOrderDetails
+                                      where s.ItemCode == item.ItemCode
+                                      select s.Quantity).Sum(x => x);
 
                 dgvFastTrackItems.Rows.Add(
-                    slowTrackItem.ID,
-                    slowTrackItem.ItemCode,
-                    slowTrackItem.ItemDescription,
-                    slowTrackItem.Size,
-                    slowTrackItem.Sold
+                    item.ID,
+                    item.ItemCode,
+                    item.ItemDescription,
+                    item.Size,
+                    soldQuantities
                     );
             }
 
             dgvFastTrackItems.ClearSelection();
         }
 
+        private void loadSlowTrackItems()
+        {
+            dgvSlowTrackItems.Rows.Clear();
+
+            soldItems = (from s in DatabaseHelper.db.tblOrderDetails
+                            where s.DateSold.Date == DateTime.Now.Date
+                         select s).ToList();
+
+            var allItems = (from s in DatabaseHelper.db.tblItems
+                            where s.isActive == 1
+                            select s).ToList();
+
+            var slowTrackItems = allItems.Where(x => soldItems.All(y => y.ItemCode != x.ItemCode));
+
+            foreach(var item in slowTrackItems)
+            {
+                dgvSlowTrackItems.Rows.Add(
+                    item.ID,
+                    item.ItemCode,
+                    item.ItemDescription,
+                    item.Size,
+                    0
+                    );
+            }
+
+            dgvSlowTrackItems.ClearSelection();
+        }
+
         private void loadTotalSalesAndTransactionCountToday()
         {
-            var today = DateTime.Now.Date;
             var totalSalesAndTransactionsList = (from order in DatabaseHelper.db.tblOrders
-                                                 where ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(order.Date).Date == today)
+                                                 where order.Date.Date == DateTime.Now.Date
                                                  select order).ToList();
 
             var totalSales = totalSalesAndTransactionsList.Sum(x => x.Total + x.ServiceFee);
             var totalTransactionCount = totalSalesAndTransactionsList.Count();
 
-            lbTotalSales.Text = totalSales.ToString("C2");
+            Console.WriteLine($"Sales: {totalSales}");
+            Console.WriteLine($"Transaction: {totalTransactionCount}");
+            Console.WriteLine($"Date: {DateTime.Now}");
+
+            lbTotalSales.Text = totalSales?.ToString("C2");
             lbTransactions.Text = totalTransactionCount.ToString("0");
         }
 
         private void loadTotalExpensesToday()
         {
             var totalExpenses = (from s in DatabaseHelper.db.tblExpenses
-                              where ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date ==
-                                    DateTime.Now.Date)
-                              select s).ToList().Sum(x => x.Cost);
+                                 where s.Date.Date == DateTime.Now.Date
+                                 select s).ToList().Sum(x => x.Cost);
+
+            Console.WriteLine($"Expense: {totalExpenses}");
             lbTotalExpense.Text = totalExpenses.ToString("C2");
         }
 
@@ -218,30 +242,15 @@ namespace POSWinforms
 
         private void itemToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (DatabaseHelper.user.Position.Equals("Manager") ||
-                DatabaseHelper.user.Position.Equals("Inventory"))
-            {
+            
                 new frmItem().ShowDialog();
                 loadEverything();
-            }
-            else
-            {
-                MessageBox.Show("You are not authorized to access this form.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void transactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DatabaseHelper.user.Position.Equals("Manager") ||
-                DatabaseHelper.user.Position.Equals("Cashier"))
-            {
                 new frmTransaction().ShowDialog();
                 loadEverything();
-            }
-            else
-            {
-                MessageBox.Show("You are not authorized to access this form.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
 
         }
 
@@ -303,6 +312,11 @@ namespace POSWinforms
                 DatabaseHelper.frmLogin.Show();
                 this.Hide();
             }
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

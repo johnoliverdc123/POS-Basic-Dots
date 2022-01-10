@@ -15,6 +15,8 @@ namespace POSWinforms.Maintenance
         private List<tblItem> itemList = new List<tblItem>();
         private string itemCode = "";
 
+        private bool isTransactionMode = false;
+
         public frmItem()
         {
             InitializeComponent();
@@ -30,9 +32,10 @@ namespace POSWinforms.Maintenance
             btnAdd.Visible = normalMode;
             btnUpdate.Visible = normalMode;
             btnStockIn.Visible = normalMode;
-            dgvItems.CellDoubleClick += new DataGridViewCellEventHandler(dgvItems_CellDoubleClick);
+            dgvItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgvItems_CellDoubleClick);
 
-            cmbSearchFilter.SelectedIndex = 0;
+            cmbSearchFilter.Enabled = false;
+            isTransactionMode = true;
             loadAllItems(null);
         }
 
@@ -46,20 +49,41 @@ namespace POSWinforms.Maintenance
                 searchFilter = 1;
 
             // Search dito yung mga active or not active items para yon lang yung lumabas sa datagrid.
-            if (searchItem != null)
+            if (isTransactionMode)
             {
-                itemList = (from s in DatabaseHelper.db.tblItems
-                               where s.isActive == searchFilter &&
-                               s.ItemCode == txtSearch.Text ||
-                               SqlMethods.Like(s.ItemDescription, "%" + txtSearch.Text + "%")
-                               select s).ToList();
-                
+                if (searchItem != null)
+                {
+                    itemList = (from s in DatabaseHelper.db.tblItems
+                                where s.isActive == 1 &&
+                                s.ItemCode == txtSearch.Text ||
+                                SqlMethods.Like(s.ItemDescription, "%" + txtSearch.Text + "%")
+                                select s).ToList();
+
+                }
+                else
+                {
+                    itemList = (from s in DatabaseHelper.db.tblItems
+                                where s.isActive == 1
+                                select s).ToList();
+                }
             }
             else
             {
-                itemList = (from s in DatabaseHelper.db.tblItems
-                            where s.isActive == searchFilter
-                               select s).ToList();
+                if (searchItem != null)
+                {
+                    itemList = (from s in DatabaseHelper.db.tblItems
+                                where s.isActive == searchFilter &&
+                                s.ItemCode == txtSearch.Text ||
+                                SqlMethods.Like(s.ItemDescription, "%" + txtSearch.Text + "%")
+                                select s).ToList();
+
+                }
+                else
+                {
+                    itemList = (from s in DatabaseHelper.db.tblItems
+                                where s.isActive == searchFilter
+                                select s).ToList();
+                }
             }
 
             // Sort all items by fast track to slow track.
@@ -75,9 +99,9 @@ namespace POSWinforms.Maintenance
                         item.Size,
                         item.Price.ToString("0.00"),
                         item.Stocks,
-                        item.CommittedItem,
+                        item.isActive,
+                        item.supplierInformation,
                         item.Sold,
-                        item.Returned,
                         item.ReStockLevel
                     );
             }

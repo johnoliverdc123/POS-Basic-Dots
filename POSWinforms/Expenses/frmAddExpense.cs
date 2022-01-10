@@ -3,6 +3,8 @@ using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace POSWinforms.Expenses
 {
@@ -12,7 +14,25 @@ namespace POSWinforms.Expenses
         {
             InitializeComponent();
 
-            cmbExpenseType.SelectedIndex = 0;
+            LoadExpenseTypes();
+        }
+
+        private void LoadExpenseTypes()
+        {
+            
+            var expenseTypeList = (from s in DatabaseHelper.db.tblExpenseTypes select s).ToList();
+
+            cmbExpenseType.Items.Clear();
+
+            foreach (var type in expenseTypeList)
+            {
+                cmbExpenseType.Items.Add(type.Type);
+            }
+
+            if (expenseTypeList.Count > 0)
+            {
+                cmbExpenseType.SelectedIndex = 0;
+            }
         }
 
         private void btnAddExpense_Click(object sender, EventArgs e)
@@ -22,7 +42,7 @@ namespace POSWinforms.Expenses
                 Purpose = txtPurpose.Text,
                 Type = cmbExpenseType.SelectedItem.ToString(),
                 Cost = Convert.ToDecimal(txtCost.Text),
-                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                Date = DateTime.Now,
                 PaidBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
             };
 
@@ -73,6 +93,12 @@ namespace POSWinforms.Expenses
                 e.Cancel = false;
                 epCost.SetError(txtCost, null);
             }
+        }
+
+        private void btnAddExpenseType_Click(object sender, EventArgs e)
+        {
+            new frmAddEditExpenseType().ShowDialog();
+            LoadExpenseTypes();
         }
     }
 }

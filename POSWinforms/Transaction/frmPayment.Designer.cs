@@ -43,6 +43,8 @@ namespace POSWinforms.Maintenance
             this.cmbService = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.epMoney = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtServiceType = new MetroSet_UI.Controls.MetroSetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epMoney)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@ namespace POSWinforms.Maintenance
             this.txtTotal.Image = null;
             this.txtTotal.IsDerivedStyle = false;
             this.txtTotal.Lines = null;
-            this.txtTotal.Location = new System.Drawing.Point(185, 152);
+            this.txtTotal.Location = new System.Drawing.Point(185, 274);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotal.MaxLength = 32767;
             this.txtTotal.Multiline = false;
@@ -91,7 +93,7 @@ namespace POSWinforms.Maintenance
             this.txtCash.Image = null;
             this.txtCash.IsDerivedStyle = false;
             this.txtCash.Lines = null;
-            this.txtCash.Location = new System.Drawing.Point(185, 191);
+            this.txtCash.Location = new System.Drawing.Point(185, 313);
             this.txtCash.Margin = new System.Windows.Forms.Padding(2);
             this.txtCash.MaxLength = 10;
             this.txtCash.Multiline = false;
@@ -124,7 +126,7 @@ namespace POSWinforms.Maintenance
             this.txtChange.Image = null;
             this.txtChange.IsDerivedStyle = false;
             this.txtChange.Lines = null;
-            this.txtChange.Location = new System.Drawing.Point(185, 230);
+            this.txtChange.Location = new System.Drawing.Point(185, 352);
             this.txtChange.Margin = new System.Windows.Forms.Padding(2);
             this.txtChange.MaxLength = 32767;
             this.txtChange.Multiline = false;
@@ -147,7 +149,7 @@ namespace POSWinforms.Maintenance
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.Maroon;
-            this.btnConfirm.Location = new System.Drawing.Point(215, 297);
+            this.btnConfirm.Location = new System.Drawing.Point(145, 405);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(78, 34);
@@ -163,7 +165,7 @@ namespace POSWinforms.Maintenance
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCancel.Location = new System.Drawing.Point(297, 297);
+            this.btnCancel.Location = new System.Drawing.Point(227, 405);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(76, 34);
@@ -176,7 +178,7 @@ namespace POSWinforms.Maintenance
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(62, 161);
+            this.label1.Location = new System.Drawing.Point(62, 283);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 21);
             this.label1.TabIndex = 113;
@@ -186,7 +188,7 @@ namespace POSWinforms.Maintenance
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(130, 200);
+            this.label2.Location = new System.Drawing.Point(130, 322);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 21);
             this.label2.TabIndex = 113;
@@ -196,7 +198,7 @@ namespace POSWinforms.Maintenance
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(108, 239);
+            this.label3.Location = new System.Drawing.Point(108, 361);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 21);
             this.label3.TabIndex = 113;
@@ -271,12 +273,55 @@ namespace POSWinforms.Maintenance
             // 
             this.epMoney.ContainerControl = this;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(65, 151);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(110, 21);
+            this.label6.TabIndex = 119;
+            this.label6.Text = "Service Type:";
+            // 
+            // txtServiceType
+            // 
+            this.txtServiceType.AutoCompleteCustomSource = null;
+            this.txtServiceType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtServiceType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtServiceType.BorderColor = System.Drawing.Color.Sienna;
+            this.txtServiceType.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.txtServiceType.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.txtServiceType.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.txtServiceType.Enabled = false;
+            this.txtServiceType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtServiceType.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.txtServiceType.Image = null;
+            this.txtServiceType.IsDerivedStyle = false;
+            this.txtServiceType.Lines = null;
+            this.txtServiceType.Location = new System.Drawing.Point(185, 142);
+            this.txtServiceType.Margin = new System.Windows.Forms.Padding(2);
+            this.txtServiceType.MaxLength = 143;
+            this.txtServiceType.Multiline = true;
+            this.txtServiceType.Name = "txtServiceType";
+            this.txtServiceType.ReadOnly = false;
+            this.txtServiceType.Size = new System.Drawing.Size(204, 97);
+            this.txtServiceType.Style = MetroSet_UI.Enums.Style.Light;
+            this.txtServiceType.StyleManager = null;
+            this.txtServiceType.TabIndex = 118;
+            this.txtServiceType.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtServiceType.ThemeAuthor = "Narwin";
+            this.txtServiceType.ThemeName = "MetroLite";
+            this.txtServiceType.UseSystemPasswordChar = false;
+            this.txtServiceType.WatermarkText = "";
+            // 
             // frmPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(384, 342);
+            this.ClientSize = new System.Drawing.Size(400, 449);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtServiceType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbService);
             this.Controls.Add(this.txtServiceFee);
@@ -315,5 +360,7 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.ComboBox cmbService;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ErrorProvider epMoney;
+        private System.Windows.Forms.Label label6;
+        private MetroSet_UI.Controls.MetroSetTextBox txtServiceType;
     }
 }

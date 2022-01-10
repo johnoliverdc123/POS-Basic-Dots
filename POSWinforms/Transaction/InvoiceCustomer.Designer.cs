@@ -60,13 +60,13 @@
             this.tableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailCaption1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData3_Odd = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -74,14 +74,17 @@
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.pCustomerName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.pCustomerID = new DevExpress.XtraReports.Parameters.Parameter();
             this.pInvoiceNo = new DevExpress.XtraReports.Parameters.Parameter();
             this.pDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.pTotalAmt = new DevExpress.XtraReports.Parameters.Parameter();
             this.pServiceFee = new DevExpress.XtraReports.Parameters.Parameter();
             this.pCash = new DevExpress.XtraReports.Parameters.Parameter();
             this.pChange = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
+            this.pServiceType = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -246,7 +249,7 @@
             this.tableCell1.StylePriority.UseBorders = false;
             this.tableCell1.StylePriority.UseTextAlignment = false;
             this.tableCell1.Text = "ID";
-            this.tableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.tableCell1.Weight = 0.046427307128906248D;
             // 
             // tableCell3
@@ -255,14 +258,16 @@
             this.tableCell3.StyleName = "DetailCaption1";
             this.tableCell3.StylePriority.UseTextAlignment = false;
             this.tableCell3.Text = "Item Number";
-            this.tableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell3.Weight = 0.15290590726412259D;
             // 
             // tableCell4
             // 
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.StyleName = "DetailCaption1";
+            this.tableCell4.StylePriority.UseTextAlignment = false;
             this.tableCell4.Text = "Item Description";
+            this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell4.Weight = 0.18878524780273437D;
             // 
             // tableCell5
@@ -271,7 +276,7 @@
             this.tableCell5.StyleName = "DetailCaption1";
             this.tableCell5.StylePriority.UseTextAlignment = false;
             this.tableCell5.Text = "Quantity";
-            this.tableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell5.Weight = 0.11007038996769832D;
             // 
             // tableCell6
@@ -280,7 +285,7 @@
             this.tableCell6.StyleName = "DetailCaption1";
             this.tableCell6.StylePriority.UseTextAlignment = false;
             this.tableCell6.Text = "Price";
-            this.tableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell6.Weight = 0.076550474900465751D;
             // 
             // tableCell7
@@ -289,8 +294,8 @@
             this.tableCell7.StyleName = "DetailCaption1";
             this.tableCell7.StylePriority.UseTextAlignment = false;
             this.tableCell7.Text = "Discount";
-            this.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell7.Weight = 0.11469767643855168D;
+            this.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.tableCell7.Weight = 0.086692595252737717D;
             // 
             // tableCell8
             // 
@@ -298,8 +303,8 @@
             this.tableCell8.StyleName = "DetailCaption1";
             this.tableCell8.StylePriority.UseTextAlignment = false;
             this.tableCell8.Text = "Total";
-            this.tableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell8.Weight = 0.075350429828350357D;
+            this.tableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.tableCell8.Weight = 0.10335551101416432D;
             // 
             // Detail
             // 
@@ -402,12 +407,6 @@
             this.tableCell17.TextFormatString = "{0:C2}";
             this.tableCell17.Weight = 0.075350423959585341D;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.Constructor = objectConstructorInfo1;
-            this.objectDataSource1.DataSource = typeof(POSWinforms.Models.OrderDetail);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // Title
             // 
             this.Title.BackColor = System.Drawing.Color.Transparent;
@@ -464,6 +463,8 @@
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel9,
+            this.xrLabel18,
             this.xrLabel8,
             this.xrLabel6,
             this.xrLabel7,
@@ -475,15 +476,28 @@
             this.PageHeader.HeightF = 211.4583F;
             this.PageHeader.Name = "PageHeader";
             // 
+            // xrLabel8
+            // 
+            this.xrLabel8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(98.61552F, 86.20828F);
+            this.xrLabel8.Multiline = true;
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(452.0833F, 23F);
+            this.xrLabel8.StylePriority.UseFont = false;
+            this.xrLabel8.StylePriority.UseTextAlignment = false;
+            this.xrLabel8.Text = "Brgy. Q3-A Anonas, Quezon City, Philippines";
+            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
             // xrLabel6
             // 
             this.xrLabel6.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?pDate")});
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(468.125F, 155.4583F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(390F, 155.4583F);
             this.xrLabel6.Multiline = true;
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(171.875F, 23F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(250F, 23F);
             this.xrLabel6.StylePriority.UseTextAlignment = false;
             this.xrLabel6.Text = "Customer Name";
             this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -495,7 +509,7 @@
             this.xrLabel7.Multiline = true;
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.SizeF = new System.Drawing.SizeF(117.7083F, 23F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(39.58334F, 23F);
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
             this.xrLabel7.Text = "Date:";
@@ -530,7 +544,7 @@
             // xrLabel3
             // 
             this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?pCustomerName")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?pCustomerID")});
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(129.8656F, 132.4583F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
@@ -550,7 +564,7 @@
             this.xrLabel2.SizeF = new System.Drawing.SizeF(117.7083F, 23F);
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "Customer Name:";
+            this.xrLabel2.Text = "Customer ID:";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLabel1
@@ -566,11 +580,11 @@
             this.xrLabel1.Text = "Basic Dots";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // pCustomerName
+            // pCustomerID
             // 
-            this.pCustomerName.Description = "Parameter1";
-            this.pCustomerName.Name = "pCustomerName";
-            this.pCustomerName.ValueInfo = "John Oliver Dela Cruz";
+            this.pCustomerID.Description = "Parameter1";
+            this.pCustomerID.Name = "pCustomerID";
+            this.pCustomerID.ValueInfo = "John Oliver Dela Cruz";
             // 
             // pInvoiceNo
             // 
@@ -583,49 +597,67 @@
             // 
             this.pDate.Description = "Parameter1";
             this.pDate.Name = "pDate";
-            this.pDate.Type = typeof(System.DateTime);
-            this.pDate.ValueInfo = "2021-11-11";
             // 
             // pTotalAmt
             // 
             this.pTotalAmt.Description = "Parameter1";
             this.pTotalAmt.Name = "pTotalAmt";
-            this.pTotalAmt.Type = typeof(decimal);
-            this.pTotalAmt.ValueInfo = "174";
+            this.pTotalAmt.ValueInfo = "123";
             // 
             // pServiceFee
             // 
             this.pServiceFee.Description = "Parameter1";
             this.pServiceFee.Name = "pServiceFee";
-            this.pServiceFee.Type = typeof(decimal);
-            this.pServiceFee.ValueInfo = "123.5";
+            this.pServiceFee.ValueInfo = "123";
             // 
             // pCash
             // 
             this.pCash.Description = "Parameter1";
             this.pCash.Name = "pCash";
-            this.pCash.Type = typeof(decimal);
-            this.pCash.ValueInfo = "175";
+            this.pCash.ValueInfo = "123";
             // 
             // pChange
             // 
             this.pChange.Description = "Parameter1";
             this.pChange.Name = "pChange";
-            this.pChange.Type = typeof(decimal);
-            this.pChange.ValueInfo = "1";
+            this.pChange.ValueInfo = "123";
             // 
-            // xrLabel8
+            // xrLabel9
             // 
-            this.xrLabel8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(98.61552F, 86.20828F);
-            this.xrLabel8.Multiline = true;
-            this.xrLabel8.Name = "xrLabel8";
-            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(452.0833F, 23F);
-            this.xrLabel8.StylePriority.UseFont = false;
-            this.xrLabel8.StylePriority.UseTextAlignment = false;
-            this.xrLabel8.Text = "Brgy. Q3-A Anonas, Quezon City, Philippines";
-            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrLabel9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(12.15725F, 155.4583F);
+            this.xrLabel9.Multiline = true;
+            this.xrLabel9.Name = "xrLabel9";
+            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel9.SizeF = new System.Drawing.SizeF(117.7083F, 23F);
+            this.xrLabel9.StylePriority.UseFont = false;
+            this.xrLabel9.StylePriority.UseTextAlignment = false;
+            this.xrLabel9.Text = "Service Type:";
+            this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
+            // xrLabel18
+            // 
+            this.xrLabel18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "?pServiceType")});
+            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(129.8656F, 155.4583F);
+            this.xrLabel18.Multiline = true;
+            this.xrLabel18.Name = "xrLabel18";
+            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel18.SizeF = new System.Drawing.SizeF(199.9999F, 22.99998F);
+            this.xrLabel18.StylePriority.UseTextAlignment = false;
+            this.xrLabel18.Text = "Customer Name";
+            this.xrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // pServiceType
+            // 
+            this.pServiceType.Description = "Parameter1";
+            this.pServiceType.Name = "pServiceType";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.Constructor = objectConstructorInfo1;
+            this.objectDataSource1.DataSource = typeof(POSWinforms.Models.OrderDetail);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // InvoiceCustomer
             // 
@@ -641,13 +673,14 @@
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Margins = new System.Drawing.Printing.Margins(100, 100, 100, 221);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.pCustomerName,
+            this.pCustomerID,
             this.pInvoiceNo,
             this.pDate,
             this.pTotalAmt,
             this.pServiceFee,
             this.pCash,
-            this.pChange});
+            this.pChange,
+            this.pServiceType});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption1,
@@ -708,7 +741,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.Parameters.Parameter pCustomerName;
+        private DevExpress.XtraReports.Parameters.Parameter pCustomerID;
         private DevExpress.XtraReports.Parameters.Parameter pInvoiceNo;
         private DevExpress.XtraReports.Parameters.Parameter pDate;
         private DevExpress.XtraReports.Parameters.Parameter pTotalAmt;
@@ -716,5 +749,8 @@
         private DevExpress.XtraReports.Parameters.Parameter pCash;
         private DevExpress.XtraReports.Parameters.Parameter pChange;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel9;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel18;
+        private DevExpress.XtraReports.Parameters.Parameter pServiceType;
     }
 }

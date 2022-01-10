@@ -1,34 +1,49 @@
 ﻿using POSWinforms.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POSWinforms.Expenses
 {
     public partial class frmExpenses : Form
     {
-        private DateTime startDate = DateTime.Now;
-
         private List<tblExpense> expenseList = new List<tblExpense>();
 
+        private List<DateTime> datesToEvaluate = new List<DateTime>();
+
+        private DateTime startDate = DateTime.Now;
 
         public frmExpenses()
         {
             InitializeComponent();
 
-            cmbSortOrder.SelectedIndex = 0;
+            LoadExpenseTypes();
+
             dtpToDate.MinDate = startDate.AddDays(1);
-
-            loadAllExpenses(null);
         }
 
-        private void loadAllExpenses(string sortOrder)
+        private void LoadExpenseTypes()
+        {
+
+            var expenseTypeList = (from s in DatabaseHelper.db.tblExpenseTypes select s).ToList();
+
+            cmbSortOrder.Items.Clear();
+
+            cmbSortOrder.Items.Add("None");
+
+            foreach (var type in expenseTypeList)
+            {
+                cmbSortOrder.Items.Add(type.Type);
+            }
+
+            cmbSortOrder.SelectedIndex = 0;
+        }
+
+        private void loadAllExpenses(string searchedId, string sortOrder)
         {
             expenseList.Clear();
             dgvExpenses.Rows.Clear();
@@ -36,76 +51,49 @@ namespace POSWinforms.Expenses
 
             if (sortOrder != null && !sortOrder.Equals("None"))
             {
-                expenseList = (from s in DatabaseHelper.db.tblExpenses
-                                  where s.Type.ToLower().Equals(sortOrder.ToLower())
-                                  select s).ToList();
+                if (searchedId != null)
+                {
+                    expenseList = (from s in DatabaseHelper.db.tblExpenses
+                                   where datesToEvaluate.Contains(s.Date.Date) &&
+                                   s.Type.ToLower().Equals(sortOrder.ToLower()) &&
+                                   SqlMethods.Like(s.ID.ToString(), $"%{searchedId}%")
+                                   select s).ToList();
+                } else
+                {
+                    expenseList = (from s in DatabaseHelper.db.tblExpenses
+                                   where datesToEvaluate.Contains(s.Date.Date) &&
+                                   s.Type.ToLower().Equals(sortOrder.ToLower())
+                                   select s).ToList();
+                }
 
             }
             else
             {
-                expenseList = (from s in DatabaseHelper.db.tblExpenses
-                                  select s).ToList();
+                if (searchedId != null)
+                {
+                    expenseList = (from s in DatabaseHelper.db.tblExpenses
+                                   where datesToEvaluate.Contains(s.Date.Date) &&
+                                   SqlMethods.Like(s.ID.ToString(), $"%{searchedId}%")
+                                   select s).ToList();
+                } else
+                {
+                    expenseList = (from s in DatabaseHelper.db.tblExpenses
+                                   where datesToEvaluate.Contains(s.Date.Date)
+                                   select s).ToList();
+                }
             }
 
             expenseList = expenseList.OrderByDescending(e => e.Date).ToList();
 
             foreach (var item in expenseList)
             {
-                var dateFromStamp = (new DateTime(1970, 1, 1)).AddMilliseconds(item.Date).AddHours(8);
 
                 dgvExpenses.Rows.Add(
                         item.ID,
                         item.Purpose,
                         item.Type,
                         item.Cost,
-                        dateFromStamp,
-                        item.PaidBy
-                    );
-            }
-
-            dgvExpenses.ClearSelection();
-        }
-
-        private void loadAllExpensesWithDateRange(string sortOrder)
-        {
-            expenseList.Clear();
-            dgvExpenses.Rows.Clear();
-
-            var startDateLong = new DateTimeOffset(dtpFromDate.Value).ToUnixTimeMilliseconds();
-            var toDateLong = new DateTimeOffset(dtpToDate.Value).ToUnixTimeMilliseconds();
-
-            if (sortOrder != null && !sortOrder.Equals("None"))
-            {
-                expenseList = (from s in DatabaseHelper.db.tblExpenses
-                               where s.Type.ToLower().Equals(sortOrder.ToLower()) &&
-                               ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date >=
-                                    dtpFromDate.Value.Date &&
-                                    (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date <=
-                                    dtpToDate.Value.Date)
-                               select s).ToList();
-            }
-            else
-            {
-                expenseList = (from s in DatabaseHelper.db.tblExpenses
-                               where ((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date >=
-                                    dtpFromDate.Value.Date &&
-                                    (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date <=
-                                    dtpToDate.Value.Date)
-                               select s).ToList();
-            }
-
-            expenseList = expenseList.OrderByDescending(e => e.Date).ToList();
-
-            foreach (var item in expenseList)
-            {
-                var dateFromStamp = (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(item.Date).ToLocalTime();
-
-                dgvExpenses.Rows.Add(
-                        item.ID,
-                        item.Purpose,
-                        item.Type,
-                        item.Cost,
-                        dateFromStamp,
+                        item.Date,
                         item.PaidBy
                     );
             }
@@ -122,24 +110,130 @@ namespace POSWinforms.Expenses
         private void btnAddExpense_Click(object sender, EventArgs e)
         {
             new frmAddExpense().ShowDialog();
-            cmbSortOrder.SelectedIndex = 0;
-            loadAllExpenses(null);
+            LoadExpenseTypes();
         }
 
-        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        private void rbDaily_CheckedChanged(object sender, EventArgs e)
         {
-            loadAllExpenses(cmbSortOrder.SelectedItem.ToString());
+            if (rbDaily.Checked)
+            {
+                datesToEvaluate.Clear();
+
+                var today = DateTime.Now;
+                for (var dt = today.AddDays(-100).Date; dt < today.AddDays(100).Date; dt = dt.AddDays(1))
+                {
+                    datesToEvaluate.Add(dt);
+                }
+
+                foreach (var date in datesToEvaluate)
+                {
+                    Console.WriteLine(date);
+                }
+
+                generateReports();
+            }
         }
 
-        private void btnWithSortOrder_Click(object sender, EventArgs e)
+        private void rbWeekly_CheckedChanged(object sender, EventArgs e)
         {
-            loadAllExpensesWithDateRange(cmbSortOrder.SelectedItem.ToString());
+            if (rbWeekly.Checked)
+            {
+                datesToEvaluate.Clear();
+
+                DateTime today = DateTime.Today;
+                int currentDayOfWeek = (int)today.DayOfWeek;
+                DateTime sunday = today.AddDays(-currentDayOfWeek);
+                DateTime monday = sunday.AddDays(1);
+                datesToEvaluate = Enumerable.Range(0, 7).Select(days => monday.AddDays(days)).ToList();
+
+                foreach (var date in datesToEvaluate)
+                {
+                    Console.WriteLine(date);
+                }
+
+                generateReports();
+            }
         }
 
-        private void btnWithoutSortOrder_Click(object sender, EventArgs e)
+        private void rbMonthly_CheckedChanged(object sender, EventArgs e)
         {
-            cmbSortOrder.SelectedIndex = 0;
-            loadAllExpensesWithDateRange(null);
+            if (rbMonthly.Checked)
+            {
+                datesToEvaluate.Clear();
+
+                var today = DateTime.Now;
+                datesToEvaluate = GetDatesInThisMonth(today.Year, today.Month);
+
+                foreach (var date in datesToEvaluate)
+                {
+                    Console.WriteLine(date);
+                }
+
+                generateReports();
+            }
+        }
+
+        private List<DateTime> GetDatesInThisMonth(int year, int month)
+        {
+            return Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
+                             .Select(day => new DateTime(year, month, day, 0, 0, 0)) // Map each day to a date
+                             .ToList(); // Load dates into a list
+        }
+
+        private void rbCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCustom.Checked)
+            {
+                dtpFromDate.Enabled = true;
+                dtpToDate.Enabled = true;
+            }
+            else
+            {
+                dtpFromDate.Enabled = false;
+                dtpToDate.Enabled = false;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (dtpFromDate.Enabled && dtpToDate.Enabled)
+            {
+                datesToEvaluate.Clear();
+                for (var dt = dtpFromDate.Value.Date; dt <= dtpToDate.Value.Date; dt = dt.AddDays(1))
+                {
+                    datesToEvaluate.Add(dt.Date);
+                }
+            }
+
+            generateReports();
+        }
+
+        private void generateReports()
+        {
+            if (txtSearchById.Text.Length > 3 && Int64.TryParse(txtSearchById.Text, out long id))
+            {
+                loadAllExpenses(id.ToString(), cmbSortOrder.SelectedItem.ToString());
+            }
+            else
+            {
+                loadAllExpenses(null, cmbSortOrder.SelectedItem.ToString());
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if(dgvExpenses.Rows.Count > 0)
+            {
+                DGVPrinter printer = new DGVPrinter();
+                printer.Title = "Expenses Report";
+                printer.SubTitle = string.Format("Date: {0}", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"));
+                printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                printer.PageNumbers = true;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.PrintDataGridView(dgvExpenses);
+            }
         }
     }
 }

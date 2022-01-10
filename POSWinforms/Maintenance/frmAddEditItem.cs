@@ -27,6 +27,7 @@ namespace POSWinforms.Maintenance
         {
             InitializeComponent();
             categories = (from s in DatabaseHelper.db.tblCategories
+                          where s.isActive == 1
                           select s).ToList();
             foreach (var category in categories)
             {
@@ -56,6 +57,7 @@ namespace POSWinforms.Maintenance
             txtUnitPrice.Text = unitPrice.ToString();
             txtQuantity.Text = quantity.ToString();
             txtReProduceLevel.Text = restockLevel.ToString();
+            txtSupplierInformation.Text = item.supplierInformation;
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -182,35 +184,48 @@ namespace POSWinforms.Maintenance
             {
                 if (btnSave.Text.Equals("Save"))
                 {
-                    var newItem = new tblItem
-                    {
-                        ItemNumber = newItemNo,
-                        ItemCode = itemCode,
-                        ItemDescription = txtDescription.Text,
-                        Size = txtSize.Text,
-                        Price = unitPrice,
-                        Stocks = quantity,
-                        CommittedItem = 0,
-                        Sold = 0,
-                        Returned = 0,
-                        ReStockLevel = restockLevel,
-                        isActive = 1
-                    };
+                    var isSizeExisting = (from s in DatabaseHelper.db.tblItems
+                                          where s.Size.ToLower().Equals(txtSize.Text.ToLower())
+                                          select s).FirstOrDefault();
 
-                    var newLog = new tblHistoryLog
+                    if (isSizeExisting != null)
                     {
-                        Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
-                        $"new item({newItem.ItemNumber})",
-                        Type = LogType.PRODUCT.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
-                    };
+                        MessageBox.Show("You cannot add a product with the same size.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else
+                    {
 
-                    DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
-                    DatabaseHelper.db.tblItems.InsertOnSubmit(newItem);
-                    DatabaseHelper.db.SubmitChanges();
-                    MessageBox.Show("Item added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                        var newItem = new tblItem
+                        {
+                            ItemNumber = newItemNo,
+                            ItemCode = itemCode,
+                            ItemDescription = txtDescription.Text,
+                            Size = txtSize.Text,
+                            Price = unitPrice,
+                            Stocks = quantity,
+                            Sold = 0,
+                            ReStockLevel = restockLevel,
+                            isActive = 1,
+                            supplierInformation = txtSupplierInformation.Text
+                        };
+
+                        var newLog = new tblHistoryLog
+                        {
+                            Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
+                            $"new item({newItem.ItemCode}) {newItem.ItemDescription}",
+                            Type = LogType.PRODUCT.ToString(),
+                            Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                            EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}",
+                            SupplierInformation = txtSupplierInformation.Text
+                        };
+
+                        DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                        DatabaseHelper.db.tblItems.InsertOnSubmit(newItem);
+                        DatabaseHelper.db.SubmitChanges();
+                        MessageBox.Show("Item added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
+                    }
                 }
                 else if (btnSave.Text.Equals("Update"))
                 {
@@ -219,6 +234,7 @@ namespace POSWinforms.Maintenance
                     item.ReStockLevel = restockLevel;
                     item.Stocks = quantity;
                     item.Price = unitPrice;
+                    item.supplierInformation = txtSupplierInformation.Text;
 
                     var newLog = new tblHistoryLog
                     {
@@ -226,7 +242,8 @@ namespace POSWinforms.Maintenance
                         $"updated item({item.ItemNumber})",
                         Type = LogType.PRODUCT.ToString(),
                         Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                        EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}",
+                        SupplierInformation = txtSupplierInformation.Text
                     };
 
                     DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
@@ -293,11 +310,6 @@ namespace POSWinforms.Maintenance
             {
                 saveItem();
             }
-        }
-
-        private void frmAddEditItem_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -30,7 +30,6 @@ namespace POSWinforms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.btnPosition = new System.Windows.Forms.Button();
@@ -63,18 +62,15 @@ namespace POSWinforms
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.p1 = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.p9 = new System.Windows.Forms.PictureBox();
-            this.p8 = new System.Windows.Forms.PictureBox();
-            this.p7 = new System.Windows.Forms.PictureBox();
-            this.p6 = new System.Windows.Forms.PictureBox();
-            this.p5 = new System.Windows.Forms.PictureBox();
-            this.p4 = new System.Windows.Forms.PictureBox();
-            this.p3 = new System.Windows.Forms.PictureBox();
-            this.p2 = new System.Windows.Forms.PictureBox();
             this.btnUser = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvSlowTrackItems = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -89,16 +85,8 @@ namespace POSWinforms
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFastTrackItems)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p2)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSlowTrackItems)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -109,6 +97,7 @@ namespace POSWinforms
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -125,7 +114,7 @@ namespace POSWinforms
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
             this.metroSetControlBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.metroSetControlBox1.IsDerivedStyle = true;
-            this.metroSetControlBox1.Location = new System.Drawing.Point(826, 4);
+            this.metroSetControlBox1.Location = new System.Drawing.Point(1184, 2);
             this.metroSetControlBox1.Margin = new System.Windows.Forms.Padding(2);
             this.metroSetControlBox1.MaximizeBox = false;
             this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
@@ -294,11 +283,11 @@ namespace POSWinforms
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(192, 165);
+            this.label2.Location = new System.Drawing.Point(192, 200);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 21);
+            this.label2.Size = new System.Drawing.Size(154, 21);
             this.label2.TabIndex = 30;
-            this.label2.Text = "Inventory Report";
+            this.label2.Text = "Critical Level Stocks";
             // 
             // dgvItems
             // 
@@ -314,7 +303,7 @@ namespace POSWinforms
             this.Column3,
             this.Column4,
             this.colStocks});
-            this.dgvItems.Location = new System.Drawing.Point(189, 190);
+            this.dgvItems.Location = new System.Drawing.Point(189, 225);
             this.dgvItems.MultiSelect = false;
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
@@ -363,11 +352,11 @@ namespace POSWinforms
             this.label3.BackColor = System.Drawing.Color.DodgerBlue;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(67, 3);
+            this.label3.Location = new System.Drawing.Point(46, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 21);
+            this.label3.Size = new System.Drawing.Size(86, 21);
             this.label3.TabIndex = 32;
-            this.label3.Text = "Sales";
+            this.label3.Text = "Daily Sales";
             // 
             // label4
             // 
@@ -375,52 +364,55 @@ namespace POSWinforms
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(56, 4);
+            this.label4.Location = new System.Drawing.Point(37, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 21);
+            this.label4.Size = new System.Drawing.Size(116, 21);
             this.label4.TabIndex = 33;
-            this.label4.Text = "Expenses";
+            this.label4.Text = "Daily Expenses";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(45, 4);
+            this.label5.Location = new System.Drawing.Point(25, 4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 21);
+            this.label5.Size = new System.Drawing.Size(139, 21);
             this.label5.TabIndex = 34;
-            this.label5.Text = "Transactions";
+            this.label5.Text = "Daily Transactions";
             // 
             // lbTransactions
             // 
+            this.lbTransactions.AutoSize = true;
             this.lbTransactions.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTransactions.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lbTransactions.Location = new System.Drawing.Point(-1, 52);
+            this.lbTransactions.Location = new System.Drawing.Point(62, 53);
             this.lbTransactions.Name = "lbTransactions";
-            this.lbTransactions.Size = new System.Drawing.Size(189, 30);
+            this.lbTransactions.Size = new System.Drawing.Size(45, 30);
             this.lbTransactions.TabIndex = 35;
             this.lbTransactions.Text = "100";
             this.lbTransactions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbTotalExpense
             // 
+            this.lbTotalExpense.AutoSize = true;
             this.lbTotalExpense.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotalExpense.ForeColor = System.Drawing.Color.Red;
-            this.lbTotalExpense.Location = new System.Drawing.Point(-1, 52);
+            this.lbTotalExpense.Location = new System.Drawing.Point(62, 53);
             this.lbTotalExpense.Name = "lbTotalExpense";
-            this.lbTotalExpense.Size = new System.Drawing.Size(189, 30);
+            this.lbTotalExpense.Size = new System.Drawing.Size(45, 30);
             this.lbTotalExpense.TabIndex = 36;
             this.lbTotalExpense.Text = "100";
             this.lbTotalExpense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbTotalSales
             // 
+            this.lbTotalSales.AutoSize = true;
             this.lbTotalSales.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotalSales.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lbTotalSales.Location = new System.Drawing.Point(0, 52);
+            this.lbTotalSales.Location = new System.Drawing.Point(57, 53);
             this.lbTotalSales.Name = "lbTotalSales";
-            this.lbTotalSales.Size = new System.Drawing.Size(189, 30);
+            this.lbTotalSales.Size = new System.Drawing.Size(45, 30);
             this.lbTotalSales.TabIndex = 37;
             this.lbTotalSales.Text = "100";
             this.lbTotalSales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -458,7 +450,7 @@ namespace POSWinforms
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dgvFastTrackItems.Location = new System.Drawing.Point(563, 190);
+            this.dgvFastTrackItems.Location = new System.Drawing.Point(563, 225);
             this.dgvFastTrackItems.MultiSelect = false;
             this.dgvFastTrackItems.Name = "dgvFastTrackItems";
             this.dgvFastTrackItems.ReadOnly = true;
@@ -505,7 +497,7 @@ namespace POSWinforms
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(566, 165);
+            this.label6.Location = new System.Drawing.Point(566, 200);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(148, 21);
             this.label6.TabIndex = 41;
@@ -514,43 +506,21 @@ namespace POSWinforms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.p1);
             this.panel1.Controls.Add(this.btnLogout);
-            this.panel1.Controls.Add(this.p9);
-            this.panel1.Controls.Add(this.p8);
             this.panel1.Controls.Add(this.btnReports);
-            this.panel1.Controls.Add(this.p7);
             this.panel1.Controls.Add(this.btnHistoryLog);
-            this.panel1.Controls.Add(this.p6);
             this.panel1.Controls.Add(this.btnOrders);
-            this.panel1.Controls.Add(this.p5);
             this.panel1.Controls.Add(this.btnTransaction);
-            this.panel1.Controls.Add(this.p4);
             this.panel1.Controls.Add(this.btnPosition);
-            this.panel1.Controls.Add(this.p3);
             this.panel1.Controls.Add(this.btnExpenses);
-            this.panel1.Controls.Add(this.p2);
             this.panel1.Controls.Add(this.btnCategory);
             this.panel1.Controls.Add(this.btnItem);
             this.panel1.Controls.Add(this.btnUser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(186, 406);
+            this.panel1.Size = new System.Drawing.Size(186, 438);
             this.panel1.TabIndex = 42;
-            // 
-            // p1
-            // 
-            this.p1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p1.Image = global::POSWinforms.Properties.Resources.user_removebg_preview;
-            this.p1.Location = new System.Drawing.Point(5, 3);
-            this.p1.Margin = new System.Windows.Forms.Padding(2);
-            this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(28, 26);
-            this.p1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p1.TabIndex = 11;
-            this.p1.TabStop = false;
-            this.p1.Click += new System.EventHandler(this.userToolStripMenuItem1_Click);
             // 
             // btnLogout
             // 
@@ -562,7 +532,7 @@ namespace POSWinforms
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(0, 374);
+            this.btnLogout.Location = new System.Drawing.Point(0, 406);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(186, 32);
@@ -570,110 +540,6 @@ namespace POSWinforms
             this.btnLogout.Text = "Log Out";
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // p9
-            // 
-            this.p9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p9.Image = global::POSWinforms.Properties.Resources.report;
-            this.p9.Location = new System.Drawing.Point(5, 259);
-            this.p9.Margin = new System.Windows.Forms.Padding(2);
-            this.p9.Name = "p9";
-            this.p9.Size = new System.Drawing.Size(30, 26);
-            this.p9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p9.TabIndex = 38;
-            this.p9.TabStop = false;
-            this.p9.Click += new System.EventHandler(this.btnReports_Click);
-            // 
-            // p8
-            // 
-            this.p8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p8.Image = global::POSWinforms.Properties.Resources.hl;
-            this.p8.Location = new System.Drawing.Point(5, 227);
-            this.p8.Margin = new System.Windows.Forms.Padding(2);
-            this.p8.Name = "p8";
-            this.p8.Size = new System.Drawing.Size(30, 26);
-            this.p8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p8.TabIndex = 28;
-            this.p8.TabStop = false;
-            this.p8.Click += new System.EventHandler(this.btnHistoryLog_Click);
-            // 
-            // p7
-            // 
-            this.p7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p7.Image = ((System.Drawing.Image)(resources.GetObject("p7.Image")));
-            this.p7.Location = new System.Drawing.Point(4, 194);
-            this.p7.Margin = new System.Windows.Forms.Padding(2);
-            this.p7.Name = "p7";
-            this.p7.Size = new System.Drawing.Size(30, 26);
-            this.p7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p7.TabIndex = 14;
-            this.p7.TabStop = false;
-            this.p7.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
-            // 
-            // p6
-            // 
-            this.p6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p6.Image = ((System.Drawing.Image)(resources.GetObject("p6.Image")));
-            this.p6.Location = new System.Drawing.Point(4, 163);
-            this.p6.Margin = new System.Windows.Forms.Padding(2);
-            this.p6.Name = "p6";
-            this.p6.Size = new System.Drawing.Size(30, 26);
-            this.p6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p6.TabIndex = 13;
-            this.p6.TabStop = false;
-            this.p6.Click += new System.EventHandler(this.transactionToolStripMenuItem_Click);
-            // 
-            // p5
-            // 
-            this.p5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p5.Image = ((System.Drawing.Image)(resources.GetObject("p5.Image")));
-            this.p5.Location = new System.Drawing.Point(4, 131);
-            this.p5.Margin = new System.Windows.Forms.Padding(2);
-            this.p5.Name = "p5";
-            this.p5.Size = new System.Drawing.Size(30, 26);
-            this.p5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p5.TabIndex = 15;
-            this.p5.TabStop = false;
-            this.p5.Click += new System.EventHandler(this.positionToolStripMenuItem1_Click);
-            // 
-            // p4
-            // 
-            this.p4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p4.Image = global::POSWinforms.Properties.Resources.ex1;
-            this.p4.Location = new System.Drawing.Point(4, 99);
-            this.p4.Margin = new System.Windows.Forms.Padding(2);
-            this.p4.Name = "p4";
-            this.p4.Size = new System.Drawing.Size(30, 26);
-            this.p4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p4.TabIndex = 26;
-            this.p4.TabStop = false;
-            this.p4.Click += new System.EventHandler(this.btnExpenses_Click);
-            // 
-            // p3
-            // 
-            this.p3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p3.Image = ((System.Drawing.Image)(resources.GetObject("p3.Image")));
-            this.p3.Location = new System.Drawing.Point(4, 66);
-            this.p3.Margin = new System.Windows.Forms.Padding(2);
-            this.p3.Name = "p3";
-            this.p3.Size = new System.Drawing.Size(29, 28);
-            this.p3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p3.TabIndex = 16;
-            this.p3.TabStop = false;
-            this.p3.Click += new System.EventHandler(this.categoryToolStripMenuItem1_Click);
-            // 
-            // p2
-            // 
-            this.p2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.p2.Image = ((System.Drawing.Image)(resources.GetObject("p2.Image")));
-            this.p2.Location = new System.Drawing.Point(4, 34);
-            this.p2.Margin = new System.Windows.Forms.Padding(2);
-            this.p2.Name = "p2";
-            this.p2.Size = new System.Drawing.Size(30, 28);
-            this.p2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.p2.TabIndex = 12;
-            this.p2.TabStop = false;
-            this.p2.Click += new System.EventHandler(this.itemToolStripMenuItem1_Click);
             // 
             // btnUser
             // 
@@ -697,14 +563,70 @@ namespace POSWinforms
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.dgvSlowTrackItems);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(930, 406);
+            this.panel2.Size = new System.Drawing.Size(1288, 406);
             this.panel2.TabIndex = 43;
+            // 
+            // dgvSlowTrackItems
+            // 
+            this.dgvSlowTrackItems.AllowUserToAddRows = false;
+            this.dgvSlowTrackItems.AllowUserToDeleteRows = false;
+            this.dgvSlowTrackItems.AllowUserToResizeRows = false;
+            this.dgvSlowTrackItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvSlowTrackItems.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvSlowTrackItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSlowTrackItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.dgvSlowTrackItems.Location = new System.Drawing.Point(932, 224);
+            this.dgvSlowTrackItems.MultiSelect = false;
+            this.dgvSlowTrackItems.Name = "dgvSlowTrackItems";
+            this.dgvSlowTrackItems.ReadOnly = true;
+            this.dgvSlowTrackItems.Size = new System.Drawing.Size(353, 212);
+            this.dgvSlowTrackItems.TabIndex = 44;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 43;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Item Code";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 74;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Item Description";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 99;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Size";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 52;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Sold";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 53;
             // 
             // panel3
             // 
@@ -718,7 +640,7 @@ namespace POSWinforms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(930, 160);
+            this.panel3.Size = new System.Drawing.Size(1288, 192);
             this.panel3.TabIndex = 0;
             // 
             // panel6
@@ -728,7 +650,7 @@ namespace POSWinforms
             this.panel6.Controls.Add(this.pictureBox3);
             this.panel6.Controls.Add(this.panel9);
             this.panel6.Controls.Add(this.lbTotalExpense);
-            this.panel6.Location = new System.Drawing.Point(587, 37);
+            this.panel6.Location = new System.Drawing.Point(733, 70);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(190, 115);
             this.panel6.TabIndex = 27;
@@ -762,7 +684,7 @@ namespace POSWinforms
             this.panel5.Controls.Add(this.pictureBox2);
             this.panel5.Controls.Add(this.panel8);
             this.panel5.Controls.Add(this.lbTransactions);
-            this.panel5.Location = new System.Drawing.Point(391, 37);
+            this.panel5.Location = new System.Drawing.Point(463, 70);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(190, 115);
             this.panel5.TabIndex = 26;
@@ -796,7 +718,7 @@ namespace POSWinforms
             this.panel4.Controls.Add(this.pictureBox1);
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.lbTotalSales);
-            this.panel4.Location = new System.Drawing.Point(191, 37);
+            this.panel4.Location = new System.Drawing.Point(190, 70);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(190, 115);
             this.panel4.TabIndex = 25;
@@ -827,10 +749,11 @@ namespace POSWinforms
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel10.Controls.Add(this.metroSetControlBox1);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(928, 31);
+            this.panel10.Size = new System.Drawing.Size(1286, 31);
             this.panel10.TabIndex = 28;
             // 
             // frmMain
@@ -838,10 +761,9 @@ namespace POSWinforms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(930, 406);
+            this.ClientSize = new System.Drawing.Size(1289, 438);
             this.Controls.Add(this.dgvFastTrackItems);
             this.Controls.Add(this.dgvItems);
-            this.Controls.Add(this.metroSetControlBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -851,34 +773,31 @@ namespace POSWinforms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFastTrackItems)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSlowTrackItems)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -886,21 +805,13 @@ namespace POSWinforms
         #endregion
         private System.Windows.Forms.Timer timer1;
         private MetroSet_UI.Controls.MetroSetControlBox metroSetControlBox1;
-        private System.Windows.Forms.PictureBox p1;
-        private System.Windows.Forms.PictureBox p2;
-        private System.Windows.Forms.PictureBox p6;
-        private System.Windows.Forms.PictureBox p7;
-        private System.Windows.Forms.PictureBox p5;
-        private System.Windows.Forms.PictureBox p3;
         private System.Windows.Forms.Button btnPosition;
         private System.Windows.Forms.Button btnItem;
         private System.Windows.Forms.Button btnTransaction;
         private System.Windows.Forms.Button btnCategory;
         private System.Windows.Forms.Button btnOrders;
         private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.PictureBox p4;
         private System.Windows.Forms.Button btnExpenses;
-        private System.Windows.Forms.PictureBox p8;
         private System.Windows.Forms.Button btnHistoryLog;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvItems;
@@ -915,7 +826,6 @@ namespace POSWinforms
         private System.Windows.Forms.Label lbTransactions;
         private System.Windows.Forms.Label lbTotalExpense;
         private System.Windows.Forms.Label lbTotalSales;
-        private System.Windows.Forms.PictureBox p9;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.DataGridView dgvFastTrackItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -939,5 +849,11 @@ namespace POSWinforms
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.DataGridView dgvSlowTrackItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
     }
 }

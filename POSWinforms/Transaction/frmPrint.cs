@@ -14,10 +14,11 @@ namespace POSWinforms.Transaction
 
         public void printInvoice(
             long invoiceNo,
-            string fullName,
+            string customerId,
             DateTime date,
             decimal subTotal,
             decimal serviceFee,
+            string serviceType,
             decimal cash,
             decimal change,
             List<OrderDetail> cartList
@@ -26,7 +27,7 @@ namespace POSWinforms.Transaction
             InvoiceCustomer report = new InvoiceCustomer();
             foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
                 p.Visible = false;
-            report.initData(invoiceNo, fullName, date, subTotal, serviceFee, cash, change, cartList);
+            report.initData(invoiceNo, customerId, date, subTotal, serviceFee, serviceType, cash, change, cartList);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

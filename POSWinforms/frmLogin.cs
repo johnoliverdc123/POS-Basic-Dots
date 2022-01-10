@@ -71,6 +71,16 @@ namespace POSWinforms
                             where s.Username == txtUsername.Text
                             select s).FirstOrDefault();
 
+                if(user.isActive == 0)
+                {
+                    MessageBox.Show("This account is deactivated. You cannot login anymore.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                } else if(!user.Position.ToLower().Contains("admin") && !user.Position.ToLower().Contains("manager") && !user.Position.ToLower().Contains("cashier") && !user.Position.ToLower().Contains("inventory"))
+                {
+                    MessageBox.Show("This position is not part of the company. You cannot login.", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (user != null)
                 {
                     if (user.Password.Equals(txtPassword.Text))
@@ -133,6 +143,22 @@ namespace POSWinforms
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbShowPassword.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            } else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }

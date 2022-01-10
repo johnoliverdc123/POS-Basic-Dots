@@ -14,16 +14,17 @@ namespace POSWinforms.Maintenance
     {
 
         private decimal total = 0;
-        private decimal change = 1;
+        private decimal change = 0;
         private decimal serviceFee = 0;
         private decimal cash = 0;
 
         private DateTime dateNow;
-        private string timeToday = "";
 
         private List<Item> itemList = new List<Item>();
 
         private bool hasService = false;
+
+        public static DateTime dateOrdered;
 
         public frmPayment()
         {
@@ -39,11 +40,10 @@ namespace POSWinforms.Maintenance
 
             this.total = total;
             this.dateNow = dateNow;
-            this.timeToday = timeToday;
             txtTotal.Text = total.ToString("0.00");
             var allItems = from s in DatabaseHelper.db.tblItems
                            select s;
-            foreach(var item in allItems)
+            foreach (var item in allItems)
             {
                 itemList.Add(new Item
                 {
@@ -54,9 +54,7 @@ namespace POSWinforms.Maintenance
                     Size = item.Size,
                     Price = item.Price,
                     Stocks = item.Stocks,
-                    Committed = item.CommittedItem,
                     Sold = item.Sold,
-                    Returned = item.Returned,
                     ReStockLevel = item.ReStockLevel,
                     IsActive = Convert.ToBoolean(item.isActive)
                 });
@@ -65,23 +63,34 @@ namespace POSWinforms.Maintenance
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (change <= 0 && txtCash.Text.Length > 0)
+            if (change <= 0 && txtCash.Text.Length > 0 && decimal.TryParse(txtCash.Text, out decimal cc))
             {
                 DialogResult dr = MessageBox.Show("Do you really want to continue? You cannot undo this action", "QUESTION", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(dr == DialogResult.Yes)
+                if (dr == DialogResult.Yes)
                 {
                     change = Math.Abs(change);
 
                     string dateString = dateNow.ToString("MM/dd/yyyy");
 
+                    var serviceInt = hasService ? 1 : 0;
+
+                    var serviceTypeStr = "";
+                    if(!string.IsNullOrWhiteSpace(txtServiceType.Text))
+                    {
+                        serviceTypeStr = txtServiceType.Text;
+                    }
+
+                    dateOrdered = DateTime.Now;
+
                     var newOrder = new tblOrder
                     {
-                        CustomerID = frmTransaction.customerNo,
+                        CustomerID = frmTransaction.customerId,
                         Status = PaymentStatus.PAID.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = dateOrdered,
                         Total = total,
-                        HasService = Convert.ToInt32(hasService),
-                        ServiceFee = Convert.ToDecimal(txtServiceFee.Text),
+                        HasService = serviceInt,
+                        ServiceFee = serviceFee,
+                        ServiceType = serviceTypeStr,
                         Cash = cash,
                         Change = change
                     };
@@ -118,13 +127,14 @@ namespace POSWinforms.Maintenance
                         var newOrderDetail = new tblOrderDetail
                         {
                             ItemCode = item.ItemCode,
-                            ItemNumber = item.ItemNumber,
                             ItemDescription = item.ItemDescription,
+                            Size = item.Size,
                             Quantity = item.Quantity,
                             Price = item.Price,
                             Discount = item.Discount,
                             Total = item.Total,
-                            OrderID = newOrder.ID
+                            OrderID = newOrder.ID,
+                            DateSold = dateOrdered
                         };
                         DatabaseHelper.db.tblOrderDetails.InsertOnSubmit(newOrderDetail);
                     }
@@ -141,19 +151,14 @@ namespace POSWinforms.Maintenance
                     DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
                     DatabaseHelper.db.SubmitChanges();
 
-                    decimal serviceFee = 0;
-                    if(!string.IsNullOrWhiteSpace(txtServiceFee.Text))
-                    {
-                        serviceFee = Convert.ToDecimal(txtServiceFee.Text);
-                    }
-
                     frmPrint frm = new frmPrint();
                     frm.printInvoice(
                            newOrder.ID,
-                           frmTransaction.fullName,
+                           newOrder.CustomerID,
                            dateNow,
                            total,
                            serviceFee,
+                           txtServiceType.Text,
                            cash,
                            change,
                            DatabaseHelper.cartList
@@ -177,13 +182,11 @@ namespace POSWinforms.Maintenance
 
         private void txtCash_TextChanged(object sender, EventArgs e)
         {
-            if(decimal.TryParse(txtCash.Text, out decimal cash))
+            if (decimal.TryParse(txtCash.Text, out decimal cash))
             {
-                Decimal serviceFee = 0;
-
-                if (!string.IsNullOrWhiteSpace(txtServiceFee.Text))
+                if(!string.IsNullOrWhiteSpace(txtServiceFee.Text) && decimal.TryParse(txtServiceFee.Text, out decimal fee))
                 {
-                    serviceFee = Convert.ToDecimal(txtServiceFee.Text);
+                    serviceFee = fee;
                 }
 
                 this.cash = cash;
@@ -198,26 +201,21 @@ namespace POSWinforms.Maintenance
 
         private void cmbService_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtServiceFee.Enabled = cmbService.SelectedIndex == 0;
-            hasService = cmbService.SelectedIndex == 0;
-        }
+            if (cmbService.SelectedIndex == 0)
+            {
+                txtServiceFee.Enabled = true;
+                txtServiceType.Enabled = true;
+                hasService = true;
+            }
+            else if (cmbService.SelectedIndex == 1)
+            {
+                txtServiceFee.Enabled = false;
+                txtServiceFee.Text = "";
 
-        private void txtServiceFee_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtServiceFee.Text))
-            {
-                e.Cancel = true;
-                epMoney.SetError(txtServiceFee, "Please enter service fee!");
-            }
-            else if (!Regex.IsMatch(txtServiceFee.Text, @"^([0-9]{1,7})([.,][0-9]{1,2})?$"))
-            {
-                e.Cancel = true;
-                epMoney.SetError(txtServiceFee, "Please input numbers only!");
-            }
-            else
-            {
-                e.Cancel = false;
-                epMoney.SetError(txtServiceFee, null);
+                txtServiceType.Enabled = false;
+                txtServiceType.Text = "";
+
+                hasService = false;
             }
         }
 
@@ -242,26 +240,45 @@ namespace POSWinforms.Maintenance
 
         private void txtServiceFee_TextChanged(object sender, EventArgs e)
         {
-            serviceFee = 0;
 
-            if (!string.IsNullOrWhiteSpace(txtServiceFee.Text))
+            if (!string.IsNullOrWhiteSpace(txtServiceFee.Text) && Decimal.TryParse(txtServiceFee.Text, out decimal fee))
             {
-                try
-                {
-                    serviceFee = Convert.ToDecimal(txtServiceFee.Text);
-                } catch(Exception ex)
-                {
-                    txtServiceFee.Text = "";
-                }
+                serviceFee = fee;
+
+                var grandTotal = (total + serviceFee);
+
+                txtTotal.Text = grandTotal.ToString("0.00");
+
+                change = grandTotal - cash;
+                txtChange.Text = change.ToString("0.00");
+            } else
+            {
+                serviceFee = 0;
+
+                txtTotal.Text = total.ToString("0.00");
+
+                change = total - cash;
+                txtChange.Text = change.ToString("0.00");
             }
+        }
 
-            var grandTotal = (total + serviceFee);
-
-            cash = grandTotal;
-            txtCash.Text = cash.ToString("0.00");
-
-            change = grandTotal - cash;
-            txtChange.Text = change.ToString("0.00");
+        private void txtServiceFee_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtServiceFee.Text))
+            {
+                e.Cancel = true;
+                epMoney.SetError(txtServiceFee, "Please enter cost!");
+            }
+            else if (!Regex.IsMatch(txtServiceFee.Text, @"^([0-9]{1,7})([.,][0-9]{1,2})?$"))
+            {
+                e.Cancel = true;
+                epMoney.SetError(txtServiceFee, "Please input numbers only!");
+            }
+            else
+            {
+                e.Cancel = false;
+                epMoney.SetError(txtServiceFee, null);
+            }
         }
     }
 }

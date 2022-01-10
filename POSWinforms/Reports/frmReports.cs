@@ -37,7 +37,7 @@ namespace POSWinforms.Reports
             if (dates.Count > 0)
             {
                 orderList = (from s in DatabaseHelper.db.tblOrders
-                             where dates.Contains((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date)
+                             where dates.Contains((DateTime)s.Date)
                              select s).ToList()
                              .OrderByDescending(o => o.Date) // Order by most recent date.
                              .ToList();
@@ -51,20 +51,18 @@ namespace POSWinforms.Reports
 
             foreach (var item in orderList)
             {
-                var dateFromStamp = (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(item.Date);
 
 
-                var transactionsPerDate = orderList.FindAll(o => dateFromStamp.Date == (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(o.Date).Date).Count();
-                var transactionsGrandTotal = orderList.FindAll(o => dateFromStamp.Date == (new DateTime(1970, 1, 1, 0, 0, 0))
-                .AddMilliseconds(o.Date).Date)
+                var transactionsPerDate = orderList.FindAll(o => item.Date == o.Date).Count();
+                var transactionsGrandTotal = orderList.FindAll(o => item.Date == o.Date)
                     .Sum(x => x.Total + x.ServiceFee);
 
                 var newProd = new ProductionAndTransaction
                 {
                     ID = item.ID,
                     Status = item.Status,
-                    timeStamp = dateFromStamp.ToLocalTime(),
-                    TransactionsGrandTotal = transactionsGrandTotal,
+                    timeStamp = (DateTime)item.Date,
+                    TransactionsGrandTotal = (decimal)transactionsGrandTotal,
                     TransactionsPerDate = transactionsPerDate
                 };
 
@@ -98,7 +96,7 @@ namespace POSWinforms.Reports
             if (dates.Count > 0)
             {
                 expenseList = (from s in DatabaseHelper.db.tblExpenses
-                             where dates.Contains((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date)
+                             where dates.Contains(s.Date)
                              select s).ToList()
                              .OrderByDescending(o => o.Date) // Order by most recent date.
                              .ToList();
@@ -113,17 +111,15 @@ namespace POSWinforms.Reports
 
             foreach(var item in expenseList)
             {
-                var dateFromStamp = (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(item.Date);
 
-                var grandTotal = expenseList.FindAll(o => dateFromStamp.Date == (new DateTime(1970, 1, 1, 0, 0, 0))
-                    .AddMilliseconds(o.Date).Date && item.Type.Equals(o.Type))
+                var grandTotal = expenseList.FindAll(o => item.Date == o.Date && item.Type.Equals(o.Type))
                     .Sum(x => x.Cost);
 
                 var newExp = new Expense
                 {
                     ID = item.ID,
                     GrandTotal = grandTotal,
-                    TimeStamp = dateFromStamp.ToLocalTime(),
+                    TimeStamp = item.Date,
                     ExpenseType = item.Type
                 };
 
@@ -184,7 +180,7 @@ namespace POSWinforms.Reports
                 datesToEvaluate.Clear();
 
                 var today = DateTime.Now;
-                for (var dt = today.AddDays(-100).Date; dt <= today.AddDays(100).Date; dt = dt.AddDays(1))
+                for (var dt = today.AddDays(-100).Date; dt < today.AddDays(100).Date; dt = dt.AddDays(1))
                 {
                     datesToEvaluate.Add(dt);
                 }
@@ -198,7 +194,7 @@ namespace POSWinforms.Reports
             }
         }
 
-        public static List<DateTime> GetDatesInThisMonth(int year, int month)
+        private List<DateTime> GetDatesInThisMonth(int year, int month)
         {
             return Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
                              .Select(day => new DateTime(year, month, day, 0, 0, 0)) // Map each day to a date
@@ -246,10 +242,13 @@ namespace POSWinforms.Reports
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            datesToEvaluate.Clear();
-            for (var dt = dtpFromDate.Value; dt <= dtpToDate.Value; dt = dt.AddDays(1))
+            if (dtpFromDate.Enabled && dtpToDate.Enabled)
             {
-                datesToEvaluate.Add(dt);
+                datesToEvaluate.Clear();
+                for (var dt = dtpFromDate.Value.Date; dt <= dtpToDate.Value.Date; dt = dt.AddDays(1))
+                {
+                    datesToEvaluate.Add(dt);
+                }
             }
 
             generateReport();
@@ -275,6 +274,34 @@ namespace POSWinforms.Reports
 
             dgvProdAndTransactions.Rows.Clear();
             dgvExpenses.Rows.Clear();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (rbProductionReport.Checked && dgvProdAndTransactions.Rows.Count > 0)
+            {
+                DGVPrinter printer = new DGVPrinter();
+                printer.Title = "Productions And Transactions Report";
+                printer.SubTitle = string.Format("Date: {0}", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"));
+                printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                printer.PageNumbers = true;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.PrintDataGridView(dgvProdAndTransactions);
+            }
+            else if (rbExpensesReport.Checked && dgvExpenses.Rows.Count > 0)
+            {
+                DGVPrinter printer = new DGVPrinter();
+                printer.Title = "Expenses Report";
+                printer.SubTitle = string.Format("Date: {0}", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"));
+                printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                printer.PageNumbers = true;
+                printer.PageNumberInHeader = false;
+                printer.PorportionalColumns = true;
+                printer.HeaderCellAlignment = StringAlignment.Near;
+                printer.PrintDataGridView(dgvExpenses);
+            }
         }
     }
 }
