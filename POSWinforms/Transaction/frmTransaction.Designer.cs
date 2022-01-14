@@ -426,7 +426,7 @@ namespace POSWinforms.Transaction
             this.dgvCart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCart.BackgroundColor = System.Drawing.Color.PeachPuff;
+            this.dgvCart.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -551,22 +551,22 @@ namespace POSWinforms.Transaction
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.DisabledBackColor = System.Drawing.Color.RosyBrown;
-            this.btnClose.DisabledBorderColor = System.Drawing.Color.RosyBrown;
+            this.btnClose.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnClose.DisabledForeColor = System.Drawing.Color.Gray;
             this.btnClose.Font = new System.Drawing.Font("Perpetua Titling MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.HoverBorderColor = System.Drawing.Color.Salmon;
-            this.btnClose.HoverColor = System.Drawing.Color.Salmon;
-            this.btnClose.HoverTextColor = System.Drawing.Color.Maroon;
+            this.btnClose.HoverBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.HoverColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.HoverTextColor = System.Drawing.Color.White;
             this.btnClose.IsDerivedStyle = false;
             this.btnClose.Location = new System.Drawing.Point(2, 327);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.NormalBorderColor = System.Drawing.Color.Sienna;
-            this.btnClose.NormalColor = System.Drawing.Color.MistyRose;
-            this.btnClose.NormalTextColor = System.Drawing.Color.Maroon;
-            this.btnClose.PressBorderColor = System.Drawing.Color.Tomato;
-            this.btnClose.PressColor = System.Drawing.Color.Tomato;
+            this.btnClose.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.NormalTextColor = System.Drawing.Color.White;
+            this.btnClose.PressBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnClose.PressColor = System.Drawing.Color.RoyalBlue;
             this.btnClose.PressTextColor = System.Drawing.Color.White;
             this.btnClose.Size = new System.Drawing.Size(335, 65);
             this.btnClose.Style = MetroSet_UI.Enums.Style.Light;
@@ -582,22 +582,22 @@ namespace POSWinforms.Transaction
             this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPayment.DisabledBackColor = System.Drawing.Color.RosyBrown;
-            this.btnPayment.DisabledBorderColor = System.Drawing.Color.RosyBrown;
+            this.btnPayment.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPayment.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPayment.DisabledForeColor = System.Drawing.Color.Gray;
             this.btnPayment.Font = new System.Drawing.Font("Perpetua Titling MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayment.HoverBorderColor = System.Drawing.Color.Salmon;
-            this.btnPayment.HoverColor = System.Drawing.Color.Salmon;
-            this.btnPayment.HoverTextColor = System.Drawing.Color.Maroon;
+            this.btnPayment.HoverBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnPayment.HoverColor = System.Drawing.Color.RoyalBlue;
+            this.btnPayment.HoverTextColor = System.Drawing.Color.White;
             this.btnPayment.IsDerivedStyle = false;
             this.btnPayment.Location = new System.Drawing.Point(2, 262);
             this.btnPayment.Margin = new System.Windows.Forms.Padding(2);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.NormalBorderColor = System.Drawing.Color.Sienna;
-            this.btnPayment.NormalColor = System.Drawing.Color.MistyRose;
-            this.btnPayment.NormalTextColor = System.Drawing.Color.Maroon;
-            this.btnPayment.PressBorderColor = System.Drawing.Color.Tomato;
-            this.btnPayment.PressColor = System.Drawing.Color.Tomato;
+            this.btnPayment.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPayment.NormalTextColor = System.Drawing.Color.White;
+            this.btnPayment.PressBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnPayment.PressColor = System.Drawing.Color.RoyalBlue;
             this.btnPayment.PressTextColor = System.Drawing.Color.White;
             this.btnPayment.Size = new System.Drawing.Size(335, 61);
             this.btnPayment.Style = MetroSet_UI.Enums.Style.Light;
@@ -613,23 +613,23 @@ namespace POSWinforms.Transaction
             this.btnDiscountItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDiscountItem.DisabledBackColor = System.Drawing.Color.RosyBrown;
-            this.btnDiscountItem.DisabledBorderColor = System.Drawing.Color.RosyBrown;
+            this.btnDiscountItem.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDiscountItem.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDiscountItem.DisabledForeColor = System.Drawing.Color.Gray;
             this.btnDiscountItem.Enabled = false;
             this.btnDiscountItem.Font = new System.Drawing.Font("Perpetua Titling MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscountItem.HoverBorderColor = System.Drawing.Color.Salmon;
-            this.btnDiscountItem.HoverColor = System.Drawing.Color.Salmon;
-            this.btnDiscountItem.HoverTextColor = System.Drawing.Color.Maroon;
+            this.btnDiscountItem.HoverBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnDiscountItem.HoverColor = System.Drawing.Color.RoyalBlue;
+            this.btnDiscountItem.HoverTextColor = System.Drawing.Color.White;
             this.btnDiscountItem.IsDerivedStyle = false;
             this.btnDiscountItem.Location = new System.Drawing.Point(2, 197);
             this.btnDiscountItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnDiscountItem.Name = "btnDiscountItem";
             this.btnDiscountItem.NormalBorderColor = System.Drawing.Color.Sienna;
-            this.btnDiscountItem.NormalColor = System.Drawing.Color.MistyRose;
-            this.btnDiscountItem.NormalTextColor = System.Drawing.Color.Maroon;
-            this.btnDiscountItem.PressBorderColor = System.Drawing.Color.Tomato;
-            this.btnDiscountItem.PressColor = System.Drawing.Color.Tomato;
+            this.btnDiscountItem.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDiscountItem.NormalTextColor = System.Drawing.Color.White;
+            this.btnDiscountItem.PressBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnDiscountItem.PressColor = System.Drawing.Color.RoyalBlue;
             this.btnDiscountItem.PressTextColor = System.Drawing.Color.White;
             this.btnDiscountItem.Size = new System.Drawing.Size(335, 61);
             this.btnDiscountItem.Style = MetroSet_UI.Enums.Style.Light;
@@ -645,23 +645,23 @@ namespace POSWinforms.Transaction
             this.btnRemoveItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveItem.DisabledBackColor = System.Drawing.Color.RosyBrown;
-            this.btnRemoveItem.DisabledBorderColor = System.Drawing.Color.RosyBrown;
+            this.btnRemoveItem.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRemoveItem.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnRemoveItem.DisabledForeColor = System.Drawing.Color.Gray;
             this.btnRemoveItem.Enabled = false;
             this.btnRemoveItem.Font = new System.Drawing.Font("Perpetua Titling MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveItem.HoverBorderColor = System.Drawing.Color.Salmon;
-            this.btnRemoveItem.HoverColor = System.Drawing.Color.Salmon;
-            this.btnRemoveItem.HoverTextColor = System.Drawing.Color.Maroon;
+            this.btnRemoveItem.HoverBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnRemoveItem.HoverColor = System.Drawing.Color.RoyalBlue;
+            this.btnRemoveItem.HoverTextColor = System.Drawing.Color.White;
             this.btnRemoveItem.IsDerivedStyle = false;
             this.btnRemoveItem.Location = new System.Drawing.Point(2, 132);
             this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.NormalBorderColor = System.Drawing.Color.Sienna;
-            this.btnRemoveItem.NormalColor = System.Drawing.Color.MistyRose;
-            this.btnRemoveItem.NormalTextColor = System.Drawing.Color.Maroon;
-            this.btnRemoveItem.PressBorderColor = System.Drawing.Color.Tomato;
-            this.btnRemoveItem.PressColor = System.Drawing.Color.Tomato;
+            this.btnRemoveItem.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRemoveItem.NormalTextColor = System.Drawing.Color.White;
+            this.btnRemoveItem.PressBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnRemoveItem.PressColor = System.Drawing.Color.RoyalBlue;
             this.btnRemoveItem.PressTextColor = System.Drawing.Color.White;
             this.btnRemoveItem.Size = new System.Drawing.Size(335, 61);
             this.btnRemoveItem.Style = MetroSet_UI.Enums.Style.Light;
@@ -677,22 +677,22 @@ namespace POSWinforms.Transaction
             this.btnAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddItem.DisabledBackColor = System.Drawing.Color.RosyBrown;
-            this.btnAddItem.DisabledBorderColor = System.Drawing.Color.RosyBrown;
+            this.btnAddItem.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddItem.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddItem.DisabledForeColor = System.Drawing.Color.Gray;
             this.btnAddItem.Font = new System.Drawing.Font("Perpetua Titling MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddItem.HoverBorderColor = System.Drawing.Color.Salmon;
-            this.btnAddItem.HoverColor = System.Drawing.Color.Salmon;
-            this.btnAddItem.HoverTextColor = System.Drawing.Color.Maroon;
+            this.btnAddItem.HoverBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnAddItem.HoverColor = System.Drawing.Color.RoyalBlue;
+            this.btnAddItem.HoverTextColor = System.Drawing.Color.White;
             this.btnAddItem.IsDerivedStyle = false;
             this.btnAddItem.Location = new System.Drawing.Point(2, 67);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.NormalBorderColor = System.Drawing.Color.Sienna;
-            this.btnAddItem.NormalColor = System.Drawing.Color.MistyRose;
-            this.btnAddItem.NormalTextColor = System.Drawing.Color.Maroon;
-            this.btnAddItem.PressBorderColor = System.Drawing.Color.Tomato;
-            this.btnAddItem.PressColor = System.Drawing.Color.Tomato;
+            this.btnAddItem.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddItem.NormalTextColor = System.Drawing.Color.White;
+            this.btnAddItem.PressBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnAddItem.PressColor = System.Drawing.Color.RoyalBlue;
             this.btnAddItem.PressTextColor = System.Drawing.Color.White;
             this.btnAddItem.Size = new System.Drawing.Size(335, 61);
             this.btnAddItem.Style = MetroSet_UI.Enums.Style.Light;
@@ -708,22 +708,22 @@ namespace POSWinforms.Transaction
             this.btnNewTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewTransaction.DisabledBackColor = System.Drawing.Color.RosyBrown;
-            this.btnNewTransaction.DisabledBorderColor = System.Drawing.Color.RosyBrown;
+            this.btnNewTransaction.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnNewTransaction.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnNewTransaction.DisabledForeColor = System.Drawing.Color.Gray;
             this.btnNewTransaction.Font = new System.Drawing.Font("Perpetua Titling MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewTransaction.HoverBorderColor = System.Drawing.Color.Salmon;
-            this.btnNewTransaction.HoverColor = System.Drawing.Color.Salmon;
-            this.btnNewTransaction.HoverTextColor = System.Drawing.Color.Maroon;
+            this.btnNewTransaction.HoverBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewTransaction.HoverColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewTransaction.HoverTextColor = System.Drawing.Color.White;
             this.btnNewTransaction.IsDerivedStyle = false;
             this.btnNewTransaction.Location = new System.Drawing.Point(2, 2);
             this.btnNewTransaction.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewTransaction.Name = "btnNewTransaction";
             this.btnNewTransaction.NormalBorderColor = System.Drawing.Color.Sienna;
-            this.btnNewTransaction.NormalColor = System.Drawing.Color.MistyRose;
-            this.btnNewTransaction.NormalTextColor = System.Drawing.Color.Maroon;
-            this.btnNewTransaction.PressBorderColor = System.Drawing.Color.Tomato;
-            this.btnNewTransaction.PressColor = System.Drawing.Color.Tomato;
+            this.btnNewTransaction.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnNewTransaction.NormalTextColor = System.Drawing.Color.White;
+            this.btnNewTransaction.PressBorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewTransaction.PressColor = System.Drawing.Color.RoyalBlue;
             this.btnNewTransaction.PressTextColor = System.Drawing.Color.White;
             this.btnNewTransaction.Size = new System.Drawing.Size(335, 61);
             this.btnNewTransaction.Style = MetroSet_UI.Enums.Style.Light;

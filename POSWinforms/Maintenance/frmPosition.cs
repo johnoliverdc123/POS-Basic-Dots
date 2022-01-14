@@ -68,6 +68,22 @@ namespace POSWinforms.Maintenance
             // Save new position here.
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
+                if(string.IsNullOrWhiteSpace(txtDescription.Text))
+                {
+                    MessageBox.Show("Please fill the form.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var isPositionExisting = (from s in DatabaseHelper.db.tblPositions
+                                          where s.PosDescription.ToLower().Equals(txtDescription.Text.ToLower())
+                                          select s).FirstOrDefault();
+
+                if(isPositionExisting != null)
+                {
+                    MessageBox.Show(this, "Position is already existing in database", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (!string.IsNullOrWhiteSpace(txtDescription.Text))
                 {
                     var newPos = new tblPosition
@@ -81,7 +97,7 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                     $"added position({newPos.PosDescription})",
                         Type = LogType.POSITION.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 
@@ -127,7 +143,7 @@ namespace POSWinforms.Maintenance
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"updated position({updatePosition.ID}) to {updatePosition.PosDescription}",
                     Type = LogType.POSITION.ToString(),
-                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                    Date = DateTime.Now,
                     EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                 };
 
@@ -287,7 +303,7 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"${activeStr}d position({selectedPosition.PosDescription})",
                         Type = LogType.POSITION.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 

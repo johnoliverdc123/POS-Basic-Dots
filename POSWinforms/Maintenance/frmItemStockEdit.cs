@@ -41,7 +41,7 @@ namespace POSWinforms.Maintenance
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"added {stockNum} stocks to item({editItemStock.ItemCode}) {editItemStock.ItemDescription}",
                     Type = LogType.PRODUCT.ToString(),
-                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                    Date = DateTime.Now,
                     EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}",
                     SupplierInformation = txtSupplierInformation.Text
                 };

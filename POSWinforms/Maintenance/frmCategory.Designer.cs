@@ -199,7 +199,7 @@ namespace POSWinforms.Maintenance
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Location = new System.Drawing.Point(99, 314);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(82, 26);
+            this.btnAdd.Size = new System.Drawing.Size(77, 32);
             this.btnAdd.TabIndex = 105;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -214,9 +214,9 @@ namespace POSWinforms.Maintenance
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(186, 314);
+            this.btnUpdate.Location = new System.Drawing.Point(182, 314);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(82, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(85, 32);
             this.btnUpdate.TabIndex = 106;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -231,9 +231,9 @@ namespace POSWinforms.Maintenance
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(447, 314);
+            this.btnClose.Location = new System.Drawing.Point(444, 352);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(82, 26);
+            this.btnClose.Size = new System.Drawing.Size(82, 32);
             this.btnClose.TabIndex = 107;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -281,16 +281,16 @@ namespace POSWinforms.Maintenance
             // 
             // btnActivateDeactivate
             // 
-            this.btnActivateDeactivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnActivateDeactivate.BackColor = System.Drawing.Color.Red;
             this.btnActivateDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnActivateDeactivate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
             this.btnActivateDeactivate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.btnActivateDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActivateDeactivate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivateDeactivate.ForeColor = System.Drawing.Color.White;
-            this.btnActivateDeactivate.Location = new System.Drawing.Point(98, 346);
+            this.btnActivateDeactivate.Location = new System.Drawing.Point(444, 314);
             this.btnActivateDeactivate.Name = "btnActivateDeactivate";
-            this.btnActivateDeactivate.Size = new System.Drawing.Size(82, 26);
+            this.btnActivateDeactivate.Size = new System.Drawing.Size(82, 32);
             this.btnActivateDeactivate.TabIndex = 112;
             this.btnActivateDeactivate.Text = "Deactivate";
             this.btnActivateDeactivate.UseVisualStyleBackColor = false;
@@ -299,7 +299,7 @@ namespace POSWinforms.Maintenance
             // cbShowDeactivatedItems
             // 
             this.cbShowDeactivatedItems.AutoSize = true;
-            this.cbShowDeactivatedItems.Location = new System.Drawing.Point(98, 378);
+            this.cbShowDeactivatedItems.Location = new System.Drawing.Point(98, 357);
             this.cbShowDeactivatedItems.Name = "cbShowDeactivatedItems";
             this.cbShowDeactivatedItems.Size = new System.Drawing.Size(249, 24);
             this.cbShowDeactivatedItems.TabIndex = 113;
@@ -312,7 +312,7 @@ namespace POSWinforms.Maintenance
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(541, 410);
+            this.ClientSize = new System.Drawing.Size(541, 394);
             this.Controls.Add(this.cbShowDeactivatedItems);
             this.Controls.Add(this.btnActivateDeactivate);
             this.Controls.Add(this.btnClose);

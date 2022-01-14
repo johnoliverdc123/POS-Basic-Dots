@@ -21,7 +21,10 @@ namespace POSWinforms
         {
             InitializeComponent();
 
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpFromDate.MaxDate = startDate;
+            dtpToDate.MaxDate = startDate;
+            dtpFromDate.Value = startDate.AddDays(-1);
+            
         }
 
         private void loadAllOrders(string searchedOrder)
@@ -46,6 +49,8 @@ namespace POSWinforms
             }
 
             orderList = orderList.OrderByDescending(o => o.Date).ToList();
+
+            txtTotalTransactions.Text = orderList.Count.ToString();
 
             foreach (var order in orderList)
             {
@@ -88,25 +93,33 @@ namespace POSWinforms
 
         private void btnWithDateRange_Click(object sender, EventArgs e)
         {
-            datesToEvaluate.Clear();
-            for (var dt = dtpFromDate.Value.Date; dt <= dtpToDate.Value.Date; dt = dt.AddDays(1))
+            if (dtpFromDate.Value < dtpToDate.Value)
             {
-                datesToEvaluate.Add(dt.Date);
-            }
+                datesToEvaluate.Clear();
+                for (var dt = dtpFromDate.Value.Date; dt <= dtpToDate.Value.Date; dt = dt.AddDays(1))
+                {
+                    datesToEvaluate.Add(dt.Date);
+                }
 
-            if(txtSearch.Text.Length > 3)
+                if (txtSearch.Text.Length > 3)
+                {
+                    loadAllOrders(txtSearch.Text);
+                }
+                else
+                {
+                    loadAllOrders(null);
+                }
+            }
+            else
             {
-                loadAllOrders(txtSearch.Text);
-            } else
-            {
-                loadAllOrders(null);
+                MessageBox.Show("To date time should be greater than From date", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void dtpFromDate_ValueChanged(object sender, EventArgs e)
         {
             startDate = dtpFromDate.Value;
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpToDate.Value = startDate.AddDays(1);
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -123,6 +136,11 @@ namespace POSWinforms
                 printer.HeaderCellAlignment = StringAlignment.Near;
                 printer.PrintDataGridView(dgvOrders);
             }
+        }
+
+        private void dtpToDate_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

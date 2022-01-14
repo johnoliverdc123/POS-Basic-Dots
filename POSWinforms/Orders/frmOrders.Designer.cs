@@ -30,8 +30,8 @@ namespace POSWinforms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.txtSearch = new MetroSet_UI.Controls.MetroSetTextBox();
             this.tblOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -53,8 +53,12 @@ namespace POSWinforms
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTotalTransactions = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblOrdersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroSetControlBox1
@@ -98,7 +102,7 @@ namespace POSWinforms
             this.txtSearch.Image = null;
             this.txtSearch.IsDerivedStyle = false;
             this.txtSearch.Lines = null;
-            this.txtSearch.Location = new System.Drawing.Point(77, 124);
+            this.txtSearch.Location = new System.Drawing.Point(77, 103);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.MaxLength = 100;
             this.txtSearch.Multiline = false;
@@ -124,15 +128,15 @@ namespace POSWinforms
             this.dgvOrders.AllowUserToDeleteRows = false;
             this.dgvOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvOrders.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dgvOrders.BackgroundColor = System.Drawing.Color.PeachPuff;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvOrders.BackgroundColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -144,16 +148,16 @@ namespace POSWinforms
             this.Column9,
             this.Column6,
             this.Column7});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle4.NullValue = null;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrders.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvOrders.Location = new System.Drawing.Point(12, 157);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrders.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvOrders.Location = new System.Drawing.Point(6, 8);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(2);
             this.dgvOrders.MultiSelect = false;
             this.dgvOrders.Name = "dgvOrders";
@@ -230,7 +234,7 @@ namespace POSWinforms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 133);
+            this.label1.Location = new System.Drawing.Point(12, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 21);
             this.label1.TabIndex = 4;
@@ -248,9 +252,10 @@ namespace POSWinforms
             // 
             // btnWithDateRange
             // 
-            this.btnWithDateRange.Location = new System.Drawing.Point(312, 124);
+            this.btnWithDateRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWithDateRange.Location = new System.Drawing.Point(303, 103);
             this.btnWithDateRange.Name = "btnWithDateRange";
-            this.btnWithDateRange.Size = new System.Drawing.Size(122, 23);
+            this.btnWithDateRange.Size = new System.Drawing.Size(96, 30);
             this.btnWithDateRange.TabIndex = 14;
             this.btnWithDateRange.Text = "Search";
             this.btnWithDateRange.UseVisualStyleBackColor = true;
@@ -259,45 +264,80 @@ namespace POSWinforms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(477, 129);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(470, 126);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.Size = new System.Drawing.Size(30, 18);
             this.label3.TabIndex = 13;
             this.label3.Text = "To:";
             // 
             // dtpToDate
             // 
+            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpToDate.Location = new System.Drawing.Point(506, 123);
             this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpToDate.Size = new System.Drawing.Size(250, 24);
             this.dtpToDate.TabIndex = 12;
+            this.dtpToDate.ValueChanged += new System.EventHandler(this.dtpToDate_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(467, 103);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(458, 98);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.Size = new System.Drawing.Size(48, 18);
             this.label4.TabIndex = 11;
             this.label4.Text = "From:";
             // 
             // dtpFromDate
             // 
-            this.dtpFromDate.Location = new System.Drawing.Point(506, 97);
+            this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFromDate.Location = new System.Drawing.Point(506, 91);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpFromDate.Size = new System.Drawing.Size(250, 24);
             this.dtpFromDate.TabIndex = 10;
             this.dtpFromDate.ValueChanged += new System.EventHandler(this.dtpFromDate_ValueChanged);
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(846, 425);
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(864, 421);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(122, 23);
+            this.btnPrint.Size = new System.Drawing.Size(104, 38);
             this.btnPrint.TabIndex = 15;
             this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.dgvOrders);
+            this.panel1.Location = new System.Drawing.Point(6, 149);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(972, 272);
+            this.panel1.TabIndex = 16;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(74, 63);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Total Orders:";
+            // 
+            // txtTotalTransactions
+            // 
+            this.txtTotalTransactions.AutoSize = true;
+            this.txtTotalTransactions.Location = new System.Drawing.Point(148, 63);
+            this.txtTotalTransactions.Name = "txtTotalTransactions";
+            this.txtTotalTransactions.Size = new System.Drawing.Size(13, 13);
+            this.txtTotalTransactions.TabIndex = 18;
+            this.txtTotalTransactions.Text = "0";
             // 
             // frmOrders
             // 
@@ -305,6 +345,9 @@ namespace POSWinforms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(990, 471);
+            this.Controls.Add(this.txtTotalTransactions);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnWithDateRange);
             this.Controls.Add(this.label3);
@@ -313,7 +356,6 @@ namespace POSWinforms
             this.Controls.Add(this.dtpFromDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvOrders);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.metroSetControlBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -324,6 +366,7 @@ namespace POSWinforms
             this.Load += new System.EventHandler(this.btnWithDateRange_Click);
             ((System.ComponentModel.ISupportInitialize)(this.tblOrdersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,5 +394,8 @@ namespace POSWinforms
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txtTotalTransactions;
     }
 }

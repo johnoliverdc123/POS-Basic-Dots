@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="posdb" Class="POSDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-OH1I5GV\SQLEXPRESS02;Initial Catalog=posdb;Integrated Security=True" SettingsObjectName="POSWinforms.Properties.Settings" SettingsPropertyName="posdbConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Basic Dots" Class="POSDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=basic-dots.database.windows.net;Initial Catalog=&quot;Basic Dots&quot;;Persist Security Info=True;User ID=basic-dots-admin" SettingsObjectName="POSWinforms.Properties.Settings" SettingsPropertyName="Basic_DotsConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblCategories" Member="tblCategories">
     <Type Name="tblCategory">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -43,7 +43,7 @@
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Action" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Date" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EditBy" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="SupplierInformation" Type="System.String" DbType="VarChar(143)" CanBeNull="true" />
     </Type>
@@ -63,11 +63,19 @@
       <Column Name="supplierInformation" Type="System.String" DbType="VarChar(134)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblPositions" Member="tblPositions">
-    <Type Name="tblPosition">
+  <Table Name="dbo.tblOrderDetails" Member="tblOrderDetails">
+    <Type Name="tblOrderDetail">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PosDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="isActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DateSold" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblOrder_tblOrderDetail" Member="tblOrder" ThisKey="OrderID" OtherKey="ID" Type="tblOrder" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblOrders" Member="tblOrders">
@@ -85,19 +93,11 @@
       <Association Name="tblOrder_tblOrderDetail" Member="tblOrderDetails" ThisKey="ID" OtherKey="OrderID" Type="tblOrderDetail" />
     </Type>
   </Table>
-  <Table Name="dbo.tblOrderDetails" Member="tblOrderDetails">
-    <Type Name="tblOrderDetail">
+  <Table Name="dbo.tblPositions" Member="tblPositions">
+    <Type Name="tblPosition">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ItemCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ItemDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Size" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="Discount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Total" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="OrderID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="DateSold" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="tblOrder_tblOrderDetail" Member="tblOrder" ThisKey="OrderID" OtherKey="ID" Type="tblOrder" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Column Name="PosDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

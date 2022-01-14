@@ -44,5 +44,16 @@ namespace POSWinforms.Properties {
                 return ((string)(this["posdbConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=basic-dots.database.windows.net;Initial Catalog=\"Basic Dots\";Persist " +
+            "Security Info=True;User ID=basic-dots-admin;Password=Japoksd123!")]
+        public string Basic_DotsConnectionString {
+            get {
+                return ((string)(this["Basic_DotsConnectionString"]));
+            }
+        }
     }
 }

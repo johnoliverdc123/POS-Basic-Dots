@@ -57,7 +57,13 @@ namespace POSWinforms.Maintenance
             // Save new category here.
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                if (!string.IsNullOrWhiteSpace(txtDescription.Text))
+                if(string.IsNullOrWhiteSpace(txtItemCode.Text) && string.IsNullOrWhiteSpace(txtDescription.Text))
+                {
+                    MessageBox.Show("Please fill the form.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtDescription.Text) && !string.IsNullOrWhiteSpace(txtItemCode.Text))
                 {
                     var newCategory = new tblCategory
                     {
@@ -71,18 +77,25 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                     $"added category '{newCategory.ItemDescription}'({newCategory.ItemCode})",
                         Type = LogType.CATEGORY.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 
-                    DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
-                    DatabaseHelper.db.tblCategories.InsertOnSubmit(newCategory);
-                    DatabaseHelper.db.SubmitChanges();
+                    try
+                    {
 
-                    MessageBox.Show(this, "Category added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnAdd.Text = "Add";
-                    clearFields();
-                    LoadActiveCategories();
+                        DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
+                        DatabaseHelper.db.tblCategories.InsertOnSubmit(newCategory);
+                        DatabaseHelper.db.SubmitChanges();
+
+                        MessageBox.Show(this, "Category added successfully!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnAdd.Text = "Add";
+                        clearFields();
+                        LoadActiveCategories();
+                    } catch(Exception ex)
+                    {
+                        MessageBox.Show("You cannot repeat item code", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
@@ -113,6 +126,7 @@ namespace POSWinforms.Maintenance
                     {
                         if (!string.IsNullOrWhiteSpace(txtDescription.Text))
                         {
+                            selectedCategory.ItemCode = txtItemCode.Text;
                             selectedCategory.ItemDescription = txtDescription.Text;
 
                             var newLog = new tblHistoryLog
@@ -120,7 +134,7 @@ namespace POSWinforms.Maintenance
                                 Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                     $"updated category({selectedCategory.ItemCode})",
                                 Type = LogType.CATEGORY.ToString(),
-                                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                                Date = DateTime.Now,
                                 EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                             };
 
@@ -270,7 +284,7 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"{activeStr}d category({selectedCategory.ItemCode})",
                         Type = LogType.CATEGORY.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 

@@ -23,7 +23,11 @@ namespace POSWinforms.Reports
             InitializeComponent();
 
             cmbSortOrder.SelectedIndex = 0;
-            dtpToDate.MinDate = startDate.AddDays(1);
+
+            dtpFromDate.MaxDate = startDate;
+            dtpToDate.MaxDate = startDate;
+            dtpFromDate.Value = startDate.AddDays(-1);
+            
         }
 
         private void loadAllHistoryLog(string searchById, string sortOrder, List<DateTime> dates)
@@ -37,7 +41,7 @@ namespace POSWinforms.Reports
                 if (searchById != null)
                 {
                     historyLogList = (from s in DatabaseHelper.db.tblHistoryLogs
-                                      where dates.Contains((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date) &&
+                                      where dates.Contains(s.Date.Date) &&
                                       s.Type.ToLower().Equals(sortOrder.ToLower()) &&
                                       SqlMethods.Like(s.ID.ToString(), $"%{searchById}%")
                                       select s).ToList();
@@ -45,7 +49,7 @@ namespace POSWinforms.Reports
                 else
                 {
                     historyLogList = (from s in DatabaseHelper.db.tblHistoryLogs
-                                      where dates.Contains((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date) &&
+                                      where dates.Contains(s.Date.Date) &&
                                       s.Type.ToLower().Equals(sortOrder.ToLower())
                                       select s).ToList();
                 }
@@ -56,13 +60,13 @@ namespace POSWinforms.Reports
                 if(searchById != null)
                 {
                     historyLogList = (from s in DatabaseHelper.db.tblHistoryLogs
-                                      where dates.Contains((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date) &&
+                                      where dates.Contains(s.Date.Date) &&
                                       SqlMethods.Like(s.ID.ToString(), $"%{searchById}%")
                                       select s).ToList();
                 } else
                 {
                     historyLogList = (from s in DatabaseHelper.db.tblHistoryLogs
-                                      where dates.Contains((new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(s.Date).Date)
+                                      where dates.Contains(s.Date.Date)
                                       select s).ToList();
                 }
             }
@@ -71,21 +75,14 @@ namespace POSWinforms.Reports
 
             foreach (var item in historyLogList)
             {
-                var dateFromStamp = (new DateTime(1970, 1, 1, 0, 0, 0)).AddMilliseconds(item.Date).ToLocalTime();
-
-                var supplierInfo = "";
-                if(sortOrder != null && sortOrder.Equals(LogType.PRODUCT.ToString()))
-                {
-                    supplierInfo = item.SupplierInformation;
-                }
 
                 dgvHistoryLog.Rows.Add(
                         item.ID,
                         item.Action,
                         item.Type,
-                        dateFromStamp,
+                        item.Date,
                         item.EditBy,
-                        supplierInfo
+                        item.SupplierInformation
                     );
             }
 
@@ -95,7 +92,7 @@ namespace POSWinforms.Reports
         private void dtpFromDate_ValueChanged(object sender, EventArgs e)
         {
             startDate = dtpFromDate.Value;
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpToDate.Value = startDate.AddDays(1);
         }
 
         private void rbDaily_CheckedChanged(object sender, EventArgs e)
@@ -105,10 +102,7 @@ namespace POSWinforms.Reports
                 datesToEvaluate.Clear();
 
                 var today = DateTime.Now;
-                for (var dt = today.AddDays(-100).Date; dt < today.AddDays(100).Date; dt = dt.AddDays(1))
-                {
-                    datesToEvaluate.Add(dt);
-                }
+                datesToEvaluate.Add(today.Date);
 
                 foreach (var date in datesToEvaluate)
                 {
@@ -179,7 +173,7 @@ namespace POSWinforms.Reports
                 datesToEvaluate.Clear();
                 for (var dt = dtpFromDate.Value.Date; dt <= dtpToDate.Value.Date; dt = dt.AddDays(1))
                 {
-                    datesToEvaluate.Add(dt);
+                    datesToEvaluate.Add(dt.Date);
                 }
             }
 
@@ -188,13 +182,19 @@ namespace POSWinforms.Reports
 
         private void generateReport()
         {
-            if (txtSearchById.Text.Length > 3 && Int64.TryParse(txtSearchById.Text, out long id))
+            if (dtpFromDate.Value < dtpToDate.Value)
             {
-                loadAllHistoryLog(id.ToString(), cmbSortOrder.SelectedItem.ToString(), datesToEvaluate);
-            }
-            else
+                if (txtSearchById.Text.Length > 3 && Int64.TryParse(txtSearchById.Text, out long id))
+                {
+                    loadAllHistoryLog(id.ToString(), cmbSortOrder.SelectedItem.ToString(), datesToEvaluate);
+                }
+                else
+                {
+                    loadAllHistoryLog(null, cmbSortOrder.SelectedItem.ToString(), datesToEvaluate);
+                }
+            } else
             {
-                loadAllHistoryLog(null, cmbSortOrder.SelectedItem.ToString(), datesToEvaluate);
+                MessageBox.Show("To date time should be greater than From date", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -40,7 +40,7 @@ namespace POSWinforms.Maintenance
             // 
             this.numericUpDown1.BackColor = System.Drawing.Color.Snow;
             this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(29, 101);
+            this.numericUpDown1.Location = new System.Drawing.Point(29, 74);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(154, 26);
@@ -50,12 +50,12 @@ namespace POSWinforms.Maintenance
             // 
             // btnConfirm
             // 
-            this.btnConfirm.BackColor = System.Drawing.Color.MistyRose;
+            this.btnConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.ForeColor = System.Drawing.Color.Maroon;
-            this.btnConfirm.Location = new System.Drawing.Point(29, 131);
+            this.btnConfirm.ForeColor = System.Drawing.Color.White;
+            this.btnConfirm.Location = new System.Drawing.Point(29, 113);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(76, 32);
@@ -66,12 +66,12 @@ namespace POSWinforms.Maintenance
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.MistyRose;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCancel.Location = new System.Drawing.Point(109, 131);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(109, 113);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(74, 32);
@@ -83,9 +83,9 @@ namespace POSWinforms.Maintenance
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DarkSalmon;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 69);
+            this.label1.Location = new System.Drawing.Point(25, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 21);
             this.label1.TabIndex = 112;

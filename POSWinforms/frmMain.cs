@@ -213,7 +213,7 @@ namespace POSWinforms
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"logged out",
                     Type = LogType.LOGBOOK.ToString(),
-                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                    Date = DateTime.Now,
                     EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                 };
 
@@ -303,7 +303,7 @@ namespace POSWinforms
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"logged out",
                     Type = LogType.LOGBOOK.ToString(),
-                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                    Date = DateTime.Now,
                     EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                 };
 
@@ -314,9 +314,5 @@ namespace POSWinforms
             }
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

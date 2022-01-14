@@ -356,5 +356,8 @@
   <ItemGroup>
     <None Include="Resources\ex1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.jfif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

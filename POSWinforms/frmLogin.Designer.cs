@@ -39,8 +39,10 @@ namespace POSWinforms
             this.cbShowPassword = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroSetControlBox1
@@ -52,7 +54,7 @@ namespace POSWinforms
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
             this.metroSetControlBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.metroSetControlBox1.IsDerivedStyle = true;
-            this.metroSetControlBox1.Location = new System.Drawing.Point(352, 3);
+            this.metroSetControlBox1.Location = new System.Drawing.Point(361, 3);
             this.metroSetControlBox1.MaximizeBox = false;
             this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroSetControlBox1.MaximizeHoverForeColor = System.Drawing.Color.Gray;
@@ -75,7 +77,7 @@ namespace POSWinforms
             this.txtUsername.BackColor = System.Drawing.Color.Snow;
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUsername.Location = new System.Drawing.Point(145, 23);
+            this.txtUsername.Location = new System.Drawing.Point(145, 148);
             this.txtUsername.MaxLength = 30;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(226, 29);
@@ -91,7 +93,7 @@ namespace POSWinforms
             this.txtPassword.BackColor = System.Drawing.Color.Snow;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(145, 58);
+            this.txtPassword.Location = new System.Drawing.Point(145, 183);
             this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(226, 29);
@@ -109,7 +111,7 @@ namespace POSWinforms
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(145, 127);
+            this.btnLogin.Location = new System.Drawing.Point(145, 247);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(79, 34);
             this.btnLogin.TabIndex = 3;
@@ -138,27 +140,28 @@ namespace POSWinforms
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(-4, -1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 34);
+            this.panel2.Size = new System.Drawing.Size(469, 34);
             this.panel2.TabIndex = 9;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.cbShowPassword);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.txtUsername);
-            this.panel1.Location = new System.Drawing.Point(-3, 33);
+            this.panel1.Location = new System.Drawing.Point(-1, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(459, 169);
+            this.panel1.Size = new System.Drawing.Size(466, 298);
             this.panel1.TabIndex = 10;
             // 
             // cbShowPassword
             // 
             this.cbShowPassword.AutoSize = true;
-            this.cbShowPassword.Location = new System.Drawing.Point(145, 93);
+            this.cbShowPassword.Location = new System.Drawing.Point(145, 214);
             this.cbShowPassword.Name = "cbShowPassword";
             this.cbShowPassword.Size = new System.Drawing.Size(145, 27);
             this.cbShowPassword.TabIndex = 6;
@@ -170,7 +173,7 @@ namespace POSWinforms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(58, 61);
+            this.label3.Location = new System.Drawing.Point(47, 191);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 21);
             this.label3.TabIndex = 5;
@@ -180,18 +183,28 @@ namespace POSWinforms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(47, 26);
+            this.label2.Location = new System.Drawing.Point(47, 156);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 21);
             this.label2.TabIndex = 4;
             this.label2.Text = "User Name";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::POSWinforms.Properties.Resources.login;
+            this.pictureBox1.Location = new System.Drawing.Point(132, -26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(216, 168);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(455, 242);
+            this.ClientSize = new System.Drawing.Size(463, 331);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -205,6 +218,7 @@ namespace POSWinforms
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,6 +235,7 @@ namespace POSWinforms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbShowPassword;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

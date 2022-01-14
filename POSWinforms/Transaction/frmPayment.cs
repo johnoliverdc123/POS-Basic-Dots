@@ -144,7 +144,7 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"created new order({newOrder.ID})",
                         Type = LogType.ORDERS.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 

@@ -20,11 +20,16 @@ namespace POSWinforms.Reports
 
         private List<DateTime> datesToEvaluate = new List<DateTime>();
 
+        private decimal total = 0;
+
         public frmReports()
         {
             InitializeComponent();
 
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpFromDate.MaxDate = startDate;
+            dtpToDate.MaxDate = startDate;
+            dtpFromDate.Value = startDate.AddDays(-1);
+            
         }
 
         private void loadAllProductionAndTransaction(List<DateTime> dates)
@@ -37,7 +42,7 @@ namespace POSWinforms.Reports
             if (dates.Count > 0)
             {
                 orderList = (from s in DatabaseHelper.db.tblOrders
-                             where dates.Contains((DateTime)s.Date)
+                             where dates.Contains(s.Date.Date)
                              select s).ToList()
                              .OrderByDescending(o => o.Date) // Order by most recent date.
                              .ToList();
@@ -47,39 +52,41 @@ namespace POSWinforms.Reports
                 return;
             }
 
-            var prodList = new List<ProductionAndTransaction>();
+            //var prodList = new List<ProductionAndTransaction>();
+
+            //foreach (var item in orderList)
+            //{
+
+
+            //    var transactionsPerDate = orderList.FindAll(o => item.Date == o.Date).Count();
+            //    var transactionsGrandTotal = orderList.FindAll(o => item.Date == o.Date)
+            //        .Sum(x => x.Total + x.ServiceFee);
+
+            //    var newProd = new ProductionAndTransaction
+            //    {
+            //        ID = item.ID,
+            //        Status = item.Status,
+            //        timeStamp = (DateTime)item.Date,
+            //        TransactionsGrandTotal = (decimal)transactionsGrandTotal,
+            //        TransactionsPerDate = transactionsPerDate
+            //    };
+
+            //    prodList.Add(newProd);
+
+            //}
+
+            //prodList = prodList.GroupBy(x => x.timeStamp.Date).Select(y => y.First()).ToList();
+
+            total = orderList.Sum(x => x.Total);
+            txtTotal.Text = total.ToString("C2");
 
             foreach (var item in orderList)
-            {
-
-
-                var transactionsPerDate = orderList.FindAll(o => item.Date == o.Date).Count();
-                var transactionsGrandTotal = orderList.FindAll(o => item.Date == o.Date)
-                    .Sum(x => x.Total + x.ServiceFee);
-
-                var newProd = new ProductionAndTransaction
-                {
-                    ID = item.ID,
-                    Status = item.Status,
-                    timeStamp = (DateTime)item.Date,
-                    TransactionsGrandTotal = (decimal)transactionsGrandTotal,
-                    TransactionsPerDate = transactionsPerDate
-                };
-
-                prodList.Add(newProd);
-
-            }
-
-            prodList = prodList.GroupBy(x => x.timeStamp.Date).Select(y => y.First()).ToList();
-
-            foreach (var item in prodList)
             {
                 dgvProdAndTransactions.Rows.Add(
                         item.ID,
                         item.Status,
-                        item.timeStamp,
-                        item.TransactionsGrandTotal.ToString("C2"),
-                        item.TransactionsPerDate
+                        item.Date,
+                        item.Total.ToString("C2")
                     );
             }
 
@@ -96,7 +103,7 @@ namespace POSWinforms.Reports
             if (dates.Count > 0)
             {
                 expenseList = (from s in DatabaseHelper.db.tblExpenses
-                             where dates.Contains(s.Date)
+                             where dates.Contains(s.Date.Date)
                              select s).ToList()
                              .OrderByDescending(o => o.Date) // Order by most recent date.
                              .ToList();
@@ -128,12 +135,15 @@ namespace POSWinforms.Reports
 
             eList = eList.GroupBy(x => x.ExpenseType).Select(y => y.First()).ToList();
 
+            total = eList.Sum(x => x.GrandTotal);
+            txtTotal.Text = total.ToString("C2");
+
             foreach(var item in eList)
             {
                 dgvExpenses.Rows.Add(
                         item.ID,
                         item.ExpenseType,
-                        item.GrandTotal,
+                        item.GrandTotal.ToString("C2"),
                         item.TimeStamp
                     );
             }
@@ -156,11 +166,13 @@ namespace POSWinforms.Reports
         private void dtpFromDate_ValueChanged(object sender, EventArgs e)
         {
             startDate = dtpFromDate.Value;
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpToDate.Value = startDate;
         }
 
         private void rbCustom_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbCustom.Checked)
             {
                 dtpFromDate.Enabled = true;
@@ -175,15 +187,15 @@ namespace POSWinforms.Reports
 
         private void rbDaily_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbDaily.Checked)
             {
                 datesToEvaluate.Clear();
 
                 var today = DateTime.Now;
-                for (var dt = today.AddDays(-100).Date; dt < today.AddDays(100).Date; dt = dt.AddDays(1))
-                {
-                    datesToEvaluate.Add(dt);
-                }
+                datesToEvaluate.Add(today.Date);
+                
 
                 foreach(var date in datesToEvaluate)
                 {
@@ -203,6 +215,8 @@ namespace POSWinforms.Reports
 
         private void rbWeekly_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbWeekly.Checked)
             {
                 datesToEvaluate.Clear();
@@ -224,6 +238,8 @@ namespace POSWinforms.Reports
 
         private void rbMonthly_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbMonthly.Checked)
             {
                 datesToEvaluate.Clear();
@@ -256,6 +272,8 @@ namespace POSWinforms.Reports
 
         private void rbProductionReport_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             rbDaily.Checked = false;
             rbWeekly.Checked = false;
             rbMonthly.Checked = false;
@@ -267,6 +285,8 @@ namespace POSWinforms.Reports
 
         private void rbExpensesReport_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             rbDaily.Checked = false;
             rbWeekly.Checked = false;
             rbMonthly.Checked = false;

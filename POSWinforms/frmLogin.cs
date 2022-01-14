@@ -108,8 +108,9 @@ namespace POSWinforms
                             Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"logged in",
                             Type = LogType.LOGBOOK.ToString(),
-                            Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
-                            EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
+                            Date = DateTime.Now,
+                            EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}",
+                            SupplierInformation = ""
                         };
 
                         DatabaseHelper.db.tblHistoryLogs.InsertOnSubmit(newLog);
@@ -159,6 +160,11 @@ namespace POSWinforms
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

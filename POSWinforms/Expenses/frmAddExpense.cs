@@ -51,7 +51,7 @@ namespace POSWinforms.Expenses
                 Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"added expense({newExpense.Type}) with the cost of {newExpense.Cost} pesos.",
                 Type = LogType.EXPENSES.ToString(),
-                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                Date = DateTime.Now,
                 EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
             };
 

@@ -34,6 +34,16 @@ namespace POSWinforms.Maintenance
             this.panel2 = new System.Windows.Forms.Panel();
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.columnItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSold = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRestockLvl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnStockIn = new System.Windows.Forms.Button();
@@ -46,16 +56,7 @@ namespace POSWinforms.Maintenance
             this.btnActivateDeactivate = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.columnItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSold = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRestockLvl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +114,7 @@ namespace POSWinforms.Maintenance
             this.metroSetControlBox1.CloseHoverForeColor = System.Drawing.Color.White;
             this.metroSetControlBox1.CloseNormalForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.metroSetControlBox1.ForeColor = System.Drawing.Color.White;
             this.metroSetControlBox1.IsDerivedStyle = true;
             this.metroSetControlBox1.Location = new System.Drawing.Point(1111, 3);
             this.metroSetControlBox1.MaximizeBox = false;
@@ -161,175 +163,6 @@ namespace POSWinforms.Maintenance
             this.dgvItems.Size = new System.Drawing.Size(1183, 281);
             this.dgvItems.TabIndex = 11;
             this.dgvItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItems_CellClick);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(399, 14);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(86, 26);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUpdate.Enabled = false;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnUpdate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(490, 14);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(86, 26);
-            this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnStockIn
-            // 
-            this.btnStockIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnStockIn.Enabled = false;
-            this.btnStockIn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnStockIn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnStockIn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStockIn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStockIn.ForeColor = System.Drawing.Color.White;
-            this.btnStockIn.Location = new System.Drawing.Point(581, 14);
-            this.btnStockIn.Name = "btnStockIn";
-            this.btnStockIn.Size = new System.Drawing.Size(86, 26);
-            this.btnStockIn.TabIndex = 2;
-            this.btnStockIn.Text = "Stock In";
-            this.btnStockIn.UseVisualStyleBackColor = false;
-            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(15, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 17);
-            this.label1.TabIndex = 109;
-            this.label1.Text = "Search";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(340, 125);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 17);
-            this.label2.TabIndex = 110;
-            this.label2.Text = "Item is on Stable Level";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(647, 125);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(147, 17);
-            this.label3.TabIndex = 111;
-            this.label3.Text = "Item is on Critical Level";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(7, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 21);
-            this.label4.TabIndex = 112;
-            this.label4.Text = "Item";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(996, 19);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 17);
-            this.label5.TabIndex = 113;
-            this.label5.Text = "Search by";
-            // 
-            // cmbSearchFilter
-            // 
-            this.cmbSearchFilter.BackColor = System.Drawing.Color.White;
-            this.cmbSearchFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSearchFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cmbSearchFilter.FormattingEnabled = true;
-            this.cmbSearchFilter.Items.AddRange(new object[] {
-            "Active",
-            "Not Active"});
-            this.cmbSearchFilter.Location = new System.Drawing.Point(1069, 13);
-            this.cmbSearchFilter.Name = "cmbSearchFilter";
-            this.cmbSearchFilter.Size = new System.Drawing.Size(130, 29);
-            this.cmbSearchFilter.TabIndex = 3;
-            this.cmbSearchFilter.SelectedIndexChanged += new System.EventHandler(this.cmbSearchFilter_SelectedIndexChanged);
-            // 
-            // btnActivateDeactivate
-            // 
-            this.btnActivateDeactivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnActivateDeactivate.Enabled = false;
-            this.btnActivateDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnActivateDeactivate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnActivateDeactivate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnActivateDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActivateDeactivate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActivateDeactivate.ForeColor = System.Drawing.Color.White;
-            this.btnActivateDeactivate.Location = new System.Drawing.Point(1112, 452);
-            this.btnActivateDeactivate.Name = "btnActivateDeactivate";
-            this.btnActivateDeactivate.Size = new System.Drawing.Size(86, 26);
-            this.btnActivateDeactivate.TabIndex = 5;
-            this.btnActivateDeactivate.Text = "Deactivate";
-            this.btnActivateDeactivate.UseVisualStyleBackColor = false;
-            this.btnActivateDeactivate.Click += new System.EventHandler(this.btnActivateDeactivate_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel3.Location = new System.Drawing.Point(-1, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1223, 32);
-            this.panel3.TabIndex = 114;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel4.Controls.Add(this.txtSearch);
-            this.panel4.Controls.Add(this.cmbSearchFilter);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.btnStockIn);
-            this.panel4.Controls.Add(this.btnAdd);
-            this.panel4.Controls.Add(this.btnUpdate);
-            this.panel4.Location = new System.Drawing.Point(-1, 37);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1223, 409);
-            this.panel4.TabIndex = 115;
             // 
             // columnItemNo
             // 
@@ -398,12 +231,192 @@ namespace POSWinforms.Maintenance
             this.colRestockLvl.ReadOnly = true;
             this.colRestockLvl.Width = 169;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(399, 14);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(86, 26);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnUpdate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(490, 14);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(86, 26);
+            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnStockIn
+            // 
+            this.btnStockIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnStockIn.Enabled = false;
+            this.btnStockIn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnStockIn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnStockIn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockIn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStockIn.ForeColor = System.Drawing.Color.White;
+            this.btnStockIn.Location = new System.Drawing.Point(581, 14);
+            this.btnStockIn.Name = "btnStockIn";
+            this.btnStockIn.Size = new System.Drawing.Size(86, 26);
+            this.btnStockIn.TabIndex = 2;
+            this.btnStockIn.Text = "Stock In";
+            this.btnStockIn.UseVisualStyleBackColor = false;
+            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(15, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 17);
+            this.label1.TabIndex = 109;
+            this.label1.Text = "Search";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(340, 125);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 17);
+            this.label2.TabIndex = 110;
+            this.label2.Text = "Item is on Stable Level";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(647, 125);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(147, 17);
+            this.label3.TabIndex = 111;
+            this.label3.Text = "Item is on Critical Level";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(7, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 21);
+            this.label4.TabIndex = 112;
+            this.label4.Text = "Item";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(996, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 17);
+            this.label5.TabIndex = 113;
+            this.label5.Text = "Search by";
+            // 
+            // cmbSearchFilter
+            // 
+            this.cmbSearchFilter.BackColor = System.Drawing.Color.White;
+            this.cmbSearchFilter.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSearchFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbSearchFilter.FormattingEnabled = true;
+            this.cmbSearchFilter.Items.AddRange(new object[] {
+            "Active",
+            "Not Active"});
+            this.cmbSearchFilter.Location = new System.Drawing.Point(1069, 13);
+            this.cmbSearchFilter.Name = "cmbSearchFilter";
+            this.cmbSearchFilter.Size = new System.Drawing.Size(130, 29);
+            this.cmbSearchFilter.TabIndex = 3;
+            this.cmbSearchFilter.SelectedIndexChanged += new System.EventHandler(this.cmbSearchFilter_SelectedIndexChanged);
+            // 
+            // btnActivateDeactivate
+            // 
+            this.btnActivateDeactivate.BackColor = System.Drawing.Color.Red;
+            this.btnActivateDeactivate.Enabled = false;
+            this.btnActivateDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnActivateDeactivate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActivateDeactivate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActivateDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActivateDeactivate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivateDeactivate.ForeColor = System.Drawing.Color.White;
+            this.btnActivateDeactivate.Location = new System.Drawing.Point(1111, 452);
+            this.btnActivateDeactivate.Name = "btnActivateDeactivate";
+            this.btnActivateDeactivate.Size = new System.Drawing.Size(87, 33);
+            this.btnActivateDeactivate.TabIndex = 5;
+            this.btnActivateDeactivate.Text = "Deactivate";
+            this.btnActivateDeactivate.UseVisualStyleBackColor = false;
+            this.btnActivateDeactivate.Click += new System.EventHandler(this.btnActivateDeactivate_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel3.Location = new System.Drawing.Point(-1, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1223, 32);
+            this.panel3.TabIndex = 114;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.groupBox1);
+            this.panel4.Controls.Add(this.txtSearch);
+            this.panel4.Controls.Add(this.cmbSearchFilter);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.btnStockIn);
+            this.panel4.Controls.Add(this.btnAdd);
+            this.panel4.Controls.Add(this.btnUpdate);
+            this.panel4.Location = new System.Drawing.Point(-1, 37);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1223, 409);
+            this.panel4.TabIndex = 115;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox1.Location = new System.Drawing.Point(13, 51);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1190, 358);
+            this.groupBox1.TabIndex = 114;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
             // frmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1214, 487);
+            this.ClientSize = new System.Drawing.Size(1214, 497);
             this.Controls.Add(this.btnActivateDeactivate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -455,5 +468,6 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSold;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRestockLvl;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

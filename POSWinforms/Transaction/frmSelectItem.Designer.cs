@@ -49,8 +49,10 @@ namespace POSWinforms.Transaction
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.lbAvailStock = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discountSelector)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroSetControlBox1
@@ -84,7 +86,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel1.AutoSize = true;
             this.metroSetLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel1.Location = new System.Drawing.Point(57, 77);
+            this.metroSetLabel1.Location = new System.Drawing.Point(53, 27);
             this.metroSetLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel1.Name = "metroSetLabel1";
             this.metroSetLabel1.Size = new System.Drawing.Size(92, 21);
@@ -95,7 +97,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel2.AutoSize = true;
             this.metroSetLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel2.Location = new System.Drawing.Point(8, 111);
+            this.metroSetLabel2.Location = new System.Drawing.Point(4, 61);
             this.metroSetLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel2.Name = "metroSetLabel2";
             this.metroSetLabel2.Size = new System.Drawing.Size(141, 21);
@@ -106,7 +108,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel3.AutoSize = true;
             this.metroSetLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel3.Location = new System.Drawing.Point(60, 146);
+            this.metroSetLabel3.Location = new System.Drawing.Point(56, 96);
             this.metroSetLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel3.Name = "metroSetLabel3";
             this.metroSetLabel3.Size = new System.Drawing.Size(89, 21);
@@ -117,7 +119,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel4.AutoSize = true;
             this.metroSetLabel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel4.Location = new System.Drawing.Point(68, 180);
+            this.metroSetLabel4.Location = new System.Drawing.Point(64, 130);
             this.metroSetLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel4.Name = "metroSetLabel4";
             this.metroSetLabel4.Size = new System.Drawing.Size(81, 21);
@@ -128,7 +130,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel5.AutoSize = true;
             this.metroSetLabel5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel5.Location = new System.Drawing.Point(67, 215);
+            this.metroSetLabel5.Location = new System.Drawing.Point(63, 165);
             this.metroSetLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel5.Name = "metroSetLabel5";
             this.metroSetLabel5.Size = new System.Drawing.Size(82, 21);
@@ -139,7 +141,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel6.AutoSize = true;
             this.metroSetLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel6.Location = new System.Drawing.Point(97, 249);
+            this.metroSetLabel6.Location = new System.Drawing.Point(93, 199);
             this.metroSetLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel6.Name = "metroSetLabel6";
             this.metroSetLabel6.Size = new System.Drawing.Size(52, 21);
@@ -161,7 +163,7 @@ namespace POSWinforms.Transaction
             this.txtItemDescription.Image = null;
             this.txtItemDescription.IsDerivedStyle = false;
             this.txtItemDescription.Lines = null;
-            this.txtItemDescription.Location = new System.Drawing.Point(153, 102);
+            this.txtItemDescription.Location = new System.Drawing.Point(149, 52);
             this.txtItemDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtItemDescription.MaxLength = 32767;
             this.txtItemDescription.Multiline = false;
@@ -192,7 +194,7 @@ namespace POSWinforms.Transaction
             this.txtItemCode.Image = null;
             this.txtItemCode.IsDerivedStyle = false;
             this.txtItemCode.Lines = null;
-            this.txtItemCode.Location = new System.Drawing.Point(153, 68);
+            this.txtItemCode.Location = new System.Drawing.Point(149, 18);
             this.txtItemCode.Margin = new System.Windows.Forms.Padding(2);
             this.txtItemCode.MaxLength = 32767;
             this.txtItemCode.Multiline = false;
@@ -223,7 +225,7 @@ namespace POSWinforms.Transaction
             this.txtUnitPrice.Image = null;
             this.txtUnitPrice.IsDerivedStyle = false;
             this.txtUnitPrice.Lines = null;
-            this.txtUnitPrice.Location = new System.Drawing.Point(153, 137);
+            this.txtUnitPrice.Location = new System.Drawing.Point(149, 87);
             this.txtUnitPrice.Margin = new System.Windows.Forms.Padding(2);
             this.txtUnitPrice.MaxLength = 32767;
             this.txtUnitPrice.Multiline = false;
@@ -254,7 +256,7 @@ namespace POSWinforms.Transaction
             this.txtTotal.Image = null;
             this.txtTotal.IsDerivedStyle = false;
             this.txtTotal.Lines = null;
-            this.txtTotal.Location = new System.Drawing.Point(153, 240);
+            this.txtTotal.Location = new System.Drawing.Point(149, 190);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotal.MaxLength = 32767;
             this.txtTotal.Multiline = false;
@@ -274,7 +276,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel7.AutoSize = true;
             this.metroSetLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel7.Location = new System.Drawing.Point(239, 208);
+            this.metroSetLabel7.Location = new System.Drawing.Point(235, 158);
             this.metroSetLabel7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel7.Name = "metroSetLabel7";
             this.metroSetLabel7.Size = new System.Drawing.Size(31, 25);
@@ -285,7 +287,7 @@ namespace POSWinforms.Transaction
             // 
             this.quantitySelector.BackColor = System.Drawing.Color.Snow;
             this.quantitySelector.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantitySelector.Location = new System.Drawing.Point(153, 171);
+            this.quantitySelector.Location = new System.Drawing.Point(149, 121);
             this.quantitySelector.Margin = new System.Windows.Forms.Padding(2);
             this.quantitySelector.Maximum = new decimal(new int[] {
             99,
@@ -313,7 +315,7 @@ namespace POSWinforms.Transaction
             // 
             this.discountSelector.BackColor = System.Drawing.Color.Snow;
             this.discountSelector.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discountSelector.Location = new System.Drawing.Point(153, 206);
+            this.discountSelector.Location = new System.Drawing.Point(149, 156);
             this.discountSelector.Margin = new System.Windows.Forms.Padding(2);
             this.discountSelector.Name = "discountSelector";
             this.discountSelector.Size = new System.Drawing.Size(82, 30);
@@ -328,7 +330,7 @@ namespace POSWinforms.Transaction
             this.btnSelectItem.ForeColor = System.Drawing.Color.Maroon;
             this.btnSelectItem.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectItem.Image")));
             this.btnSelectItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSelectItem.Location = new System.Drawing.Point(239, 66);
+            this.btnSelectItem.Location = new System.Drawing.Point(235, 16);
             this.btnSelectItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectItem.Name = "btnSelectItem";
             this.btnSelectItem.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -344,16 +346,16 @@ namespace POSWinforms.Transaction
             // 
             // btnAddToCart
             // 
-            this.btnAddToCart.BackColor = System.Drawing.Color.MistyRose;
+            this.btnAddToCart.BackColor = System.Drawing.Color.LightCoral;
             this.btnAddToCart.Enabled = false;
             this.btnAddToCart.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.btnAddToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToCart.ForeColor = System.Drawing.Color.Maroon;
-            this.btnAddToCart.Location = new System.Drawing.Point(279, 284);
+            this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddToCart.ForeColor = System.Drawing.Color.Black;
+            this.btnAddToCart.Location = new System.Drawing.Point(263, 284);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddToCart.Name = "btnAddToCart";
-            this.btnAddToCart.Size = new System.Drawing.Size(176, 38);
+            this.btnAddToCart.Size = new System.Drawing.Size(155, 38);
             this.btnAddToCart.TabIndex = 3;
             this.btnAddToCart.Text = "Add To Cart";
             this.btnAddToCart.UseVisualStyleBackColor = false;
@@ -362,9 +364,9 @@ namespace POSWinforms.Transaction
             // lbAvailStock
             // 
             this.lbAvailStock.AutoSize = true;
-            this.lbAvailStock.BackColor = System.Drawing.Color.DarkSalmon;
+            this.lbAvailStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbAvailStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAvailStock.Location = new System.Drawing.Point(239, 180);
+            this.lbAvailStock.Location = new System.Drawing.Point(235, 130);
             this.lbAvailStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbAvailStock.Name = "lbAvailStock";
             this.lbAvailStock.Size = new System.Drawing.Size(161, 21);
@@ -372,28 +374,38 @@ namespace POSWinforms.Transaction
             this.lbAvailStock.Text = "(Available Stocks - )";
             this.lbAvailStock.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.lbAvailStock);
+            this.panel1.Controls.Add(this.btnSelectItem);
+            this.panel1.Controls.Add(this.discountSelector);
+            this.panel1.Controls.Add(this.quantitySelector);
+            this.panel1.Controls.Add(this.metroSetLabel7);
+            this.panel1.Controls.Add(this.txtTotal);
+            this.panel1.Controls.Add(this.txtUnitPrice);
+            this.panel1.Controls.Add(this.txtItemCode);
+            this.panel1.Controls.Add(this.txtItemDescription);
+            this.panel1.Controls.Add(this.metroSetLabel6);
+            this.panel1.Controls.Add(this.metroSetLabel5);
+            this.panel1.Controls.Add(this.metroSetLabel4);
+            this.panel1.Controls.Add(this.metroSetLabel3);
+            this.panel1.Controls.Add(this.metroSetLabel2);
+            this.panel1.Controls.Add(this.metroSetLabel1);
+            this.panel1.ForeColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(4, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(423, 229);
+            this.panel1.TabIndex = 114;
+            // 
             // frmSelectItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(466, 333);
-            this.Controls.Add(this.lbAvailStock);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAddToCart);
-            this.Controls.Add(this.btnSelectItem);
-            this.Controls.Add(this.discountSelector);
-            this.Controls.Add(this.quantitySelector);
-            this.Controls.Add(this.metroSetLabel7);
-            this.Controls.Add(this.txtTotal);
-            this.Controls.Add(this.txtUnitPrice);
-            this.Controls.Add(this.txtItemCode);
-            this.Controls.Add(this.txtItemDescription);
-            this.Controls.Add(this.metroSetLabel6);
-            this.Controls.Add(this.metroSetLabel5);
-            this.Controls.Add(this.metroSetLabel4);
-            this.Controls.Add(this.metroSetLabel3);
-            this.Controls.Add(this.metroSetLabel2);
-            this.Controls.Add(this.metroSetLabel1);
             this.Controls.Add(this.metroSetControlBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -405,8 +417,9 @@ namespace POSWinforms.Transaction
             this.Load += new System.EventHandler(this.frmAddItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.quantitySelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discountSelector)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -429,5 +442,6 @@ namespace POSWinforms.Transaction
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnAddToCart;
         private System.Windows.Forms.Label lbAvailStock;
+        private System.Windows.Forms.Panel panel1;
     }
 }

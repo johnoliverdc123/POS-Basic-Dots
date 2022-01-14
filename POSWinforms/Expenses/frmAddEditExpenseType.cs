@@ -57,7 +57,7 @@ namespace POSWinforms.Expenses
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"added expense type ({txtType.Text}).",
                     Type = LogType.EXPENSE_TYPE.ToString(),
-                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                    Date = DateTime.Now,
                     EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                 };
 
@@ -84,7 +84,7 @@ namespace POSWinforms.Expenses
                     Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"updated expense type ({selectedItem.Type}).",
                     Type = LogType.EXPENSE_TYPE.ToString(),
-                    Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                    Date = DateTime.Now,
                     EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                 };
 
@@ -115,7 +115,7 @@ namespace POSWinforms.Expenses
                 Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"deleted expense type ({selectedItem.Type}).",
                 Type = LogType.EXPENSE_TYPE.ToString(),
-                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                Date = DateTime.Now,
                 EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
             };
 

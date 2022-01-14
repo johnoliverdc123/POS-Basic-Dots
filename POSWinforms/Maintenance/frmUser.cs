@@ -156,7 +156,7 @@ namespace POSWinforms
                                 Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                                 $"activated user({selectedUser.ID}) {selectedUser.FirstName} {selectedUser.LastName}",
                                 Type = LogType.USER.ToString(),
-                                Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                                Date = DateTime.Now,
                                 EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                             };
 
@@ -197,7 +197,7 @@ namespace POSWinforms
                             Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                                 $"deactivated user({selectedUser.ID}) {selectedUser.FirstName} {selectedUser.LastName}",
                             Type = LogType.USER.ToString(),
-                            Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                            Date = DateTime.Now,
                             EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                         };
 

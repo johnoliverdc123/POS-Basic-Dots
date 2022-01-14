@@ -33,7 +33,6 @@ namespace POSWinforms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.dgvOrderDetails = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +42,7 @@ namespace POSWinforms
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetails)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +58,7 @@ namespace POSWinforms
             this.metroSetControlBox1.Location = new System.Drawing.Point(972, 11);
             this.metroSetControlBox1.Margin = new System.Windows.Forms.Padding(2);
             this.metroSetControlBox1.MaximizeBox = false;
-            this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.Black;
             this.metroSetControlBox1.MaximizeHoverForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.MaximizeNormalForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.MinimizeBox = true;
@@ -78,7 +78,7 @@ namespace POSWinforms
             // 
             this.dgvOrderDetails.AllowUserToAddRows = false;
             this.dgvOrderDetails.AllowUserToDeleteRows = false;
-            this.dgvOrderDetails.BackgroundColor = System.Drawing.Color.PeachPuff;
+            this.dgvOrderDetails.BackgroundColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,16 +116,6 @@ namespace POSWinforms
             this.dgvOrderDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrderDetails.Size = new System.Drawing.Size(1054, 248);
             this.dgvOrderDetails.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 25);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Order Detail";
             // 
             // Column8
             // 
@@ -189,11 +179,21 @@ namespace POSWinforms
             this.Column7.ReadOnly = true;
             this.Column7.Width = 150;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 25);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Order Detail";
+            // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(990, 370);
+            this.btnPrint.Location = new System.Drawing.Point(982, 358);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.Size = new System.Drawing.Size(83, 35);
             this.btnPrint.TabIndex = 8;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;

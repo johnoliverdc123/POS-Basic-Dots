@@ -23,7 +23,9 @@ namespace POSWinforms.Expenses
 
             LoadExpenseTypes();
 
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpFromDate.MaxDate = startDate;
+            dtpToDate.MaxDate = startDate;
+            dtpFromDate.Value = startDate.AddDays(-1);
         }
 
         private void LoadExpenseTypes()
@@ -104,7 +106,7 @@ namespace POSWinforms.Expenses
         private void dtpFromDate_ValueChanged(object sender, EventArgs e)
         {
             startDate = dtpFromDate.Value;
-            dtpToDate.MinDate = startDate.AddDays(1);
+            dtpToDate.Value = startDate.AddDays(1);
         }
 
         private void btnAddExpense_Click(object sender, EventArgs e)
@@ -120,10 +122,7 @@ namespace POSWinforms.Expenses
                 datesToEvaluate.Clear();
 
                 var today = DateTime.Now;
-                for (var dt = today.AddDays(-100).Date; dt < today.AddDays(100).Date; dt = dt.AddDays(1))
-                {
-                    datesToEvaluate.Add(dt);
-                }
+                datesToEvaluate.Add(today.Date);
 
                 foreach (var date in datesToEvaluate)
                 {
@@ -210,13 +209,20 @@ namespace POSWinforms.Expenses
 
         private void generateReports()
         {
-            if (txtSearchById.Text.Length > 3 && Int64.TryParse(txtSearchById.Text, out long id))
+            if (dtpFromDate.Value < dtpToDate.Value)
             {
-                loadAllExpenses(id.ToString(), cmbSortOrder.SelectedItem.ToString());
+                if (txtSearchById.Text.Length > 3 && Int64.TryParse(txtSearchById.Text, out long id))
+                {
+                    loadAllExpenses(id.ToString(), cmbSortOrder.SelectedItem.ToString());
+                }
+                else
+                {
+                    loadAllExpenses(null, cmbSortOrder.SelectedItem.ToString());
+                }
             }
             else
             {
-                loadAllExpenses(null, cmbSortOrder.SelectedItem.ToString());
+                MessageBox.Show("To date time should be greater than From date", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

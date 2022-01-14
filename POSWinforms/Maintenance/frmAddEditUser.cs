@@ -81,6 +81,15 @@ namespace POSWinforms.Maintenance
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
+                var isContactExisting = (from s in DatabaseHelper.db.tblUsers
+                                         where s.ContactNo.Equals(txtContactNo.Text)
+                                         select s).FirstOrDefault();
+
+                if(isContactExisting != null)
+                {
+                    MessageBox.Show("Contact number already exists.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (btnSave.Text.Equals("Save"))
                 {
@@ -103,7 +112,7 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"added new user({newUser.ID})",
                         Type = LogType.USER.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 
@@ -130,7 +139,7 @@ namespace POSWinforms.Maintenance
                         Action = $"{DatabaseHelper.user.LastName}({DatabaseHelper.user.ID}) " +
                         $"updated user({selectedUser.ID})",
                         Type = LogType.USER.ToString(),
-                        Date = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds(),
+                        Date = DateTime.Now,
                         EditBy = $"{DatabaseHelper.user.FirstName} {DatabaseHelper.user.LastName}"
                     };
 
@@ -237,12 +246,7 @@ namespace POSWinforms.Maintenance
 
         private void txtMI_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMI.Text))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(txtMI, "Please enter your middle initial!");
-            }
-            else if (Regex.IsMatch(txtMI.Text, @"^[0-9]+$"))
+            if (Regex.IsMatch(txtMI.Text, @"^[0-9]+$"))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtMI, "Please input letters only!");
@@ -366,5 +370,15 @@ namespace POSWinforms.Maintenance
             }
         }
 
+        private void cbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbShowPassword.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            } else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+            }
+        }
     }
 }
