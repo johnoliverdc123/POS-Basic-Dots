@@ -50,6 +50,10 @@ namespace POSWinforms.Transaction
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.lbAvailStock = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDesignPrice = new MetroSet_UI.Controls.MetroSetTextBox();
+            this.txtDiscountedTotal = new MetroSet_UI.Controls.MetroSetTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discountSelector)).BeginInit();
             this.panel1.SuspendLayout();
@@ -63,7 +67,7 @@ namespace POSWinforms.Transaction
             this.metroSetControlBox1.CloseNormalForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
             this.metroSetControlBox1.IsDerivedStyle = true;
-            this.metroSetControlBox1.Location = new System.Drawing.Point(355, 11);
+            this.metroSetControlBox1.Location = new System.Drawing.Point(327, 11);
             this.metroSetControlBox1.Margin = new System.Windows.Forms.Padding(2);
             this.metroSetControlBox1.MaximizeBox = false;
             this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
@@ -119,7 +123,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel4.AutoSize = true;
             this.metroSetLabel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel4.Location = new System.Drawing.Point(64, 130);
+            this.metroSetLabel4.Location = new System.Drawing.Point(64, 164);
             this.metroSetLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel4.Name = "metroSetLabel4";
             this.metroSetLabel4.Size = new System.Drawing.Size(81, 21);
@@ -130,7 +134,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel5.AutoSize = true;
             this.metroSetLabel5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel5.Location = new System.Drawing.Point(63, 165);
+            this.metroSetLabel5.Location = new System.Drawing.Point(63, 199);
             this.metroSetLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel5.Name = "metroSetLabel5";
             this.metroSetLabel5.Size = new System.Drawing.Size(82, 21);
@@ -141,7 +145,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel6.AutoSize = true;
             this.metroSetLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel6.Location = new System.Drawing.Point(93, 199);
+            this.metroSetLabel6.Location = new System.Drawing.Point(93, 233);
             this.metroSetLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel6.Name = "metroSetLabel6";
             this.metroSetLabel6.Size = new System.Drawing.Size(52, 21);
@@ -256,7 +260,7 @@ namespace POSWinforms.Transaction
             this.txtTotal.Image = null;
             this.txtTotal.IsDerivedStyle = false;
             this.txtTotal.Lines = null;
-            this.txtTotal.Location = new System.Drawing.Point(149, 190);
+            this.txtTotal.Location = new System.Drawing.Point(149, 224);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtTotal.MaxLength = 32767;
             this.txtTotal.Multiline = false;
@@ -276,7 +280,7 @@ namespace POSWinforms.Transaction
             // 
             this.metroSetLabel7.AutoSize = true;
             this.metroSetLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel7.Location = new System.Drawing.Point(235, 158);
+            this.metroSetLabel7.Location = new System.Drawing.Point(235, 192);
             this.metroSetLabel7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroSetLabel7.Name = "metroSetLabel7";
             this.metroSetLabel7.Size = new System.Drawing.Size(31, 25);
@@ -287,7 +291,7 @@ namespace POSWinforms.Transaction
             // 
             this.quantitySelector.BackColor = System.Drawing.Color.Snow;
             this.quantitySelector.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantitySelector.Location = new System.Drawing.Point(149, 121);
+            this.quantitySelector.Location = new System.Drawing.Point(149, 155);
             this.quantitySelector.Margin = new System.Windows.Forms.Padding(2);
             this.quantitySelector.Maximum = new decimal(new int[] {
             99,
@@ -315,7 +319,7 @@ namespace POSWinforms.Transaction
             // 
             this.discountSelector.BackColor = System.Drawing.Color.Snow;
             this.discountSelector.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discountSelector.Location = new System.Drawing.Point(149, 156);
+            this.discountSelector.Location = new System.Drawing.Point(149, 190);
             this.discountSelector.Margin = new System.Windows.Forms.Padding(2);
             this.discountSelector.Name = "discountSelector";
             this.discountSelector.Size = new System.Drawing.Size(82, 30);
@@ -352,7 +356,7 @@ namespace POSWinforms.Transaction
             this.btnAddToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToCart.ForeColor = System.Drawing.Color.Black;
-            this.btnAddToCart.Location = new System.Drawing.Point(263, 284);
+            this.btnAddToCart.Location = new System.Drawing.Point(272, 385);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(155, 38);
@@ -366,7 +370,7 @@ namespace POSWinforms.Transaction
             this.lbAvailStock.AutoSize = true;
             this.lbAvailStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbAvailStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAvailStock.Location = new System.Drawing.Point(235, 130);
+            this.lbAvailStock.Location = new System.Drawing.Point(235, 164);
             this.lbAvailStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbAvailStock.Name = "lbAvailStock";
             this.lbAvailStock.Size = new System.Drawing.Size(161, 21);
@@ -377,6 +381,10 @@ namespace POSWinforms.Transaction
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.txtDiscountedTotal);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.txtDesignPrice);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lbAvailStock);
             this.panel1.Controls.Add(this.btnSelectItem);
             this.panel1.Controls.Add(this.discountSelector);
@@ -395,22 +403,103 @@ namespace POSWinforms.Transaction
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(4, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(423, 229);
+            this.panel1.Size = new System.Drawing.Size(423, 330);
             this.panel1.TabIndex = 114;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(36, 130);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 21);
+            this.label1.TabIndex = 114;
+            this.label1.Text = "Design Price:";
+            // 
+            // txtDesignPrice
+            // 
+            this.txtDesignPrice.AutoCompleteCustomSource = null;
+            this.txtDesignPrice.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtDesignPrice.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtDesignPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.txtDesignPrice.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.txtDesignPrice.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.txtDesignPrice.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.txtDesignPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtDesignPrice.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.txtDesignPrice.Image = null;
+            this.txtDesignPrice.IsDerivedStyle = false;
+            this.txtDesignPrice.Lines = null;
+            this.txtDesignPrice.Location = new System.Drawing.Point(149, 121);
+            this.txtDesignPrice.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDesignPrice.MaxLength = 32767;
+            this.txtDesignPrice.Multiline = false;
+            this.txtDesignPrice.Name = "txtDesignPrice";
+            this.txtDesignPrice.ReadOnly = false;
+            this.txtDesignPrice.Size = new System.Drawing.Size(82, 30);
+            this.txtDesignPrice.Style = MetroSet_UI.Enums.Style.Light;
+            this.txtDesignPrice.StyleManager = null;
+            this.txtDesignPrice.TabIndex = 115;
+            this.txtDesignPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDesignPrice.ThemeAuthor = null;
+            this.txtDesignPrice.ThemeName = null;
+            this.txtDesignPrice.UseSystemPasswordChar = false;
+            this.txtDesignPrice.WatermarkText = "";
+            // 
+            // txtDiscountedTotal
+            // 
+            this.txtDiscountedTotal.AutoCompleteCustomSource = null;
+            this.txtDiscountedTotal.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtDiscountedTotal.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtDiscountedTotal.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.txtDiscountedTotal.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.txtDiscountedTotal.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.txtDiscountedTotal.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.txtDiscountedTotal.Enabled = false;
+            this.txtDiscountedTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtDiscountedTotal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.txtDiscountedTotal.Image = null;
+            this.txtDiscountedTotal.IsDerivedStyle = false;
+            this.txtDiscountedTotal.Lines = null;
+            this.txtDiscountedTotal.Location = new System.Drawing.Point(149, 258);
+            this.txtDiscountedTotal.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDiscountedTotal.MaxLength = 32767;
+            this.txtDiscountedTotal.Multiline = false;
+            this.txtDiscountedTotal.Name = "txtDiscountedTotal";
+            this.txtDiscountedTotal.ReadOnly = false;
+            this.txtDiscountedTotal.Size = new System.Drawing.Size(108, 30);
+            this.txtDiscountedTotal.Style = MetroSet_UI.Enums.Style.Light;
+            this.txtDiscountedTotal.StyleManager = null;
+            this.txtDiscountedTotal.TabIndex = 117;
+            this.txtDiscountedTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDiscountedTotal.ThemeAuthor = null;
+            this.txtDiscountedTotal.ThemeName = null;
+            this.txtDiscountedTotal.UseSystemPasswordChar = false;
+            this.txtDiscountedTotal.WatermarkText = "";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(2, 267);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 21);
+            this.label2.TabIndex = 116;
+            this.label2.Text = "Discounted Total:";
             // 
             // frmSelectItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(466, 333);
+            this.ClientSize = new System.Drawing.Size(440, 434);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAddToCart);
             this.Controls.Add(this.metroSetControlBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(466, 333);
-            this.MinimumSize = new System.Drawing.Size(466, 333);
             this.Name = "frmSelectItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select Item";
@@ -443,5 +532,9 @@ namespace POSWinforms.Transaction
         private System.Windows.Forms.Button btnAddToCart;
         private System.Windows.Forms.Label lbAvailStock;
         private System.Windows.Forms.Panel panel1;
+        private MetroSet_UI.Controls.MetroSetTextBox txtDiscountedTotal;
+        private System.Windows.Forms.Label label2;
+        private MetroSet_UI.Controls.MetroSetTextBox txtDesignPrice;
+        private System.Windows.Forms.Label label1;
     }
 }

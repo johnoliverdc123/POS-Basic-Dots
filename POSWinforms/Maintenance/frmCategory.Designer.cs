@@ -46,6 +46,8 @@ namespace POSWinforms.Maintenance
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cmbSizeType = new System.Windows.Forms.ComboBox();
+            this.metroSetLabel3 = new MetroSet_UI.Controls.MetroSetLabel();
             this.btnActivateDeactivate = new System.Windows.Forms.Button();
             this.cbShowDeactivatedItems = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategories)).BeginInit();
@@ -162,7 +164,7 @@ namespace POSWinforms.Maintenance
             this.dgvCategories.RowHeadersVisible = false;
             this.dgvCategories.RowTemplate.Height = 30;
             this.dgvCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCategories.Size = new System.Drawing.Size(511, 156);
+            this.dgvCategories.Size = new System.Drawing.Size(583, 156);
             this.dgvCategories.TabIndex = 0;
             this.dgvCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategories_CellClick);
             // 
@@ -231,7 +233,7 @@ namespace POSWinforms.Maintenance
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(444, 352);
+            this.btnClose.Location = new System.Drawing.Point(508, 349);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(82, 32);
             this.btnClose.TabIndex = 107;
@@ -256,7 +258,7 @@ namespace POSWinforms.Maintenance
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-3, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(549, 32);
+            this.panel1.Size = new System.Drawing.Size(675, 32);
             this.panel1.TabIndex = 109;
             // 
             // panel2
@@ -264,20 +266,45 @@ namespace POSWinforms.Maintenance
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel2.Location = new System.Drawing.Point(-2, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(548, 177);
+            this.panel2.Size = new System.Drawing.Size(674, 177);
             this.panel2.TabIndex = 110;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel3.Controls.Add(this.cmbSizeType);
+            this.panel3.Controls.Add(this.metroSetLabel3);
             this.panel3.Controls.Add(this.txtItemCode);
             this.panel3.Controls.Add(this.metroSetLabel1);
             this.panel3.Controls.Add(this.metroSetLabel2);
             this.panel3.Controls.Add(this.txtDescription);
             this.panel3.Location = new System.Drawing.Point(-3, 219);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(549, 89);
+            this.panel3.Size = new System.Drawing.Size(675, 89);
             this.panel3.TabIndex = 111;
+            // 
+            // cmbSizeType
+            // 
+            this.cmbSizeType.FormattingEnabled = true;
+            this.cmbSizeType.Location = new System.Drawing.Point(425, 16);
+            this.cmbSizeType.Name = "cmbSizeType";
+            this.cmbSizeType.Size = new System.Drawing.Size(168, 28);
+            this.cmbSizeType.TabIndex = 106;
+            // 
+            // metroSetLabel3
+            // 
+            this.metroSetLabel3.AutoSize = true;
+            this.metroSetLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroSetLabel3.IsDerivedStyle = false;
+            this.metroSetLabel3.Location = new System.Drawing.Point(353, 19);
+            this.metroSetLabel3.Name = "metroSetLabel3";
+            this.metroSetLabel3.Size = new System.Drawing.Size(66, 17);
+            this.metroSetLabel3.Style = MetroSet_UI.Enums.Style.Custom;
+            this.metroSetLabel3.StyleManager = null;
+            this.metroSetLabel3.TabIndex = 105;
+            this.metroSetLabel3.Text = "Size Type:";
+            this.metroSetLabel3.ThemeAuthor = null;
+            this.metroSetLabel3.ThemeName = null;
             // 
             // btnActivateDeactivate
             // 
@@ -288,7 +315,7 @@ namespace POSWinforms.Maintenance
             this.btnActivateDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActivateDeactivate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivateDeactivate.ForeColor = System.Drawing.Color.White;
-            this.btnActivateDeactivate.Location = new System.Drawing.Point(444, 314);
+            this.btnActivateDeactivate.Location = new System.Drawing.Point(508, 314);
             this.btnActivateDeactivate.Name = "btnActivateDeactivate";
             this.btnActivateDeactivate.Size = new System.Drawing.Size(82, 32);
             this.btnActivateDeactivate.TabIndex = 112;
@@ -312,7 +339,7 @@ namespace POSWinforms.Maintenance
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(541, 394);
+            this.ClientSize = new System.Drawing.Size(609, 394);
             this.Controls.Add(this.cbShowDeactivatedItems);
             this.Controls.Add(this.btnActivateDeactivate);
             this.Controls.Add(this.btnClose);
@@ -357,5 +384,7 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ComboBox cmbSizeType;
+        private MetroSet_UI.Controls.MetroSetLabel metroSetLabel3;
     }
 }

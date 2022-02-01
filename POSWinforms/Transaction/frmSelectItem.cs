@@ -9,6 +9,8 @@ namespace POSWinforms.Transaction
 {
     public partial class frmSelectItem : Form
     {
+        private static decimal subTotal = 0;
+        private static decimal discountedTotal = 0;
         private int quantity = 1;
         private int discount = 0;
         private long nextID = 1;
@@ -59,10 +61,29 @@ namespace POSWinforms.Transaction
 
         public static decimal getGrandTotal(decimal price, int quantity, int discount)
         {
-            decimal subTotal = price * quantity;
+            subTotal = price * quantity;
             if (discount > 0)
             {
-                subTotal -= (subTotal * discount / 100);
+                discountedTotal = subTotal - (subTotal * discount / 100);
+            } else
+            {
+                discountedTotal = 0;
+            }
+            return subTotal;
+        }
+
+        public decimal getGrandTotalWithDesignPrice(decimal unitPrice, decimal designPrice, int quantity, int discount)
+        {
+            subTotal = (unitPrice + designPrice) * quantity;
+            if (discount > 0)
+            {
+                discountedTotal = subTotal - (subTotal * discount / 100);
+                txtDiscountedTotal.Text = discountedTotal.ToString();
+            }
+            else
+            {
+                discountedTotal = 0;
+                txtDiscountedTotal.Text = discountedTotal.ToString();
             }
             return subTotal;
         }
@@ -71,7 +92,17 @@ namespace POSWinforms.Transaction
         {
             if (item != null)
             {
-                txtTotal.Text = getGrandTotal(item.Price, quantity, discount).ToString("0.00");
+                if (string.IsNullOrEmpty(txtDesignPrice.Text))
+                {
+                    txtTotal.Text = getGrandTotal(item.Price, quantity, discount).ToString("0.00");
+                    txtDiscountedTotal.Text = discountedTotal.ToString("0.00");
+                } else
+                {
+                    if(decimal.TryParse(txtDesignPrice.Text, out decimal designPrice))
+                    {
+                        txtTotal.Text = getGrandTotalWithDesignPrice(item.Price, designPrice, quantity, discount).ToString("0.00");
+                    }
+                }
             }
             
         }
@@ -91,10 +122,20 @@ namespace POSWinforms.Transaction
                 {
                     isItemExisting.Quantity += quantity;
                     isItemExisting.Discount = discount;
-                    isItemExisting.Total = frmSelectItem.getGrandTotal(item.Price, isItemExisting.Quantity, isItemExisting.Discount);
+                    isItemExisting.Total = getGrandTotal(item.Price, isItemExisting.Quantity, isItemExisting.Discount);
                 }
                 else
                 {
+                    decimal total = 0;
+
+                    if(discountedTotal > 0)
+                    {
+                        total = discountedTotal;
+                    } 
+                    else
+                    {
+                        total = subTotal;
+                    }
 
                     DatabaseHelper.cartList.Add(new OrderDetail
                     {
@@ -105,7 +146,7 @@ namespace POSWinforms.Transaction
                         Discount = discount,
                         Quantity = quantity,
                         Price = item.Price,
-                        Total = decimal.Parse(txtTotal.Text),
+                        Total = total,
                         OrderID = 0,
                     });
 

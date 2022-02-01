@@ -17,6 +17,8 @@ namespace POSWinforms.Expenses
 
         private DateTime startDate = DateTime.Now;
 
+        private decimal total = 0;
+
         public frmExpenses()
         {
             InitializeComponent();
@@ -86,6 +88,8 @@ namespace POSWinforms.Expenses
             }
 
             expenseList = expenseList.OrderByDescending(e => e.Date).ToList();
+            total = expenseList.Sum(x => x.Cost);
+            txtTotal.Text = total.ToString("C2");
 
             foreach (var item in expenseList)
             {
@@ -94,7 +98,7 @@ namespace POSWinforms.Expenses
                         item.ID,
                         item.Purpose,
                         item.Type,
-                        item.Cost,
+                        item.Cost.ToString("C2"),
                         item.Date,
                         item.PaidBy
                     );
@@ -117,6 +121,8 @@ namespace POSWinforms.Expenses
 
         private void rbDaily_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbDaily.Checked)
             {
                 datesToEvaluate.Clear();
@@ -135,6 +141,8 @@ namespace POSWinforms.Expenses
 
         private void rbWeekly_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbWeekly.Checked)
             {
                 datesToEvaluate.Clear();
@@ -142,7 +150,7 @@ namespace POSWinforms.Expenses
                 DateTime today = DateTime.Today;
                 int currentDayOfWeek = (int)today.DayOfWeek;
                 DateTime sunday = today.AddDays(-currentDayOfWeek);
-                DateTime monday = sunday.AddDays(1);
+                DateTime monday = sunday.AddDays(-6);
                 datesToEvaluate = Enumerable.Range(0, 7).Select(days => monday.AddDays(days)).ToList();
 
                 foreach (var date in datesToEvaluate)
@@ -156,6 +164,8 @@ namespace POSWinforms.Expenses
 
         private void rbMonthly_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbMonthly.Checked)
             {
                 datesToEvaluate.Clear();
@@ -181,6 +191,8 @@ namespace POSWinforms.Expenses
 
         private void rbCustom_CheckedChanged(object sender, EventArgs e)
         {
+            txtTotal.Text = "0";
+
             if (rbCustom.Checked)
             {
                 dtpFromDate.Enabled = true;

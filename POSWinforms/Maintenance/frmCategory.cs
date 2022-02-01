@@ -24,6 +24,9 @@ namespace POSWinforms.Maintenance
         {
             InitializeComponent();
             LoadActiveCategories();
+
+            cmbSizeType.Items.AddRange(DatabaseHelper.sizeTypes.ToArray());
+            cmbSizeType.SelectedIndex = 0;
         }
 
         private void txtItemCode_Validating(object sender, CancelEventArgs e)
@@ -63,12 +66,13 @@ namespace POSWinforms.Maintenance
                     return;
                 }
 
-                if (!string.IsNullOrWhiteSpace(txtDescription.Text) && !string.IsNullOrWhiteSpace(txtItemCode.Text))
+                if (!string.IsNullOrWhiteSpace(txtDescription.Text) && !string.IsNullOrWhiteSpace(txtItemCode.Text) && cmbSizeType.SelectedIndex >= 0)
                 {
                     var newCategory = new tblCategory
                     {
                         ItemCode = txtItemCode.Text,
                         ItemDescription = txtDescription.Text,
+                        SizeType = cmbSizeType.SelectedItem.ToString(),
                         isActive = 1
                     };
 
@@ -124,10 +128,11 @@ namespace POSWinforms.Maintenance
                 {
                     if (ValidateChildren(ValidationConstraints.Enabled))
                     {
-                        if (!string.IsNullOrWhiteSpace(txtDescription.Text))
+                        if (!string.IsNullOrWhiteSpace(txtDescription.Text) && cmbSizeType.SelectedIndex >= 0)
                         {
                             selectedCategory.ItemCode = txtItemCode.Text;
                             selectedCategory.ItemDescription = txtDescription.Text;
+                            selectedCategory.SizeType = cmbSizeType.SelectedItem.ToString();
 
                             var newLog = new tblHistoryLog
                             {
@@ -200,6 +205,7 @@ namespace POSWinforms.Maintenance
                 txtDescription.Text = dgvCategories.Rows[e.RowIndex].Cells[1].Value.ToString();
 
                 selectedCategory = DatabaseHelper.db.tblCategories.FirstOrDefault(x => x.ItemCode.Equals(itemCode));
+                cmbSizeType.SelectedIndex = cmbSizeType.Items.IndexOf(selectedCategory.SizeType);
             }
         }
 

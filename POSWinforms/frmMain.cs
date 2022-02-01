@@ -78,14 +78,38 @@ namespace POSWinforms
 
         private void loadEverything()
         {
-            loadAllItems();
+            loadAllCriticalItems();
+            loadAllOutOfStockItems();
             loadFastTrackItems();
             loadSlowTrackItems();
             loadTotalSalesAndTransactionCountToday();
             loadTotalExpensesToday();
         }
 
-        private void loadAllItems()
+        private void loadAllOutOfStockItems()
+        {
+            dgvOutOfStocks.Rows.Clear();
+
+            // find all items with stock of 0
+            var itemList = (from s in DatabaseHelper.db.tblItems
+                        where s.Stocks == 0
+                        select s).ToList();
+
+            foreach (var item in itemList)
+            {
+                dgvOutOfStocks.Rows.Add(
+                        item.ItemNumber,
+                        item.ItemCode,
+                        item.ItemDescription,
+                        item.Size,
+                        item.Stocks
+                    );
+            }
+
+            dgvOutOfStocks.ClearSelection();
+        }
+
+        private void loadAllCriticalItems()
         {
             itemList.Clear();
             dgvItems.Rows.Clear();

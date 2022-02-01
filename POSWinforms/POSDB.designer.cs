@@ -30,9 +30,6 @@ namespace POSWinforms
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InserttblCategory(tblCategory instance);
-    partial void UpdatetblCategory(tblCategory instance);
-    partial void DeletetblCategory(tblCategory instance);
     partial void InserttblUser(tblUser instance);
     partial void UpdatetblUser(tblUser instance);
     partial void DeletetblUser(tblUser instance);
@@ -45,9 +42,6 @@ namespace POSWinforms
     partial void InserttblHistoryLog(tblHistoryLog instance);
     partial void UpdatetblHistoryLog(tblHistoryLog instance);
     partial void DeletetblHistoryLog(tblHistoryLog instance);
-    partial void InserttblItem(tblItem instance);
-    partial void UpdatetblItem(tblItem instance);
-    partial void DeletetblItem(tblItem instance);
     partial void InserttblOrderDetail(tblOrderDetail instance);
     partial void UpdatetblOrderDetail(tblOrderDetail instance);
     partial void DeletetblOrderDetail(tblOrderDetail instance);
@@ -57,6 +51,12 @@ namespace POSWinforms
     partial void InserttblPosition(tblPosition instance);
     partial void UpdatetblPosition(tblPosition instance);
     partial void DeletetblPosition(tblPosition instance);
+    partial void InserttblCategory(tblCategory instance);
+    partial void UpdatetblCategory(tblCategory instance);
+    partial void DeletetblCategory(tblCategory instance);
+    partial void InserttblItem(tblItem instance);
+    partial void UpdatetblItem(tblItem instance);
+    partial void DeletetblItem(tblItem instance);
     #endregion
 		
 		public POSDBDataContext() : 
@@ -87,14 +87,6 @@ namespace POSWinforms
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<tblCategory> tblCategories
-		{
-			get
-			{
-				return this.GetTable<tblCategory>();
-			}
 		}
 		
 		public System.Data.Linq.Table<tblUser> tblUsers
@@ -129,14 +121,6 @@ namespace POSWinforms
 			}
 		}
 		
-		public System.Data.Linq.Table<tblItem> tblItems
-		{
-			get
-			{
-				return this.GetTable<tblItem>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblOrderDetail> tblOrderDetails
 		{
 			get
@@ -160,138 +144,20 @@ namespace POSWinforms
 				return this.GetTable<tblPosition>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCategories")]
-	public partial class tblCategory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private string _ItemCode;
-		
-		private string _ItemDescription;
-		
-		private int _isActive;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnItemCodeChanging(string value);
-    partial void OnItemCodeChanged();
-    partial void OnItemDescriptionChanging(string value);
-    partial void OnItemDescriptionChanged();
-    partial void OnisActiveChanging(int value);
-    partial void OnisActiveChanged();
-    #endregion
-		
-		public tblCategory()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
+		public System.Data.Linq.Table<tblCategory> tblCategories
 		{
 			get
 			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
+				return this.GetTable<tblCategory>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ItemCode
+		public System.Data.Linq.Table<tblItem> tblItems
 		{
 			get
 			{
-				return this._ItemCode;
-			}
-			set
-			{
-				if ((this._ItemCode != value))
-				{
-					this.OnItemCodeChanging(value);
-					this.SendPropertyChanging();
-					this._ItemCode = value;
-					this.SendPropertyChanged("ItemCode");
-					this.OnItemCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string ItemDescription
-		{
-			get
-			{
-				return this._ItemDescription;
-			}
-			set
-			{
-				if ((this._ItemDescription != value))
-				{
-					this.OnItemDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._ItemDescription = value;
-					this.SendPropertyChanged("ItemDescription");
-					this.OnItemDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
-		public int isActive
-		{
-			get
-			{
-				return this._isActive;
-			}
-			set
-			{
-				if ((this._isActive != value))
-				{
-					this.OnisActiveChanging(value);
-					this.SendPropertyChanging();
-					this._isActive = value;
-					this.SendPropertyChanged("isActive");
-					this.OnisActiveChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<tblItem>();
 			}
 		}
 	}
@@ -999,308 +865,6 @@ namespace POSWinforms
 					this._SupplierInformation = value;
 					this.SendPropertyChanged("SupplierInformation");
 					this.OnSupplierInformationChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblItems")]
-	public partial class tblItem : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _ID;
-		
-		private long _ItemNumber;
-		
-		private string _ItemCode;
-		
-		private string _ItemDescription;
-		
-		private string _Size;
-		
-		private decimal _Price;
-		
-		private int _Stocks;
-		
-		private int _Sold;
-		
-		private int _ReStockLevel;
-		
-		private int _isActive;
-		
-		private string _supplierInformation;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(long value);
-    partial void OnIDChanged();
-    partial void OnItemNumberChanging(long value);
-    partial void OnItemNumberChanged();
-    partial void OnItemCodeChanging(string value);
-    partial void OnItemCodeChanged();
-    partial void OnItemDescriptionChanging(string value);
-    partial void OnItemDescriptionChanged();
-    partial void OnSizeChanging(string value);
-    partial void OnSizeChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnStocksChanging(int value);
-    partial void OnStocksChanged();
-    partial void OnSoldChanging(int value);
-    partial void OnSoldChanged();
-    partial void OnReStockLevelChanging(int value);
-    partial void OnReStockLevelChanged();
-    partial void OnisActiveChanging(int value);
-    partial void OnisActiveChanged();
-    partial void OnsupplierInformationChanging(string value);
-    partial void OnsupplierInformationChanged();
-    #endregion
-		
-		public tblItem()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNumber", DbType="BigInt NOT NULL")]
-		public long ItemNumber
-		{
-			get
-			{
-				return this._ItemNumber;
-			}
-			set
-			{
-				if ((this._ItemNumber != value))
-				{
-					this.OnItemNumberChanging(value);
-					this.SendPropertyChanging();
-					this._ItemNumber = value;
-					this.SendPropertyChanged("ItemNumber");
-					this.OnItemNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ItemCode
-		{
-			get
-			{
-				return this._ItemCode;
-			}
-			set
-			{
-				if ((this._ItemCode != value))
-				{
-					this.OnItemCodeChanging(value);
-					this.SendPropertyChanging();
-					this._ItemCode = value;
-					this.SendPropertyChanged("ItemCode");
-					this.OnItemCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string ItemDescription
-		{
-			get
-			{
-				return this._ItemDescription;
-			}
-			set
-			{
-				if ((this._ItemDescription != value))
-				{
-					this.OnItemDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._ItemDescription = value;
-					this.SendPropertyChanged("ItemDescription");
-					this.OnItemDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Size
-		{
-			get
-			{
-				return this._Size;
-			}
-			set
-			{
-				if ((this._Size != value))
-				{
-					this.OnSizeChanging(value);
-					this.SendPropertyChanging();
-					this._Size = value;
-					this.SendPropertyChanged("Size");
-					this.OnSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stocks", DbType="Int NOT NULL")]
-		public int Stocks
-		{
-			get
-			{
-				return this._Stocks;
-			}
-			set
-			{
-				if ((this._Stocks != value))
-				{
-					this.OnStocksChanging(value);
-					this.SendPropertyChanging();
-					this._Stocks = value;
-					this.SendPropertyChanged("Stocks");
-					this.OnStocksChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sold", DbType="Int NOT NULL")]
-		public int Sold
-		{
-			get
-			{
-				return this._Sold;
-			}
-			set
-			{
-				if ((this._Sold != value))
-				{
-					this.OnSoldChanging(value);
-					this.SendPropertyChanging();
-					this._Sold = value;
-					this.SendPropertyChanged("Sold");
-					this.OnSoldChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReStockLevel", DbType="Int NOT NULL")]
-		public int ReStockLevel
-		{
-			get
-			{
-				return this._ReStockLevel;
-			}
-			set
-			{
-				if ((this._ReStockLevel != value))
-				{
-					this.OnReStockLevelChanging(value);
-					this.SendPropertyChanging();
-					this._ReStockLevel = value;
-					this.SendPropertyChanged("ReStockLevel");
-					this.OnReStockLevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
-		public int isActive
-		{
-			get
-			{
-				return this._isActive;
-			}
-			set
-			{
-				if ((this._isActive != value))
-				{
-					this.OnisActiveChanging(value);
-					this.SendPropertyChanging();
-					this._isActive = value;
-					this.SendPropertyChanged("isActive");
-					this.OnisActiveChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_supplierInformation", DbType="VarChar(134)")]
-		public string supplierInformation
-		{
-			get
-			{
-				return this._supplierInformation;
-			}
-			set
-			{
-				if ((this._supplierInformation != value))
-				{
-					this.OnsupplierInformationChanging(value);
-					this.SendPropertyChanging();
-					this._supplierInformation = value;
-					this.SendPropertyChanged("supplierInformation");
-					this.OnsupplierInformationChanged();
 				}
 			}
 		}
@@ -2036,6 +1600,490 @@ namespace POSWinforms
 					this._isActive = value;
 					this.SendPropertyChanged("isActive");
 					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCategories")]
+	public partial class tblCategory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private string _ItemCode;
+		
+		private string _ItemDescription;
+		
+		private string _SizeType;
+		
+		private int _isActive;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnItemCodeChanging(string value);
+    partial void OnItemCodeChanged();
+    partial void OnItemDescriptionChanging(string value);
+    partial void OnItemDescriptionChanged();
+    partial void OnSizeTypeChanging(string value);
+    partial void OnSizeTypeChanged();
+    partial void OnisActiveChanging(int value);
+    partial void OnisActiveChanged();
+    #endregion
+		
+		public tblCategory()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ItemCode
+		{
+			get
+			{
+				return this._ItemCode;
+			}
+			set
+			{
+				if ((this._ItemCode != value))
+				{
+					this.OnItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ItemCode = value;
+					this.SendPropertyChanged("ItemCode");
+					this.OnItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ItemDescription
+		{
+			get
+			{
+				return this._ItemDescription;
+			}
+			set
+			{
+				if ((this._ItemDescription != value))
+				{
+					this.OnItemDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ItemDescription = value;
+					this.SendPropertyChanged("ItemDescription");
+					this.OnItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SizeType", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string SizeType
+		{
+			get
+			{
+				return this._SizeType;
+			}
+			set
+			{
+				if ((this._SizeType != value))
+				{
+					this.OnSizeTypeChanging(value);
+					this.SendPropertyChanging();
+					this._SizeType = value;
+					this.SendPropertyChanged("SizeType");
+					this.OnSizeTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
+		public int isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblItems")]
+	public partial class tblItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private long _ItemNumber;
+		
+		private string _ItemCode;
+		
+		private string _ItemCategory;
+		
+		private string _ItemDescription;
+		
+		private string _Size;
+		
+		private decimal _Price;
+		
+		private int _Stocks;
+		
+		private int _Sold;
+		
+		private int _ReStockLevel;
+		
+		private int _isActive;
+		
+		private string _supplierInformation;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnItemNumberChanging(long value);
+    partial void OnItemNumberChanged();
+    partial void OnItemCodeChanging(string value);
+    partial void OnItemCodeChanged();
+    partial void OnItemCategoryChanging(string value);
+    partial void OnItemCategoryChanged();
+    partial void OnItemDescriptionChanging(string value);
+    partial void OnItemDescriptionChanged();
+    partial void OnSizeChanging(string value);
+    partial void OnSizeChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnStocksChanging(int value);
+    partial void OnStocksChanged();
+    partial void OnSoldChanging(int value);
+    partial void OnSoldChanged();
+    partial void OnReStockLevelChanging(int value);
+    partial void OnReStockLevelChanged();
+    partial void OnisActiveChanging(int value);
+    partial void OnisActiveChanged();
+    partial void OnsupplierInformationChanging(string value);
+    partial void OnsupplierInformationChanged();
+    #endregion
+		
+		public tblItem()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemNumber", DbType="BigInt NOT NULL")]
+		public long ItemNumber
+		{
+			get
+			{
+				return this._ItemNumber;
+			}
+			set
+			{
+				if ((this._ItemNumber != value))
+				{
+					this.OnItemNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ItemNumber = value;
+					this.SendPropertyChanged("ItemNumber");
+					this.OnItemNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ItemCode
+		{
+			get
+			{
+				return this._ItemCode;
+			}
+			set
+			{
+				if ((this._ItemCode != value))
+				{
+					this.OnItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ItemCode = value;
+					this.SendPropertyChanged("ItemCode");
+					this.OnItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCategory", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ItemCategory
+		{
+			get
+			{
+				return this._ItemCategory;
+			}
+			set
+			{
+				if ((this._ItemCategory != value))
+				{
+					this.OnItemCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._ItemCategory = value;
+					this.SendPropertyChanged("ItemCategory");
+					this.OnItemCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ItemDescription
+		{
+			get
+			{
+				return this._ItemDescription;
+			}
+			set
+			{
+				if ((this._ItemDescription != value))
+				{
+					this.OnItemDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ItemDescription = value;
+					this.SendPropertyChanged("ItemDescription");
+					this.OnItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stocks", DbType="Int NOT NULL")]
+		public int Stocks
+		{
+			get
+			{
+				return this._Stocks;
+			}
+			set
+			{
+				if ((this._Stocks != value))
+				{
+					this.OnStocksChanging(value);
+					this.SendPropertyChanging();
+					this._Stocks = value;
+					this.SendPropertyChanged("Stocks");
+					this.OnStocksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sold", DbType="Int NOT NULL")]
+		public int Sold
+		{
+			get
+			{
+				return this._Sold;
+			}
+			set
+			{
+				if ((this._Sold != value))
+				{
+					this.OnSoldChanging(value);
+					this.SendPropertyChanging();
+					this._Sold = value;
+					this.SendPropertyChanged("Sold");
+					this.OnSoldChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReStockLevel", DbType="Int NOT NULL")]
+		public int ReStockLevel
+		{
+			get
+			{
+				return this._ReStockLevel;
+			}
+			set
+			{
+				if ((this._ReStockLevel != value))
+				{
+					this.OnReStockLevelChanging(value);
+					this.SendPropertyChanging();
+					this._ReStockLevel = value;
+					this.SendPropertyChanged("ReStockLevel");
+					this.OnReStockLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Int NOT NULL")]
+		public int isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_supplierInformation", DbType="VarChar(134) NOT NULL", CanBeNull=false)]
+		public string supplierInformation
+		{
+			get
+			{
+				return this._supplierInformation;
+			}
+			set
+			{
+				if ((this._supplierInformation != value))
+				{
+					this.OnsupplierInformationChanging(value);
+					this.SendPropertyChanging();
+					this._supplierInformation = value;
+					this.SendPropertyChanged("supplierInformation");
+					this.OnsupplierInformationChanged();
 				}
 			}
 		}

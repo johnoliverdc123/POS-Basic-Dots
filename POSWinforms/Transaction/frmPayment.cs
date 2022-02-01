@@ -161,7 +161,8 @@ namespace POSWinforms.Maintenance
                            txtServiceType.Text,
                            cash,
                            change,
-                           DatabaseHelper.cartList
+                           DatabaseHelper.cartList,
+                           txtCustomerName.Text
                         );
                     MessageBox.Show("You can save this document", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm.ShowDialog();
@@ -278,6 +279,25 @@ namespace POSWinforms.Maintenance
             {
                 e.Cancel = false;
                 epMoney.SetError(txtServiceFee, null);
+            }
+        }
+
+        private void txtCustomerName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCustomerName.Text))
+            {
+                e.Cancel = true;
+                epMoney.SetError(txtCustomerName, "Please enter customer name!");
+            }
+            else if (Regex.IsMatch(txtCustomerName.Text, @"^([0-9]{1,7})([.,][0-9]{1,2})?$"))
+            {
+                e.Cancel = true;
+                epMoney.SetError(txtCustomerName, "Please input letters only!");
+            }
+            else
+            {
+                e.Cancel = false;
+                epMoney.SetError(txtCustomerName, null);
             }
         }
     }

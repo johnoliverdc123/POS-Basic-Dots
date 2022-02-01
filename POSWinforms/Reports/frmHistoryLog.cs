@@ -122,7 +122,7 @@ namespace POSWinforms.Reports
                 DateTime today = DateTime.Today;
                 int currentDayOfWeek = (int)today.DayOfWeek;
                 DateTime sunday = today.AddDays(-currentDayOfWeek);
-                DateTime monday = sunday.AddDays(1);
+                DateTime monday = sunday.AddDays(-6);
                 datesToEvaluate = Enumerable.Range(0, 7).Select(days => monday.AddDays(days)).ToList();
 
                 foreach (var date in datesToEvaluate)
@@ -219,6 +219,11 @@ namespace POSWinforms.Reports
                 printer.HeaderCellAlignment = StringAlignment.Near;
                 printer.PrintDataGridView(dgvHistoryLog);
             }
+        }
+
+        private void frmHistoryLog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

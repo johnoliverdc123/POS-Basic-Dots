@@ -21,13 +21,14 @@ namespace POSWinforms.Transaction
             string serviceType,
             decimal cash,
             decimal change,
-            List<OrderDetail> cartList
+            List<OrderDetail> cartList,
+            string customerName
             )
         {
             InvoiceCustomer report = new InvoiceCustomer();
             foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
                 p.Visible = false;
-            report.initData(invoiceNo, customerId, date, subTotal, serviceFee, serviceType, cash, change, cartList);
+            report.initData(invoiceNo, customerId, date, subTotal, serviceFee, serviceType, cash, change, cartList, customerName);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

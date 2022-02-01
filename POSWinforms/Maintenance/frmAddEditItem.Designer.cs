@@ -50,6 +50,7 @@ namespace POSWinforms.Maintenance
             this.lbTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbSize = new System.Windows.Forms.ComboBox();
             this.metroSetLabel8 = new MetroSet_UI.Controls.MetroSetLabel();
             this.txtSupplierInformation = new MetroSet_UI.Controls.MetroSetTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -153,7 +154,7 @@ namespace POSWinforms.Maintenance
             this.metroSetLabel5.AutoSize = true;
             this.metroSetLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel5.IsDerivedStyle = false;
-            this.metroSetLabel5.Location = new System.Drawing.Point(97, 163);
+            this.metroSetLabel5.Location = new System.Drawing.Point(97, 198);
             this.metroSetLabel5.Name = "metroSetLabel5";
             this.metroSetLabel5.Size = new System.Drawing.Size(50, 17);
             this.metroSetLabel5.Style = MetroSet_UI.Enums.Style.Custom;
@@ -298,7 +299,7 @@ namespace POSWinforms.Maintenance
             this.txtQuantity.Image = null;
             this.txtQuantity.IsDerivedStyle = false;
             this.txtQuantity.Lines = null;
-            this.txtQuantity.Location = new System.Drawing.Point(153, 152);
+            this.txtQuantity.Location = new System.Drawing.Point(153, 186);
             this.txtQuantity.MaxLength = 10;
             this.txtQuantity.Multiline = false;
             this.txtQuantity.Name = "txtQuantity";
@@ -423,7 +424,7 @@ namespace POSWinforms.Maintenance
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(536, 282);
+            this.btnSave.Location = new System.Drawing.Point(536, 309);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 26);
             this.btnSave.TabIndex = 14;
@@ -455,6 +456,7 @@ namespace POSWinforms.Maintenance
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.cmbSize);
             this.panel2.Controls.Add(this.metroSetLabel8);
             this.panel2.Controls.Add(this.txtSupplierInformation);
             this.panel2.Controls.Add(this.cmbCategory);
@@ -473,15 +475,25 @@ namespace POSWinforms.Maintenance
             this.panel2.Controls.Add(this.txtDescription);
             this.panel2.Location = new System.Drawing.Point(-1, 40);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(634, 236);
+            this.panel2.Size = new System.Drawing.Size(634, 263);
             this.panel2.TabIndex = 20;
+            // 
+            // cmbSize
+            // 
+            this.cmbSize.Enabled = false;
+            this.cmbSize.FormattingEnabled = true;
+            this.cmbSize.Location = new System.Drawing.Point(153, 152);
+            this.cmbSize.Name = "cmbSize";
+            this.cmbSize.Size = new System.Drawing.Size(171, 28);
+            this.cmbSize.TabIndex = 16;
+            this.cmbSize.SelectedIndexChanged += new System.EventHandler(this.cmbSize_SelectedIndexChanged);
             // 
             // metroSetLabel8
             // 
             this.metroSetLabel8.AutoSize = true;
             this.metroSetLabel8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel8.IsDerivedStyle = false;
-            this.metroSetLabel8.Location = new System.Drawing.Point(14, 200);
+            this.metroSetLabel8.Location = new System.Drawing.Point(14, 233);
             this.metroSetLabel8.Name = "metroSetLabel8";
             this.metroSetLabel8.Size = new System.Drawing.Size(133, 17);
             this.metroSetLabel8.Style = MetroSet_UI.Enums.Style.Custom;
@@ -506,7 +518,7 @@ namespace POSWinforms.Maintenance
             this.txtSupplierInformation.Image = null;
             this.txtSupplierInformation.IsDerivedStyle = false;
             this.txtSupplierInformation.Lines = null;
-            this.txtSupplierInformation.Location = new System.Drawing.Point(153, 188);
+            this.txtSupplierInformation.Location = new System.Drawing.Point(153, 221);
             this.txtSupplierInformation.MaxLength = 1000;
             this.txtSupplierInformation.Multiline = false;
             this.txtSupplierInformation.Name = "txtSupplierInformation";
@@ -526,7 +538,7 @@ namespace POSWinforms.Maintenance
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(630, 323);
+            this.ClientSize = new System.Drawing.Size(630, 342);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -568,5 +580,6 @@ namespace POSWinforms.Maintenance
         private System.Windows.Forms.Panel panel2;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel8;
         private MetroSet_UI.Controls.MetroSetTextBox txtSupplierInformation;
+        private System.Windows.Forms.ComboBox cmbSize;
     }
 }

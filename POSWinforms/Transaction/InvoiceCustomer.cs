@@ -20,12 +20,16 @@ namespace POSWinforms.Transaction
             string serviceType,
             decimal cash,
             decimal change,
-            List<OrderDetail> cartList
+            List<OrderDetail> cartList,
+            string customerName
             )
         {
             pInvoiceNo.Value = invoiceNo;
+            pCustomerName.Value = customerName;
             pCustomerID.Value = customerId;
             pDate.Value = date.ToString("MM/dd/yyyy hh:mm:ss tt");
+
+            pSubTotal.Value = (subTotal - serviceFee).ToString("0.00");
             pTotalAmt.Value = subTotal.ToString("0.00");
             pServiceFee.Value = serviceFee.ToString("0.00");
             pServiceType.Value = serviceType;

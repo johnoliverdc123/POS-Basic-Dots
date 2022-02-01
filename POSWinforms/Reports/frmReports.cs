@@ -36,7 +36,6 @@ namespace POSWinforms.Reports
         {
             orderList.Clear();
 
-            dgvExpenses.Rows.Clear();
             dgvProdAndTransactions.Rows.Clear();
 
             if (dates.Count > 0)
@@ -93,73 +92,11 @@ namespace POSWinforms.Reports
             dgvProdAndTransactions.ClearSelection();
         }
 
-        private void loadAllExpenses(List<DateTime> dates)
-        {
-            expenseList.Clear();
-
-            dgvExpenses.Rows.Clear();
-            dgvProdAndTransactions.Rows.Clear();
-
-            if (dates.Count > 0)
-            {
-                expenseList = (from s in DatabaseHelper.db.tblExpenses
-                             where dates.Contains(s.Date.Date)
-                             select s).ToList()
-                             .OrderByDescending(o => o.Date) // Order by most recent date.
-                             .ToList();
-            }
-            else
-            {
-                MessageBox.Show(this, "Please choose if Daily, Weekly, Monthly, or Custom", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var eList = new List<Expense>();
-
-            foreach(var item in expenseList)
-            {
-
-                var grandTotal = expenseList.FindAll(o => item.Date == o.Date && item.Type.Equals(o.Type))
-                    .Sum(x => x.Cost);
-
-                var newExp = new Expense
-                {
-                    ID = item.ID,
-                    GrandTotal = grandTotal,
-                    TimeStamp = item.Date,
-                    ExpenseType = item.Type
-                };
-
-                eList.Add(newExp);
-            }
-
-            eList = eList.GroupBy(x => x.ExpenseType).Select(y => y.First()).ToList();
-
-            total = eList.Sum(x => x.GrandTotal);
-            txtTotal.Text = total.ToString("C2");
-
-            foreach(var item in eList)
-            {
-                dgvExpenses.Rows.Add(
-                        item.ID,
-                        item.ExpenseType,
-                        item.GrandTotal.ToString("C2"),
-                        item.TimeStamp
-                    );
-            }
-
-            dgvExpenses.ClearSelection();
-        }
-
         private void generateReport()
         {
             if (rbProductionReport.Checked)
             {
                 loadAllProductionAndTransaction(datesToEvaluate);
-            }
-            else if (rbExpensesReport.Checked)
-            {
-                loadAllExpenses(datesToEvaluate);
             }
         }
 
@@ -224,7 +161,7 @@ namespace POSWinforms.Reports
                 DateTime today = DateTime.Today;
                 int currentDayOfWeek = (int)today.DayOfWeek;
                 DateTime sunday = today.AddDays(-currentDayOfWeek);
-                DateTime monday = sunday.AddDays(1);
+                DateTime monday = sunday.AddDays(-6);
                 datesToEvaluate = Enumerable.Range(0, 7).Select(days => monday.AddDays(days)).ToList();
 
                 foreach(var date in datesToEvaluate)
@@ -280,7 +217,6 @@ namespace POSWinforms.Reports
             rbCustom.Checked = false;
 
             dgvProdAndTransactions.Rows.Clear();
-            dgvExpenses.Rows.Clear();
         }
 
         private void rbExpensesReport_CheckedChanged(object sender, EventArgs e)
@@ -293,7 +229,6 @@ namespace POSWinforms.Reports
             rbCustom.Checked = false;
 
             dgvProdAndTransactions.Rows.Clear();
-            dgvExpenses.Rows.Clear();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -310,18 +245,11 @@ namespace POSWinforms.Reports
                 printer.HeaderCellAlignment = StringAlignment.Near;
                 printer.PrintDataGridView(dgvProdAndTransactions);
             }
-            else if (rbExpensesReport.Checked && dgvExpenses.Rows.Count > 0)
-            {
-                DGVPrinter printer = new DGVPrinter();
-                printer.Title = "Expenses Report";
-                printer.SubTitle = string.Format("Date: {0}", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"));
-                printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                printer.PageNumbers = true;
-                printer.PageNumberInHeader = false;
-                printer.PorportionalColumns = true;
-                printer.HeaderCellAlignment = StringAlignment.Near;
-                printer.PrintDataGridView(dgvExpenses);
-            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

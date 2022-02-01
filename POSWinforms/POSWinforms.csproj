@@ -134,6 +134,7 @@
     </Compile>
     <Compile Include="Models\DGVPrinter.cs" />
     <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\PriceSize.cs" />
     <Compile Include="Models\ProductionAndTransaction.cs" />
     <Compile Include="Orders\frmOrderDetail.cs">
       <SubType>Form</SubType>

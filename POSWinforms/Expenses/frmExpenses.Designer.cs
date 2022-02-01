@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dgvExpenses = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbSortOrder = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddExpense = new System.Windows.Forms.Button();
@@ -46,12 +52,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,6 +75,38 @@
             this.dgvExpenses.Name = "dgvExpenses";
             this.dgvExpenses.Size = new System.Drawing.Size(776, 313);
             this.dgvExpenses.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 233;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Purpose";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Type";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Cost";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Date";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Made By";
+            this.Column6.Name = "Column6";
             // 
             // cmbSortOrder
             // 
@@ -99,7 +133,7 @@
             this.btnAddExpense.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddExpense.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddExpense.ForeColor = System.Drawing.Color.White;
-            this.btnAddExpense.Location = new System.Drawing.Point(686, 444);
+            this.btnAddExpense.Location = new System.Drawing.Point(686, 517);
             this.btnAddExpense.Name = "btnAddExpense";
             this.btnAddExpense.Size = new System.Drawing.Size(102, 35);
             this.btnAddExpense.TabIndex = 7;
@@ -118,7 +152,7 @@
             this.panel2.Controls.Add(this.rbWeekly);
             this.panel2.Controls.Add(this.dtpFromDate);
             this.panel2.Controls.Add(this.rbDaily);
-            this.panel2.Location = new System.Drawing.Point(12, 12);
+            this.panel2.Location = new System.Drawing.Point(14, 55);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(724, 60);
             this.panel2.TabIndex = 16;
@@ -248,7 +282,7 @@
             this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Location = new System.Drawing.Point(578, 444);
+            this.btnPrint.Location = new System.Drawing.Point(578, 517);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(102, 35);
             this.btnPrint.TabIndex = 19;
@@ -264,53 +298,44 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cmbSortOrder);
             this.panel1.Controls.Add(this.dgvExpenses);
-            this.panel1.Location = new System.Drawing.Point(0, 86);
+            this.panel1.Location = new System.Drawing.Point(2, 137);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(811, 358);
             this.panel1.TabIndex = 20;
             // 
-            // Column1
+            // label5
             // 
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 233;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(13, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 20);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Total Expense:";
             // 
-            // Column2
+            // txtTotal
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Purpose";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Type";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Cost";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Date";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Made By";
-            this.Column6.Name = "Column6";
+            this.txtTotal.AutoSize = true;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(147, 26);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(19, 20);
+            this.txtTotal.TabIndex = 22;
+            this.txtTotal.Text = "0";
             // 
             // frmExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 485);
+            this.ClientSize = new System.Drawing.Size(800, 564);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnAddExpense);
             this.Name = "frmExpenses";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Expenses";
             ((System.ComponentModel.ISupportInitialize)(this.dgvExpenses)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -318,6 +343,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -347,5 +373,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txtTotal;
     }
 }
